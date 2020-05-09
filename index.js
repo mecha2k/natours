@@ -43,16 +43,6 @@ dotenv.config({ path: "./.env" })
 //   res.send("Post method~")
 // })
 
-app.use(function(req, res, next) {
-  console.log("Hello from the middleware...")
-  next()
-})
-
-app.use(function(req, res, next) {
-  req.requestTime = new Date().toISOString()
-  next()
-})
-
 // app.get("/api/tours", getAllTours)
 // app.get("/api/tours/:id", getTour)
 // app.post("/api/tours", createTour)
