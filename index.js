@@ -1,7 +1,6 @@
 const app = require("./app")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
-const fs = require("fs")
 
 dotenv.config({ path: "./.env" })
 
@@ -44,42 +43,31 @@ dotenv.config({ path: "./.env" })
 //   res.send("Post method~")
 // })
 
-const tours = JSON.parse(fs.readFileSync("./resources/data/tours-simple.json").toString())
-
-app.get("/api/tours", function(req, res) {
-  res.status(200).json({
-    status: "success",
-    results: tours.length,
-    data: { tours }
-  })
+app.use(function(req, res, next) {
+  console.log("Hello from the middleware...")
+  next()
 })
 
-app.get("/api/tours/:id", function(req, res) {
-  console.log(req.params)
-  const id = req.params.id * 1
-  const tour = tours.find(function(elem) {
-    return elem.id === id
-  })
-
-  if (!tours)
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid ID"
-    })
-
-  res.status(200).json({ status: "success", data: { tour } })
+app.use(function(req, res, next) {
+  req.requestTime = new Date().toISOString()
+  next()
 })
 
-app.post("/api/tours", function(req, res) {
-  const newId = tours[tours.length - 1].id + 1
-  const newTour = Object.assign({ id: newId }, req.body)
+// app.get("/api/tours", getAllTours)
+// app.get("/api/tours/:id", getTour)
+// app.post("/api/tours", createTour)
+// app.patch("/api/tours/:id", updateTour)
+// app.delete("/api/tours/:id", deleteTour)
 
-  console.log(req.body)
-  tours.push(newTour)
-  fs.writeFile("./resources/data/tours-simple.json", JSON.stringify(tours), (error) => {
-    res.status(201).json({ status: "success", data: { tour: newTour } })
-  })
-})
+// app
+//   .route("/api/tours")
+//   .get(getAllTours)
+//   .post(createTour)
+// app
+//   .route("/api/tours/:id")
+//   .get(getTour)
+//   .patch(updateTour)
+//   .delete(deleteTour)
 
 const port = process.env.PORT || "3000"
 app.listen(port, function() {
