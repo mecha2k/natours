@@ -3,8 +3,10 @@
 Built using modern technologies: node.js, express, mongoDB,
 mongoose and friends 😁
 
-##### Node.js & Express
-* Express : fully wraped node.js server
+##### Express
+* a minimal node.js framework, a higher level of abstraction
+* robust set of features: complex routing, easier handling of requests and responses, middleware, server-side rendering
+* makes it easier to organize our application into the MVC architecture
 
 
 ##### MongoDB connection 

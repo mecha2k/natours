@@ -5,35 +5,35 @@ const fs = require("fs")
 
 dotenv.config({ path: "./.env" })
 
-const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD)
-const localDB = process.env.DATABASE_LOCAL
-mongoose
-  .connect(DB, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
-  .then((connect) => {
-    console.log(connect.connection)
-    console.log("Database connection successful.")
-  })
-
-const tourSchema = new mongoose.Schema({
-  name: { type: String, required: [true, "A tour must have a name"], unique: true },
-  rating: { type: Number, default: 4.5 },
-  price: { type: Number, required: [true, "A tour must have a price"] }
-})
-const Tour = mongoose.model("Tour", tourSchema)
-
-const testTour = new Tour({
-  name: "The Park Camper",
-  price: 977
-})
-
-testTour
-  .save()
-  .then(function(doc) {
-    console.log(doc)
-  })
-  .catch(function(err) {
-    console.log("ERROR :", err)
-  })
+// const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD)
+// const localDB = process.env.DATABASE_LOCAL
+// mongoose
+//   .connect(DB, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
+//   .then((connect) => {
+//     console.log(connect.connection)
+//     console.log("Database connection successful.")
+//   })
+//
+// const tourSchema = new mongoose.Schema({
+//   name: { type: String, required: [true, "A tour must have a name"], unique: true },
+//   rating: { type: Number, default: 4.5 },
+//   price: { type: Number, required: [true, "A tour must have a price"] }
+// })
+// const Tour = mongoose.model("Tour", tourSchema)
+//
+// const testTour = new Tour({
+//   name: "The Park Camper",
+//   price: 975
+// })
+//
+// testTour
+//   .save()
+//   .then(function(doc) {
+//     console.log(doc)
+//   })
+//   .catch(function(err) {
+//     console.log("ERROR :", err)
+//   })
 
 // app.get("/", function (req, res) {
 //   // res.send("hello world")
@@ -44,7 +44,7 @@ testTour
 //   res.send("Post method~")
 // })
 
-const tours = JSON.parse(fs.readFileSync("./resources/data/tours-simple.json"))
+const tours = JSON.parse(fs.readFileSync("./resources/data/tours-simple.json").toString())
 
 app.get("/api/tours", function(req, res) {
   res.status(200).json({
@@ -52,6 +52,22 @@ app.get("/api/tours", function(req, res) {
     results: tours.length,
     data: { tours }
   })
+})
+
+app.get("/api/tours/:id", function(req, res) {
+  console.log(req.params)
+  const id = req.params.id * 1
+  const tour = tours.find(function(elem) {
+    return elem.id === id
+  })
+
+  if (!tours)
+    return res.status(404).json({
+      status: "fail",
+      message: "Invalid ID"
+    })
+
+  res.status(200).json({ status: "success", data: { tour } })
 })
 
 app.post("/api/tours", function(req, res) {
