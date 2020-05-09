@@ -2,23 +2,24 @@ const app = require("./app")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 
+console.log(app.get("env"))
 dotenv.config({ path: "./.env" })
 
-// const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD)
-// const localDB = process.env.DATABASE_LOCAL
-// mongoose
-//   .connect(DB, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
-//   .then((connect) => {
-//     console.log(connect.connection)
-//     console.log("Database connection successful.")
-//   })
-//
-// const tourSchema = new mongoose.Schema({
-//   name: { type: String, required: [true, "A tour must have a name"], unique: true },
-//   rating: { type: Number, default: 4.5 },
-//   price: { type: Number, required: [true, "A tour must have a price"] }
-// })
-// const Tour = mongoose.model("Tour", tourSchema)
+const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD)
+const localDB = process.env.DATABASE_LOCAL
+mongoose
+  .connect(DB, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
+  .then((connect) => {
+    console.log(connect.connection)
+    console.log("Database connection successful.")
+  })
+
+const tourSchema = new mongoose.Schema({
+  name: { type: String, required: [true, "A tour must have a name"], unique: true },
+  rating: { type: Number, default: 4.5 },
+  price: { type: Number, required: [true, "A tour must have a price"] }
+})
+const Tour = mongoose.model("Tour", tourSchema)
 //
 // const testTour = new Tour({
 //   name: "The Park Camper",
@@ -33,6 +34,11 @@ dotenv.config({ path: "./.env" })
 //   .catch(function(err) {
 //     console.log("ERROR :", err)
 //   })
+
+const port = process.env.PORT || "3000"
+app.listen(port, function() {
+  console.log("Server App running on port: " + port)
+})
 
 // app.get("/", function (req, res) {
 //   // res.send("hello world")
@@ -58,8 +64,3 @@ dotenv.config({ path: "./.env" })
 //   .get(getTour)
 //   .patch(updateTour)
 //   .delete(deleteTour)
-
-const port = process.env.PORT || "3000"
-app.listen(port, function() {
-  console.log("Server App running on port: " + port)
-})
