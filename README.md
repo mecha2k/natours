@@ -8,6 +8,9 @@ mongoose and friends 😁
 * robust set of features: complex routing, easier handling of requests and responses, middleware, server-side rendering
 * makes it easier to organize our application into the MVC architecture
 
+###### Express MVC
+* Controller: Application Logic, only concerned about managing requests and responses
+* Model: Business Logic, related to business rules such as creation of user, password check, validating user input, and ensuring users
 
 ##### MongoDB connection 
 * Atlas Database : DB

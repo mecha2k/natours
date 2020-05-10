@@ -8,32 +8,16 @@ dotenv.config({ path: "./.env" })
 const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD)
 const localDB = process.env.DATABASE_LOCAL
 mongoose
-  .connect(DB, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  })
   .then((connect) => {
-    console.log(connect.connection)
+    // console.log(connect.connection)
     console.log("Database connection successful.")
   })
-
-const tourSchema = new mongoose.Schema({
-  name: { type: String, required: [true, "A tour must have a name"], unique: true },
-  rating: { type: Number, default: 4.5 },
-  price: { type: Number, required: [true, "A tour must have a price"] }
-})
-const Tour = mongoose.model("Tour", tourSchema)
-//
-// const testTour = new Tour({
-//   name: "The Park Camper",
-//   price: 975
-// })
-//
-// testTour
-//   .save()
-//   .then(function(doc) {
-//     console.log(doc)
-//   })
-//   .catch(function(err) {
-//     console.log("ERROR :", err)
-//   })
 
 const port = process.env.PORT || "3000"
 app.listen(port, function() {
@@ -64,3 +48,17 @@ app.listen(port, function() {
 //   .get(getTour)
 //   .patch(updateTour)
 //   .delete(deleteTour)
+
+// const testTour = new Tour({
+//   name: "The Forest Hiker",
+//   price: 497
+// })
+//
+// testTour
+//   .save()
+//   .then(function(doc) {
+//     console.log(doc)
+//   })
+//   .catch(function(err) {
+//     console.log("ERROR :", err)
+//   })

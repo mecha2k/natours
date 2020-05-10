@@ -1,61 +1,45 @@
-const fs = require("fs")
+const tourDB = require("../models/tours")
 
-const tours = JSON.parse(fs.readFileSync("./resources/data/tours-simple.json").toString())
-
-exports.checkID = function(req, res, next, val) {
-  console.log(`Tour ID is: ${val}`)
-  const id = req.params.id * 1
-
-  if (id > tours.length)
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid ID"
-    })
-
-  next()
-}
-
-exports.checkBody = function(req, res, next) {
-  console.log(req.body)
-  if (!req.body.name || !req.body.price)
-    return res.status(400).json({
-      status: "fail",
-      message: "Missing name or price"
-    })
-
-  next()
-}
-
-exports.getAllTours = function(req, res) {
+exports.getAllTours = async function(req, res) {
   console.log(req.requestTime)
 
-  res.status(200).json({
-    status: "success",
-    requestedAt: req.requestTime,
-    results: tours.length,
-    data: { tours }
-  })
+  try {
+    const tours = await tourDB.find()
+
+    res.status(200).json({
+      status: "success",
+      results: tours.length,
+      requestedAt: req.requestTime,
+      data: { tours }
+    })
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error })
+  }
 }
 
-exports.getTour = function(req, res) {
-  console.log(req.params)
-  const id = req.params.id * 1
-  const tour = tours.find(function(elem) {
-    return elem.id === id
-  })
+exports.getTour = async function(req, res) {
+  try {
+    const tour = await tourDB.findById(req.params.id)
+    // const tour = await tourDB.findOne({ _id: req.params.id })
 
-  res.status(200).json({ status: "success", data: { tour } })
+    res.status(200).json({ status: "success", data: { tour } })
+  } catch (error) {
+    res.status(404).json({ status: "fail", message: error })
+  }
 }
 
-exports.createTour = function(req, res) {
-  const newId = tours[tours.length - 1].id + 1
-  const newTour = Object.assign({ id: newId }, req.body)
+exports.createTour = async function(req, res) {
+  try {
+    // const newTour = new tour({})
+    // newTour.save()
 
-  console.log(req.body)
-  tours.push(newTour)
-  fs.writeFile("./resources/data/tours-simple.json", JSON.stringify(tours), (error) => {
+    console.log(req.body)
+    const newTour = await tourDB.create(req.body)
+
     res.status(201).json({ status: "success", data: { tour: newTour } })
-  })
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error })
+  }
 }
 
 exports.updateTour = function(req, res) {
@@ -71,7 +55,7 @@ exports.deleteTour = function(req, res) {
   console.log(req.params)
 
   res.status(204).json({
-    status: "success",
-    data: { tour: null }
+    status: "success"
+    // data: { tour: null }
   })
 }
