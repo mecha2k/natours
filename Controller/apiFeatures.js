@@ -2,8 +2,6 @@ class APIFeatures {
   constructor(queryDB, querystring) {
     this.queryDB = queryDB
     this.querystring = querystring
-
-    console.log(querystring)
   }
 
   filter() {

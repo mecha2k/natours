@@ -15,7 +15,7 @@ exports.getAllTours = async function (req, res) {
       .sort()
       .limitFields()
       .paginate()
-    console.log(features)
+    // console.log(features)
 
     const tours = await features.queryDB
 
@@ -127,7 +127,7 @@ exports.getMonthlyPlan = async (req, res) => {
       },
       { $addFields: { month: "$_id" } },
       { $project: { _id: 0 } },
-      { $sort: { numTourStarts: -1 } },
+      { $sort: { month: 1 } },
       { $limit: 12 },
     ])
 
