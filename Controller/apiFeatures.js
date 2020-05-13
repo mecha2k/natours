@@ -1,7 +1,9 @@
 class APIFeatures {
-  constructor(query, querystring) {
-    this.query = query
+  constructor(queryDB, querystring) {
+    this.queryDB = queryDB
     this.querystring = querystring
+
+    console.log(querystring)
   }
 
   filter() {
@@ -13,7 +15,7 @@ class APIFeatures {
     querystr = querystr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
     console.log(JSON.parse(querystr))
 
-    this.query = this.query.find(JSON.parse(querystr))
+    this.queryDB = this.queryDB.find(JSON.parse(querystr))
 
     return this
   }
@@ -21,9 +23,9 @@ class APIFeatures {
   sort() {
     if (this.querystring.sort) {
       const sortBy = this.querystring.sort.split(",").join(" ")
-      this.query = this.query.sort(sortBy)
+      this.queryDB = this.queryDB.sort(sortBy)
     } else {
-      this.query = this.query.sort("-createdAt")
+      this.queryDB = this.queryDB.sort("-createdAt")
     }
 
     return this
@@ -32,9 +34,9 @@ class APIFeatures {
   limitFields() {
     if (this.querystring.fields) {
       const fields = this.querystring.fields.split(",").join(" ")
-      this.query = this.query.select(fields)
+      this.queryDB = this.queryDB.select(fields)
     } else {
-      this.query = this.query.select("-__v")
+      this.queryDB = this.queryDB.select("-__v")
     }
 
     return this
@@ -45,7 +47,7 @@ class APIFeatures {
     const limit = this.querystring.limit * 1 || 100
     const skip = (page - 1) * limit
 
-    this.query = this.query.skip(skip).limit(limit)
+    this.queryDB = this.queryDB.skip(skip).limit(limit)
 
     return this
   }

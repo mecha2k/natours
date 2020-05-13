@@ -1,10 +1,10 @@
 const tourDB = require("../models/tours")
-const APIFeatures = require("apiFeatures")
+const APIFeatures = require("./apiFeatures")
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = "5"
-  req.query.sort = "-ratingsAverage,price"
-  req.query.fields = "name,price,ratingsAverage,summary,difficulty"
+  req.query.sort = "-ratingsAverage, -price"
+  req.query.fields = "name, price, ratingsAverage, summary, difficulty"
   next()
 }
 
@@ -15,8 +15,9 @@ exports.getAllTours = async function (req, res) {
       .sort()
       .limitFields()
       .paginate()
+    console.log(features)
 
-    const tours = await features.query
+    const tours = await features.queryDB
 
     res.status(200).json({
       status: "success",
@@ -100,7 +101,6 @@ exports.getTourStats = async (req, res) => {
       { $sort: { avgPrice: 1 } },
       // { $match: { _id: { $ne: "EASY" } } },
     ])
-
     res.status(200).json({ status: "success", data: { stats } })
   } catch (err) {
     res.status(404).json({ status: "fail", message: err })
@@ -109,7 +109,7 @@ exports.getTourStats = async (req, res) => {
 
 exports.getMonthlyPlan = async (req, res) => {
   try {
-    const year = req.params.year * 1 // 2021
+    const year = req.params.year * 1
 
     const plan = await tourDB.aggregate([
       { $unwind: "$startDates" },
