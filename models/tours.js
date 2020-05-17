@@ -11,7 +11,7 @@ const shema = new mongoose.Schema(
       trim: true,
       minlength: [10, "A tour name must have more or equal than 10 characters"],
       maxlength: [40, "A tour name must have less or equal than 40 characters"],
-      validate: [validator.isAlpha, "A tour name must only contain characters"],
+      validate: [validator.isAlpha, "A tour name must only contain characters"]
     },
     duration: { type: Number, required: [true, "A tour must have a duration"] },
     maxGroupSize: { type: Number, required: [true, "A tour must have a group size"] },
@@ -20,24 +20,24 @@ const shema = new mongoose.Schema(
       required: [true, "A tour must have a difficulty"],
       enum: {
         values: ["easy", "medium", "difficult"],
-        message: "Difficulty is either: easy, medium, difficult",
-      },
+        message: "Difficulty is either: easy, medium, difficult"
+      }
     },
     ratingsAverage: {
       type: Number,
       default: 4.5,
       min: [1, "Rating must be above 1.0"],
-      max: [5, "Rating must be below 5.0"],
+      max: [5, "Rating must be below 5.0"]
     },
     ratingsQuantity: { type: Number, default: 0 },
     slug: String,
     price: { type: Number, required: [true, "A tour must have a price"] },
     priceDiscount: {
       type: Number,
-      validate: function (value) {
+      validate: function(value) {
         return value < this.price
       },
-      message: "Discount price ({VALUE}) should be below regular one",
+      message: "Discount price ({VALUE}) should be below regular one"
     },
     summary: { type: String, trim: true, required: [true, "A tour must have a summary"] },
     description: { type: String, trim: true },
@@ -45,17 +45,17 @@ const shema = new mongoose.Schema(
     images: [String],
     createdAt: { type: Date, default: Date.now(), select: false },
     startDates: [Date],
-    secretTour: { type: Boolean, default: false },
+    secretTour: { type: Boolean, default: false }
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 )
 
-shema.virtual("durationWeeks").get(function () {
+shema.virtual("durationWeeks").get(function() {
   return this.duration / 7
 })
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
-shema.pre("save", function (next) {
+shema.pre("save", function(next) {
   this.slug = slugify(this.name, { lower: true })
   next()
 })
@@ -71,20 +71,20 @@ shema.pre("save", function (next) {
 // });
 
 // QUERY MIDDLEWARE: shema.pre('find', function(next) {
-shema.pre(/^find/, function (next) {
+shema.pre(/^find/, function(next) {
   this.find({ secretTour: { $ne: true } })
 
   this.start = Date.now()
   next()
 })
 
-shema.post(/^find/, function (docs, next) {
+shema.post(/^find/, function(docs, next) {
   console.log(`Query took ${Date.now() - this.start} milliseconds!`)
   next()
 })
 
 // AGGREGATION MIDDLEWARE
-shema.pre("aggregate", function (next) {
+shema.pre("aggregate", function(next) {
   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } })
   console.log(this.pipeline())
   next()

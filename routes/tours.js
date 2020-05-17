@@ -9,7 +9,10 @@ router.route("/top-5-cheap").get(controller.aliasTopTours, controller.getAllTour
 router.route("/tour-stats").get(controller.getTourStats)
 router.route("/monthly-plan/:year").get(controller.getMonthlyPlan)
 
-router.route("/").get(controller.getAllTours).post(controller.createTour)
+router
+  .route("/")
+  .get(controller.getAllTours)
+  .post(controller.createTour)
 // .post(controller.checkBody, controller.createTour)
 
 router

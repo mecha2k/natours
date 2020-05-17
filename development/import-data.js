@@ -12,7 +12,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then((connect) => {
     console.log("Database connection successful.")
@@ -21,7 +21,7 @@ mongoose
 console.log("current path:" + `${__dirname}`)
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours-simple.json`, "UTF-8").toString())
 
-const importData = async function () {
+const importData = async function() {
   try {
     await tourDB.create(tours)
     console.log("Data successfully loaded.")
@@ -31,7 +31,7 @@ const importData = async function () {
   process.exit()
 }
 
-const deleteData = async function () {
+const deleteData = async function() {
   try {
     await tourDB.deleteMany()
     console.log("Data successfully deleted.")
