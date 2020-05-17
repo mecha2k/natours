@@ -8,7 +8,7 @@ exports.aliasTopTours = (req, res, next) => {
   next()
 }
 
-exports.getAllTours = async function(req, res) {
+exports.getAllTours = async function (req, res) {
   try {
     const features = new APIFeatures(tourDB.find(), req.query)
       .filter()
@@ -23,14 +23,14 @@ exports.getAllTours = async function(req, res) {
       status: "success",
       results: tours.length,
       requestedAt: req.requestTime,
-      data: { tours }
+      data: { tours },
     })
   } catch (error) {
     res.status(404).json({ status: "fail", message: error })
   }
 }
 
-exports.getTour = async function(req, res) {
+exports.getTour = async function (req, res) {
   console.log(req.params.id)
   try {
     const tour = await tourDB.findById(req.params.id)
@@ -42,7 +42,7 @@ exports.getTour = async function(req, res) {
   }
 }
 
-exports.createTour = async function(req, res) {
+exports.createTour = async function (req, res) {
   try {
     // const newTour = new tour({})
     // newTour.save()
@@ -56,13 +56,13 @@ exports.createTour = async function(req, res) {
   }
 }
 
-exports.updateTour = async function(req, res) {
+exports.updateTour = async function (req, res) {
   console.log(req.params)
 
   try {
     const tour = await tourDB.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      runValidators: true
+      runValidators: true,
     })
 
     res.status(200).json({ status: "success", data: { tour } })
@@ -71,7 +71,7 @@ exports.updateTour = async function(req, res) {
   }
 }
 
-exports.deleteTour = async function(req, res) {
+exports.deleteTour = async function (req, res) {
   console.log(req.params)
 
   try {
@@ -95,10 +95,10 @@ exports.getTourStats = async (req, res) => {
           avgRating: { $avg: "$ratingsAverage" },
           avgPrice: { $avg: "$price" },
           minPrice: { $min: "$price" },
-          maxPrice: { $max: "$price" }
-        }
+          maxPrice: { $max: "$price" },
+        },
       },
-      { $sort: { avgPrice: 1 } }
+      { $sort: { avgPrice: 1 } },
       // { $match: { _id: { $ne: "EASY" } } },
     ])
     res.status(200).json({ status: "success", data: { stats } })
@@ -115,20 +115,20 @@ exports.getMonthlyPlan = async (req, res) => {
       { $unwind: "$startDates" },
       {
         $match: {
-          startDates: { $gte: new Date(`${year}-01-01`), $lte: new Date(`${year}-12-31`) }
-        }
+          startDates: { $gte: new Date(`${year}-01-01`), $lte: new Date(`${year}-12-31`) },
+        },
       },
       {
         $group: {
           _id: { $month: "$startDates" },
           numTourStarts: { $sum: 1 },
-          tours: { $push: "$name" }
-        }
+          tours: { $push: "$name" },
+        },
       },
       { $addFields: { month: "$_id" } },
       { $project: { _id: 0 } },
       { $sort: { month: 1 } },
-      { $limit: 12 }
+      { $limit: 12 },
     ])
 
     res.status(200).json({ status: "success", data: { plan } })

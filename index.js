@@ -12,7 +12,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then((connect) => {
     // console.log(connect.connection)
@@ -20,7 +20,7 @@ mongoose
   })
 
 const port = process.env.PORT || "3000"
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Server App running on port: " + port)
 })
 

@@ -10,10 +10,7 @@ router.route("/top-5-cheap").get(tourControl.aliasTopTours, tourControl.getAllTo
 router.route("/tour-stats").get(tourControl.getTourStats)
 router.route("/monthly-plan/:year").get(tourControl.getMonthlyPlan)
 
-router
-  .route("/")
-  .get(tourControl.getAllTours)
-  .post(tourControl.createTour)
+router.route("/").get(tourControl.getAllTours).post(tourControl.createTour)
 // .post(tourControl.checkBody, tourControl.createTour)
 
 router

@@ -8,11 +8,11 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please provide your email"],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, "Please provide your email"]
+    validate: [validator.isEmail, "Please provide your email"],
   },
   photo: String,
   password: { type: String, required: [true, "Please provide your password"], minLength: 8 },
-  passwordConfirm: { type: String, required: [true, "Please confirm your password"] }
+  passwordConfirm: { type: String, required: [true, "Please confirm your password"] },
 })
 
 const User = mongoose.model("User", userSchema)

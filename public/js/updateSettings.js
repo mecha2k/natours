@@ -10,7 +10,7 @@ export const updateSettings = async (data, type) => {
     const res = await axios({
       method: "PATCH",
       url,
-      data
+      data,
     })
 
     if (res.data.status === "success") {
