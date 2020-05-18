@@ -5,9 +5,11 @@ const User = require("../models/users")
 exports.signup = async function (req, res, next) {
   try {
     const newuser = await User.create(req.body)
-    const token = jwt.sign({ id: newuser._id }, process.env.JWT_)
+    const token = jwt.sign({ id: newuser._id }, process.env.JWT_HASHCODE, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    })
 
-    res.status(201).json({ status: "success", data: { user: newuser } })
+    res.status(201).json({ status: "success", token, data: { user: newuser } })
   } catch (error) {
     res.status(404).json({ status: "fail", message: error })
   }
