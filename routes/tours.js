@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
-const tourControl = require("../Controller/tours")
-const authControl = require("../Controller/authorize")
+const tourControl = require("../controller/tours")
+const authControl = require("../controller/authorize")
 
 // router.param("id", tourControl.checkID)
 
@@ -18,7 +18,5 @@ router
   .get(tourControl.getTour)
   .patch(tourControl.updateTour)
   .delete(tourControl.deleteTour)
-
-router.post("/signup", authControl.signup)
 
 module.exports = router
