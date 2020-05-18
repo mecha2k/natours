@@ -1,6 +1,8 @@
 const crypto = require("crypto")
 const jwt = require("jsonwebtoken")
+
 const User = require("../models/users")
+const appError = require("./apperror")
 
 exports.signup = async function (req, res, next) {
   try {
@@ -15,14 +17,24 @@ exports.signup = async function (req, res, next) {
   }
 }
 
-//
-//
+exports.login = async function (req, res, next) {
+  const { email, password } = req.body
+  if (!email || !password) {
+    return next(new appError("Please provide email and password!", 400))
+  }
+
+  const user = await User.findOne({ email }).select("+password")
+
+  if (!user || !(await user.correctPassword(password, user.password))) {
+    return next(new appError("Incorrect email or password", 401))
+  }
+
+  createSendToken(user, 200, res)
+}
+
 // const crypto = require('crypto');
 // const { promisify } = require('util');
 // const jwt = require('jsonwebtoken');
-// const User = require('./../models/userModel');
-// const catchAsync = require('./../utils/catchAsync');
-// const AppError = require('./../utils/appError');
 // const sendEmail = require('./../utils/email');
 //
 // const signToken = id => {
@@ -66,23 +78,7 @@ exports.signup = async function (req, res, next) {
 //   createSendToken(newUser, 201, res);
 // });
 //
-// exports.login = catchAsync(async (req, res, next) => {
-//   const { email, password } = req.body;
-//
-//   // 1) Check if email and password exist
-//   if (!email || !password) {
-//     return next(new AppError('Please provide email and password!', 400));
-//   }
-//   // 2) Check if user exists && password is correct
-//   const user = await User.findOne({ email }).select('+password');
-//
-//   if (!user || !(await user.correctPassword(password, user.password))) {
-//     return next(new AppError('Incorrect email or password', 401));
-//   }
-//
-//   // 3) If everything ok, send token to client
-//   createSendToken(user, 200, res);
-// });
+
 //
 // exports.protect = catchAsync(async (req, res, next) => {
 //   // 1) Getting token and check of it's there
