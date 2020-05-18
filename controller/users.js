@@ -6,39 +6,48 @@ const filterObj = function (obj, ...allowedFields) {
   Object.keys(obj).forEach((elem) => {
     if (allowedFields.includes(elem)) newObj[elem] = obj[elem]
   })
+
   return newObj
 }
 
 exports.getAllUsers = async function (req, res, next) {
-  const users = await User.find()
+  try {
+    const users = await User.find()
 
-  res.status(200).json({ status: "success", results: users.length, data: { users } })
+    res.status(200).json({ status: "success", results: users.length, data: { users } })
+  } catch (error) {
+    res.status(404).json({ status: "fail", message: error })
+  }
 }
 
 exports.updateMe = async function (req, res, next) {
-  // 1) Create error if user POSTs password data
-  if (req.body.password || req.body.passwordConfirm) {
-    return next(
-      new appError("This route is not for password updates. Please use /updateMyPassword.", 400)
-    )
+  try {
+    if (req.body.password || req.body.passwordConfirm) {
+      return next(
+        new appError("This route is not for password updates. Please use /updateMyPassword.", 400)
+      )
+    }
+
+    const filteredBody = filterObj(req.body, "name", "email")
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
+      new: true,
+      runValidators: true,
+    })
+
+    res.status(200).json({ status: "success", data: { user: updatedUser } })
+  } catch (error) {
+    res.status(404).json({ status: "fail", message: error })
   }
-
-  // 2) Filtered out unwanted fields names that are not allowed to be updated
-  const filteredBody = filterObj(req.body, "name", "email")
-
-  // 3) Update user document
-  const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
-    new: true,
-    runValidators: true,
-  })
-
-  res.status(200).json({ status: "success", data: { user: updatedUser } })
 }
 
 exports.deleteMe = async function (req, res) {
-  await User.findByIdAndUpdate(req.user.id, { active: false })
+  try {
+    await User.findByIdAndUpdate(req.user.id, { active: false })
 
-  res.status(204).json({ status: "success", data: null })
+    res.status(204).json({ status: "success", data: null })
+  } catch (error) {
+    res.status(404).json({ status: "fail", message: error })
+  }
 }
 
 exports.getUser = function (req, res) {

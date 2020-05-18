@@ -1,10 +1,16 @@
 const crypto = require("crypto")
+const jwt = require("jsonwebtoken")
 const User = require("../models/users")
 
 exports.signup = async function (req, res, next) {
-  const newuser = await User.create(req.body)
+  try {
+    const newuser = await User.create(req.body)
+    const token = jwt.sign({ id: newuser._id }, process.env.JWT_)
 
-  res.status(201).json({ status: "success", data: { user: newuser } })
+    res.status(201).json({ status: "success", data: { user: newuser } })
+  } catch (error) {
+    res.status(404).json({ status: "fail", message: error })
+  }
 }
 
 //
