@@ -11,7 +11,7 @@ const signToken = function (id) {
   })
 }
 
-const createSendToken = function (user, status, res) {
+const createToken = function (user, status, res) {
   const token = signToken(user._id)
   const cookieOptions = {
     expires: new Date(Date.now() + process.env["JWT_COOKIE_EXPIRES_IN"] * 24 * 60 * 60 * 1000),
@@ -34,7 +34,7 @@ exports.signup = async function (req, res, next) {
       passwordConfirm: req.body.passwordConfirm,
     })
 
-    createSendToken(newUser, 201, res)
+    createToken(newUser, 201, res)
   } catch (error) {
     res.status(404).json({ status: "fail", message: error })
   }
@@ -52,7 +52,12 @@ exports.login = async function (req, res, next) {
       return next(new appError("Incorrect email or password", 401))
     }
 
-    createSendToken(user, 200, res)
+    // createToken(user, 200, res)
+    const token = signToken(user._id)
+    console.log(token)
+    console.log(user)
+
+    res.status(200).json({ status: "success", token, data: { user } })
   } catch (error) {
     res.status(404).json({ status: "fail", message: error })
   }
