@@ -6,14 +6,14 @@ const User = require("../models/users")
 const sendEmail = require("./email")
 const appError = require("./apperror")
 
-const signToken = function (id) {
+const createToken = function (id) {
   return jwt.sign({ id }, process.env["JWT_HASHCODE"], {
     expiresIn: process.env["JWT_EXPIRES_IN"],
   })
 }
 
-const createToken = function (user, status, res) {
-  const token = signToken(user._id)
+const saveTokenInCookie = function (user, status, res) {
+  const token = createToken(user._id)
   const cookieOptions = {
     expires: new Date(Date.now() + process.env["JWT_COOKIE_EXPIRES_IN"] * 24 * 60 * 60 * 1000),
     httpOnly: true,
@@ -24,6 +24,8 @@ const createToken = function (user, status, res) {
   user.password = undefined
 
   res.status(status).json({ status: "success", token, data: { user } })
+
+  return token
 }
 
 exports.signup = async function (req, res, next) {
@@ -35,7 +37,7 @@ exports.signup = async function (req, res, next) {
       passwordConfirm: req.body.passwordConfirm,
     })
 
-    createToken(newUser, 201, res)
+    saveTokenInCookie(newUser, 201, res)
   } catch (error) {
     res.status(404).json({ status: "fail", message: error })
   }
@@ -53,9 +55,7 @@ exports.login = async function (req, res, next) {
       return next(new appError("Incorrect email or password", 401))
     }
 
-    // createToken(user, 200, res)
-    const token = signToken(user._id)
-    console.log(token)
+    const token = saveTokenInCookie(user, 200, res)
     console.log(user)
 
     res.status(200).json({ status: "success", token, data: { user } })
@@ -152,7 +152,7 @@ exports.resetPassword = async function (req, res, next) {
   user.passwordResetExpires = undefined
   await user.save()
 
-  createToken(user, 200, res)
+  saveTokenInCookie(user, 200, res)
 }
 
 exports.updatePassword = async function (req, res, next) {
@@ -166,5 +166,5 @@ exports.updatePassword = async function (req, res, next) {
   user.passwordConfirm = req.body.passwordConfirm
   await user.save()
 
-  createToken(user, 200, res)
+  saveTokenInCookie(user, 200, res)
 }

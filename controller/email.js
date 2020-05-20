@@ -18,9 +18,9 @@ const sendEmail = async function (contents) {
     html: "<b>Hello world?</b>",
   }
 
-  await transporter.sendMail(mailcontents)
+  const info = await transporter.sendMail(mailcontents)
 
-  console.log("Message sent: %s", mailcontents.messageId)
+  console.log("Message sent: %s", info.messageId)
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
 }
 

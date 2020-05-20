@@ -1,8 +1,9 @@
 const express = require("express")
 const path = require("path")
-const cookieParser = require("cookie-parser")
 const logger = require("morgan")
+const cookieParser = require("cookie-parser")
 const createError = require("http-errors")
+const expressLimit = require("express-rate-limit")
 
 const tourRouter = require("./routes/tours")
 const userRouter = require("./routes/users")
@@ -12,7 +13,15 @@ const app = express()
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "pug")
 
-app.use(logger("dev"))
+if (process.env["NODE_ENV"] === "development") app.use(logger("dev"))
+
+const expresslimit = expressLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests from this IP, please try again in an hour!",
+})
+app.use("/api", expresslimit)
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
