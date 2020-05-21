@@ -103,17 +103,10 @@ const schema = new mongoose.Schema(
         day: Number
       }
     ],
-    guides: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "User"
-      }
-    ]
+    guides: [{ type: mongoose.Schema.ObjectId, ref: "User" }]
   },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+
+  { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 )
 
 schema.index({ price: 1, ratingsAverage: -1 })
@@ -136,16 +129,6 @@ schema.pre("save", function (next) {
   next()
 })
 
-// shema.pre('save', function(next) {
-//   console.log('Will save document...');
-//   next();
-// });
-
-// shema.post('save', function(doc, next) {
-//   console.log(doc);
-//   next();
-// });
-
 schema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } })
 
@@ -158,7 +141,6 @@ schema.post(/^find/, function (docs, next) {
   next()
 })
 
-// AGGREGATION MIDDLEWARE
 schema.pre("aggregate", function (next) {
   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } })
   console.log(this.pipeline())

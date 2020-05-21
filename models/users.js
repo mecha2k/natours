@@ -1,28 +1,28 @@
 const mongoose = require("mongoose")
-const validator = require("validator")
+const { isEmail } = require("validator")
 const crypto = require("crypto")
 const bcrypt = require("bcrypt")
 
-const userSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
   name: { type: String, required: [true, "Please tell us your name"] },
   email: {
     type: String,
     required: [true, "Please provide your email"],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, "Please provide your email"],
+    validate: [isEmail, "Please provide your email"]
   },
   photo: String,
   role: {
     type: String,
     enum: ["user", "guide", "lead-guide", "admin"],
-    default: "user",
+    default: "user"
   },
   password: {
     type: String,
     required: [true, "Please provide your password"],
     minLength: 8,
-    select: false,
+    select: false
   },
   passwordConfirm: {
     type: String,
@@ -31,8 +31,8 @@ const userSchema = new mongoose.Schema({
       validator: function (elem) {
         return elem === this.password
       },
-      message: "Passwords are not the same!",
-    },
+      message: "Passwords are not the same!"
+    }
   },
 
   passwordChangedAt: Date,
@@ -42,11 +42,11 @@ const userSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true,
-    select: false,
-  },
+    select: false
+  }
 })
 
-userSchema.pre("save", async function (next) {
+schema.pre("save", async function (next) {
   if (!this.isModified("password")) return next()
 
   this.password = await bcrypt.hash(this.password, 10)
@@ -54,25 +54,25 @@ userSchema.pre("save", async function (next) {
   next()
 })
 
-userSchema.pre("save", function (next) {
+schema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next()
 
   this.passwordChangedAt = Date.now() - 1000
   next()
 })
 
-userSchema.pre(/^find/, function (next) {
+schema.pre(/^find/, function (next) {
   this.find({ active: { $ne: false } })
   next()
 })
 
-userSchema.methods.comparePasswd = async function (candidate, user) {
+schema.methods.comparePasswd = async function (candidate, user) {
   return await bcrypt.compare(candidate, user)
 }
 
-userSchema.methods.changedPasswd = function (JWTTimestamp) {
-  if (this.passwordChangedAt) {
-    const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10)
+schema.methods.changedPasswd = function (JWTTimestamp) {
+  if (this["passwordChangedAt"]) {
+    const changedTimestamp = parseInt(this["passwordChangedAt"].getTime() / 1000, 10)
 
     return JWTTimestamp < changedTimestamp
   }
@@ -80,7 +80,7 @@ userSchema.methods.changedPasswd = function (JWTTimestamp) {
   return false
 }
 
-userSchema.methods.createPasswdResetToken = function () {
+schema.methods.createPasswdResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex")
 
   this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex")
@@ -92,6 +92,4 @@ userSchema.methods.createPasswdResetToken = function () {
   return resetToken
 }
 
-const User = mongoose.model("User", userSchema)
-
-module.exports = User
+module.exports = mongoose.model("User", schema)
