@@ -3,23 +3,23 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const tourDB = require("../models/tours")
 
-dotenv.config({ path: "./../.env" })
-const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD)
+dotenv.config()
 console.log(process.env.DATABASE)
+const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD)
 
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then((connect) => {
     console.log("Database connection successful.")
   })
 
 console.log("current path:" + `${__dirname}`)
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours-simple.json`, "UTF-8").toString())
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, "UTF-8").toString())
 
 const importData = async function () {
   try {
