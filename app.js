@@ -12,6 +12,7 @@ const hpp = require("hpp")
 
 const tourRouter = require("./routes/tours")
 const userRouter = require("./routes/users")
+const reviewRouter = require("./routes/reviews")
 
 const app = express()
 
@@ -23,7 +24,7 @@ if (process.env["NODE_ENV"] === "development") app.use(logger("dev"))
 const expresslimit = expressLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,
-  message: "Too many requests from this IP, please try again in an hour!",
+  message: "Too many requests from this IP, please try again in an hour!"
 })
 app.use("/api", expresslimit)
 
@@ -48,6 +49,7 @@ app.use(function (req, res, next) {
 
 app.use("/api/tours", tourRouter)
 app.use("/api/users", userRouter)
+app.use("/api/reviews", reviewRouter)
 
 app.use(function (req, res, next) {
   next(createError(404))
