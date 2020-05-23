@@ -8,7 +8,7 @@ exports.aliasTopTours = (req, res, next) => {
   next()
 }
 
-exports.getAllTours = async function (req, res) {
+exports.getAllTours = async function(req, res) {
   try {
     const features = new APIFeatures(Tour.find(), req.query)
       .filter()
@@ -30,10 +30,10 @@ exports.getAllTours = async function (req, res) {
   }
 }
 
-exports.getTour = async function (req, res) {
+exports.getTour = async function(req, res) {
   console.log(req.params.id)
   try {
-    const tour = await Tour.findById(req.params.id)
+    const tour = await Tour.findById(req.params.id).populate("reviews")
     // const tour = await Tour.findOne({ _id: req.params.id })
 
     res.status(200).json({ status: "success", data: { tour } })
@@ -42,7 +42,7 @@ exports.getTour = async function (req, res) {
   }
 }
 
-exports.createTour = async function (req, res) {
+exports.createTour = async function(req, res) {
   try {
     // const newTour = new tour({})
     // newTour.save()
@@ -56,7 +56,7 @@ exports.createTour = async function (req, res) {
   }
 }
 
-exports.updateTour = async function (req, res) {
+exports.updateTour = async function(req, res) {
   console.log(req.params)
 
   try {
@@ -71,7 +71,7 @@ exports.updateTour = async function (req, res) {
   }
 }
 
-exports.deleteTour = async function (req, res) {
+exports.deleteTour = async function(req, res) {
   console.log(req.params)
 
   try {

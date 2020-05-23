@@ -28,7 +28,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: [true, "Please confirm your password"],
     validate: {
-      validator: function (elem) {
+      validator: function(elem) {
         return elem === this.password
       },
       message: "Passwords are not the same!"
@@ -46,7 +46,7 @@ const schema = new mongoose.Schema({
   }
 })
 
-schema.pre("save", async function (next) {
+schema.pre("save", async function(next) {
   if (!this.isModified("password")) return next()
 
   this.password = await bcrypt.hash(this.password, 10)
@@ -54,23 +54,23 @@ schema.pre("save", async function (next) {
   next()
 })
 
-schema.pre("save", function (next) {
+schema.pre("save", function(next) {
   if (!this.isModified("password") || this.isNew) return next()
 
   this.passwordChangedAt = Date.now() - 1000
   next()
 })
 
-schema.pre(/^find/, function (next) {
+schema.pre(/^find/, function(next) {
   this.find({ active: { $ne: false } })
   next()
 })
 
-schema.methods.comparePasswd = async function (candidate, user) {
+schema.methods.comparePasswd = async function(candidate, user) {
   return await bcrypt.compare(candidate, user)
 }
 
-schema.methods.changedPasswd = function (JWTTimestamp) {
+schema.methods.changedPasswd = function(JWTTimestamp) {
   if (this["passwordChangedAt"]) {
     const changedTimestamp = parseInt(this["passwordChangedAt"].getTime() / 1000, 10)
 
@@ -80,10 +80,13 @@ schema.methods.changedPasswd = function (JWTTimestamp) {
   return false
 }
 
-schema.methods.createPasswdResetToken = function () {
+schema.methods.createPasswdResetToken = function() {
   const resetToken = crypto.randomBytes(32).toString("hex")
 
-  this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex")
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex")
   console.log({ resetToken })
   console.log(this.passwordResetToken)
 

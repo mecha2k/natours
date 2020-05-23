@@ -1,12 +1,12 @@
 const Review = require("./../models/reviews")
 
-exports.setTourUserIds = function (req, res, next) {
+exports.setTourUserIds = function(req, res, next) {
   if (!req.body.tour) req.body.tour = req.params.tourId
   if (!req.body.user) req.body.user = req.user.id
   next()
 }
 
-exports.getAllReviews = async function (req, res, next) {
+exports.getAllReviews = async function(req, res, next) {
   try {
     const reviews = await Review.find()
 
@@ -16,7 +16,7 @@ exports.getAllReviews = async function (req, res, next) {
   }
 }
 
-exports.getReview = async function (req, res, next) {
+exports.getReview = async function(req, res, next) {
   try {
     const review = await tourDB.findById(req.params.id)
 
@@ -26,7 +26,7 @@ exports.getReview = async function (req, res, next) {
   }
 }
 
-exports.createReview = async function (req, res, next) {
+exports.createReview = async function(req, res, next) {
   try {
     const newreview = await Review.create(req.body)
 

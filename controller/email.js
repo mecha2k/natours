@@ -1,13 +1,13 @@
 const nodemailer = require("nodemailer")
 
-const sendEmail = async function (contents) {
+const sendEmail = async function(contents) {
   const transporter = nodemailer.createTransport({
     host: process.env["EMAIL_HOST"],
     port: process.env["EMAIL_PORT"],
     auth: {
       user: process.env["EMAIL_USERNAME"],
-      pass: process.env["EMAIL_PASSWORD"],
-    },
+      pass: process.env["EMAIL_PASSWORD"]
+    }
   })
 
   const mailcontents = {
@@ -15,7 +15,7 @@ const sendEmail = async function (contents) {
     to: contents.email,
     subject: contents.subject,
     text: contents.message,
-    html: "<b>Hello world?</b>",
+    html: "<b>Hello world?</b>"
   }
 
   const info = await transporter.sendMail(mailcontents)
