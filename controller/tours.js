@@ -1,4 +1,4 @@
-const tourDB = require("../models/tours")
+const Tour = require("../models/tours")
 const APIFeatures = require("./apiFeatures")
 
 exports.aliasTopTours = (req, res, next) => {
@@ -8,9 +8,9 @@ exports.aliasTopTours = (req, res, next) => {
   next()
 }
 
-exports.getAllTours = async function(req, res) {
+exports.getAllTours = async function (req, res) {
   try {
-    const features = new APIFeatures(tourDB.find(), req.query)
+    const features = new APIFeatures(Tour.find(), req.query)
       .filter()
       .sort()
       .limitFields()
@@ -30,11 +30,11 @@ exports.getAllTours = async function(req, res) {
   }
 }
 
-exports.getTour = async function(req, res) {
+exports.getTour = async function (req, res) {
   console.log(req.params.id)
   try {
-    const tour = await tourDB.findById(req.params.id)
-    // const tour = await tourDB.findOne({ _id: req.params.id })
+    const tour = await Tour.findById(req.params.id)
+    // const tour = await Tour.findOne({ _id: req.params.id })
 
     res.status(200).json({ status: "success", data: { tour } })
   } catch (error) {
@@ -42,13 +42,13 @@ exports.getTour = async function(req, res) {
   }
 }
 
-exports.createTour = async function(req, res) {
+exports.createTour = async function (req, res) {
   try {
     // const newTour = new tour({})
     // newTour.save()
 
     console.log(req.body)
-    const newTour = await tourDB.create(req.body)
+    const newTour = await Tour.create(req.body)
 
     res.status(201).json({ status: "success", data: { tour: newTour } })
   } catch (error) {
@@ -56,11 +56,11 @@ exports.createTour = async function(req, res) {
   }
 }
 
-exports.updateTour = async function(req, res) {
+exports.updateTour = async function (req, res) {
   console.log(req.params)
 
   try {
-    const tour = await tourDB.findByIdAndUpdate(req.params.id, req.body, {
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
     })
@@ -71,11 +71,11 @@ exports.updateTour = async function(req, res) {
   }
 }
 
-exports.deleteTour = async function(req, res) {
+exports.deleteTour = async function (req, res) {
   console.log(req.params)
 
   try {
-    const tour = await tourDB.findByIdAndDelete(req.params.id)
+    const tour = await Tour.findByIdAndDelete(req.params.id)
 
     res.status(204).json({ status: "success", data: null })
   } catch (error) {
@@ -85,7 +85,7 @@ exports.deleteTour = async function(req, res) {
 
 exports.getTourStats = async (req, res) => {
   try {
-    const stats = await tourDB.aggregate([
+    const stats = await Tour.aggregate([
       { $match: { ratingsAverage: { $gte: 4.5 } } },
       {
         $group: {
@@ -111,7 +111,7 @@ exports.getMonthlyPlan = async (req, res) => {
   try {
     const year = req.params.year * 1
 
-    const plan = await tourDB.aggregate([
+    const plan = await Tour.aggregate([
       { $unwind: "$startDates" },
       {
         $match: {

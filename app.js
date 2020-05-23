@@ -1,49 +1,64 @@
 const express = require("express")
-const path = require("path")
-const cookieParser = require("cookie-parser")
-const logger = require("morgan")
-const createError = require("http-errors")
 
-const toursRouter = require("./routes/tours")
-const usersRouter = require("./routes/users")
+const helmet = require("helmet")
+const path = require("path")
+const logger = require("morgan")
+const cookieParser = require("cookie-parser")
+const createError = require("http-errors")
+const expressLimit = require("express-rate-limit")
+const mongoSanitize = require("express-mongo-sanitize")
+const xss = require("xss-clean")
+const hpp = require("hpp")
+
+const tourRouter = require("./routes/tours")
+const userRouter = require("./routes/users")
+const reviewRouter = require("./routes/reviews")
 
 const app = express()
 
-// view engine setup
-// app.set("views", path.join(__dirname, "views"))
-// app.set("view engine", "pug")
-//
-app.use(logger("dev"))
-app.use(express.json())
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "pug")
+
+if (process.env["NODE_ENV"] === "development") app.use(logger("dev"))
+
+const expresslimit = expressLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests from this IP, please try again in an hour!"
+})
+app.use("/api", expresslimit)
+
+app.use(helmet())
+app.use(express.json({ limit: "10kb" }))
+app.use(mongoSanitize())
+app.use(xss())
+app.use(hpp({ whitelist: ["price", "duration"] }))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   console.log("Hello from the middleware...")
   next()
 })
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   req.requestTime = new Date().toISOString()
   next()
 })
 
-app.use("/api/tours", toursRouter)
-app.use("/api/users", usersRouter)
+app.use("/api/tours", tourRouter)
+app.use("/api/users", userRouter)
+app.use("/api/reviews", reviewRouter)
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404))
 })
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+app.use(function (err, req, res, next) {
   res.locals.message = err.message
   res.locals.error = req.app.get("env") === "development" ? err : {}
 
-  // render the error page
   res.status(err.status || 500)
   res.render("error")
 })
