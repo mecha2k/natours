@@ -3,19 +3,26 @@ const router = express.Router()
 
 const tourControl = require("../controller/tours")
 const authControl = require("../controller/authorize")
-const reviewControl = require("../controller/reviews")
+const reviewRoute = require("../routes/reviews")
 
-// router.param("id", tourControl.checkID)
+router.use("/:tourId/reviews", reviewRoute)
 
 router.route("/top-5-cheap").get(tourControl.aliasTopTours, tourControl.getAllTours)
 router.route("/tour-stats").get(tourControl.getTourStats)
-router.route("/monthly-plan/:year").get(tourControl.getMonthlyPlan)
+router
+  .route("/monthly-plan/:year")
+  .get(
+    authControl.protect,
+    authControl.restrictTo("admin", "lead-guide", "guide"),
+    tourControl.getMonthlyPlan
+  )
+router.route("/tours-within/:distance/center/:latlng/unit/:unit").get(tourControl.getToursWithin)
+router.route("/distances/:latlng/unit/:unit").get(tourControl.getDistances)
 
 router
   .route("/")
   .get(tourControl.getAllTours)
   .post(authControl.protect, authControl.restrictTo("admin", "lead-guide"), tourControl.createTour)
-// .post(tourControl.checkBody, tourControl.createTour)
 
 router
   .route("/:id")
@@ -27,8 +34,10 @@ router
     tourControl.deleteTour
   )
 
-router
-  .route("/:id/reviews")
-  .post(authControl.protect, authControl.restrictTo("user"), reviewControl.createReview)
-
 module.exports = router
+
+// const reviewControl = require("../controller/reviews")
+//
+// router
+//   .route("/:id/reviews")
+//   .post(authControl.protect, authControl.restrictTo("user"), reviewControl.createReview)

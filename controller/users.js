@@ -1,4 +1,5 @@
 const User = require("../models/users")
+const commons = require("./commons")
 const appError = require("./apperror")
 
 const filterObj = function (obj, ...allowedFields) {
@@ -8,6 +9,11 @@ const filterObj = function (obj, ...allowedFields) {
   })
 
   return newObj
+}
+
+exports.getMe = function (req, res, next) {
+  req.params.id = req.user.id
+  next()
 }
 
 exports.getAllUsers = async function (req, res, next) {
@@ -50,15 +56,13 @@ exports.deleteMe = async function (req, res) {
   }
 }
 
-exports.getUser = function (req, res) {
-  res.status(500).json({ status: "error", message: "This route is not yet defined!" })
-}
 exports.createUser = function (req, res) {
-  res.status(500).json({ status: "error", message: "This route is not yet defined!" })
+  res
+    .status(500)
+    .json({ status: "error", message: "This route is not defined! Please use /signup instead" })
 }
-exports.updateUser = function (req, res) {
-  res.status(500).json({ status: "error", message: "This route is not yet defined!" })
-}
-exports.deleteUser = function (req, res) {
-  res.status(500).json({ status: "error", message: "This route is not yet defined!" })
-}
+
+exports.getUser = commons.getOne(User)
+exports.getAllUsers = commons.getAll(User)
+exports.updateUser = commons.updateOne(User)
+exports.deleteUser = commons.deleteOne(User)

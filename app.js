@@ -32,7 +32,18 @@ app.use(helmet())
 app.use(express.json({ limit: "10kb" }))
 app.use(mongoSanitize())
 app.use(xss())
-app.use(hpp({ whitelist: ["price", "duration"] }))
+app.use(
+  hpp({
+    whitelist: [
+      "price",
+      "duration",
+      "ratingsQuantity",
+      "ratingsAverage",
+      "maxGroupSize",
+      "difficulty"
+    ]
+  })
+)
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))

@@ -19,7 +19,7 @@ exports.deleteOne = function (model) {
 exports.updateOne = function (model) {
   return async function (req, res, next) {
     try {
-      const doc = await doc.findByIdAndUpdate(req.params.id, req.body, {
+      const doc = await model.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true
       })
@@ -71,7 +71,7 @@ exports.getAll = function (model) {
         .sort()
         .limitFields()
         .paginate()
-      const doc = await features.query
+      const doc = await features.queryDB
 
       res.status(200).json({ status: "success", results: doc.length, data: { doc } })
     } catch (error) {

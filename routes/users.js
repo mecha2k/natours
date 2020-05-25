@@ -11,12 +11,12 @@ router.patch("/resetPassword/:token", authControl.resetPassword)
 
 router.use(authControl.protect)
 
-// router.patch("/updateMyPassword", authControl.updatePassword)
-// router.get("/me", userControl.getMe, userControl.getUser)
-// router.patch("/updateMe", userControl.updateMe)
-// router.delete("/deleteMe", userControl.deleteMe)
-//
-// router.use(authControl.restrictTo("admin"))
+router.patch("/updateMyPassword", authControl.updatePassword)
+router.get("/me", userControl.getMe, userControl.getUser)
+router.patch("/updateMe", userControl.updateMe)
+router.delete("/deleteMe", userControl.deleteMe)
+
+router.use(authControl.restrictTo("admin"))
 
 router.route("/").get(userControl.getAllUsers).post(userControl.createUser)
 
