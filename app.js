@@ -37,12 +37,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   console.log("Hello from the middleware...")
   next()
 })
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   req.requestTime = new Date().toISOString()
   next()
 })
@@ -51,11 +51,11 @@ app.use("/api/tours", tourRouter)
 app.use("/api/users", userRouter)
 app.use("/api/reviews", reviewRouter)
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404))
 })
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.locals.message = err.message
   res.locals.error = req.app.get("env") === "development" ? err : {}
 

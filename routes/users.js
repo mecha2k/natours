@@ -18,10 +18,7 @@ router.use(authControl.protect)
 //
 // router.use(authControl.restrictTo("admin"))
 
-router
-  .route("/")
-  .get(userControl.getAllUsers)
-  .post(userControl.createUser)
+router.route("/").get(userControl.getAllUsers).post(userControl.createUser)
 
 router
   .route("/:id")
