@@ -34,7 +34,8 @@ exports.signup = async function (req, res, next) {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm
+      passwordConfirm: req.body.passwordConfirm,
+      role: req.body.role
     })
 
     saveTokenInCookie(newUser, 201, res)
@@ -46,9 +47,7 @@ exports.signup = async function (req, res, next) {
 exports.login = async function (req, res, next) {
   try {
     const { email, password } = req.body
-    if (!email || !password) {
-      return next(new appError("Please provide email and password!", 400))
-    }
+    if (!email || !password) return next(new appError("Please provide email and password!", 400))
 
     const user = await User.findOne({ email }).select("+password")
     if (!user || !(await user.comparePasswd(password, user.password))) {
