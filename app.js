@@ -59,7 +59,7 @@ app.use(function (req, res, next) {
 })
 
 app.get("/", function (req, res) {
-  return res.status(200).render("layout")
+  return res.status(200).render("index")
 })
 
 app.use("/api/tours", tourRouter)
