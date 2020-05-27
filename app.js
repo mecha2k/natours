@@ -1,8 +1,7 @@
 const express = require("express")
-
-const helmet = require("helmet")
 const path = require("path")
 const logger = require("morgan")
+const helmet = require("helmet")
 const cookieParser = require("cookie-parser")
 const createError = require("http-errors")
 const expressLimit = require("express-rate-limit")
@@ -16,8 +15,10 @@ const reviewRouter = require("./routes/reviews")
 
 const app = express()
 
-app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "pug")
+app.set("views", path.join(__dirname, "views"))
+
+app.use(express.static(path.join(__dirname, "public")))
 
 if (process.env["NODE_ENV"] === "development") app.use(logger("dev"))
 
@@ -46,7 +47,6 @@ app.use(
 )
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, "public")))
 
 app.use(function (req, res, next) {
   console.log("Hello from the middleware...")
@@ -56,6 +56,10 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
   req.requestTime = new Date().toISOString()
   next()
+})
+
+app.get("/", function (req, res) {
+  return res.status(200).render("layout")
 })
 
 app.use("/api/tours", tourRouter)

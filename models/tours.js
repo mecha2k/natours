@@ -103,7 +103,7 @@ const schema = new mongoose.Schema(
         day: Number
       }
     ],
-    guides: [{ type: mongoose.Schema.ObjectId, ref: "User" }]
+    guides: [{ type: mongoose.Schema.ObjectId, ref: "users" }]
   },
 
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
