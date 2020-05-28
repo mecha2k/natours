@@ -1,5 +1,16 @@
-extends layout
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    link(rel="stylesheet", href="css/style.css")
+    link(rel="shortcut icon", type="image/png", href="img/favicon.png")
+    title Natours | Exciting tours for adventurous people
 
-block content
-  h1= title
-  p Welcome to #{title}
+  body
+    header.header
+      nav.nav.nav--tours
+      a.nav__el(href="#") All tours
+      form.nav__search
+        button.nav__search-btn
