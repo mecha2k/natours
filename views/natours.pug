@@ -1,271 +1,282 @@
 doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width,initial-scale=1,user-scalable=no')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
-    link(rel='stylesheet' href='./css/style.css')
-    link(rel='shortcut icon' type='image/png' href='./img/favicon.png')
-    title Natours | Exciting tours for adventurous people
-  body
-    header.header
-      nav.nav.nav--tours
-        a.nav__el(href='#') All tours
-        form.nav__search
-          button.nav__search-btn
-            svg
-              use(href='./img/icons.svg#icon-search')
-          label
-            input.nav__search-input(type='text' placeholder='Search tours')
-      .header__logo
-        img(src='./img/logo-white.png' alt='logo')
-      nav.nav.nav--user
-        a.nav__el(href='#') My bookings
-        a.nav__el(href='#')
-          img.nav__user-img(src='./img/users/user-12.jpg' alt='User photo')
-          span mecha2k
-        //
-           <button class="nav__el">Log in</button>
-                <button class="nav__el nav__el--cta">Sign up</button> 
-    section
-      .card-container
-        .card
-          .card__header
-            .card__picture
-              .card__picture-overlay  
-              img.card__picture-img(src='./img/tours/tour-1-cover.jpg' alt='Tour 1')
-            h3.heading-tertirary
-              span The Forest Hiker
-          .card__details
-            h4.card__sub-heading Easy 5-day tour
-            p.card__text.
-              
-              Breathtaking hike through the Canadian Banff National Park
-              
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-map-pin')
-              span Banff, Canada
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-calendar')
-              span April 2021
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-flag')
-              span 3 stops
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-user')
-              span 25 people
-          .card__footer
-            p
-              span.card__footer-value $297
-              span.card__footer-text per person
-            p.card__ratings
-              span.card__footer-value 4.9
-              span.card__footer-text rating (21)
-            a.btn.btn--green.btn--small(href='#') Details
-        .card
-          .card__header
-            .card__picture
-              .card__picture-overlay  
-              img.card__picture-img(src='./img/tours/tour-2-cover.jpg' alt='Tour 1')
-            h3.heading-tertirary
-              span The Sea Explorer
-          .card__details
-            h4.card__sub-heading Medium-difficult 7-day tour
-            p.card__text.
-              
-              Exploring the jaw-dropping US east coast by foot and by boat
-              
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-map-pin')
-              span Oregon, US
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-calendar')
-              span June 2021
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-flag')
-              span 4 stops
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-user')
-              span 15 people
-          .card__footer
-            p
-              span.card__footer-value $497
-              span.card__footer-text per person
-            p.card__ratings
-              span.card__footer-value 4.8
-              span.card__footer-text rating (12)
-            a.btn.btn--green.btn--small(href='#') Details
-        .card
-          .card__header
-            .card__picture
-              .card__picture-overlay  
-              img.card__picture-img(src='./img/tours/tour-3-cover.jpg' alt='Tour 1')
-            h3.heading-tertirary
-              span The Snow Adventurer
-          .card__details
-            h4.card__sub-heading Difficult 3-day tour
-            p.card__text.
-              
-              Exciting adventure in the snow with snowboarding and skiing
-              
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-map-pin')
-              span Aspen, USA
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-calendar')
-              span January 2022
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-flag')
-              span 2 stops
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-user')
-              span 10 people
-          .card__footer
-            p
-              span.card__footer-value $697
-              span.card__footer-text per person
-            p.card__ratings
-              span.card__footer-value 4.9
-              span.card__footer-text rating (7)
-            a.btn.btn--green.btn--small(href='#') Details
-        .card
-          .card__header
-            .card__picture
-              .card__picture-overlay  
-              img.card__picture-img(src='./img/tours/tour-4-cover.jpg' alt='Tour 1')
-            h3.heading-tertirary
-              span The City Wanderer
-          .card__details
-            h4.card__sub-heading Easy 7-day tour
-            p.card__text.
-              
-              Living the life of Wanderlust in the US' most beatiful cities
-              
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-map-pin')
-              span NYC, USA
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-calendar')
-              span March 2021
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-flag')
-              span 3 stops
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-user')
-              span 20 people
-          .card__footer
-            p
-              span.card__footer-value $997
-              span.card__footer-text per person
-            p.card__ratings
-              span.card__footer-value 4.8
-              span.card__footer-text rating (31)
-            a.btn.btn--green.btn--small(href='#') Details
-        .card
-          .card__header
-            .card__picture
-              .card__picture-overlay  
-              img.card__picture-img(src='./img/tours/tour-5-cover.jpg' alt='Tour 1')
-            h3.heading-tertirary
-              span The Park Camper
-          .card__details
-            h4.card__sub-heading Medium-Difficult 10-day tour
-            p.card__text.
-              
-              Breathing in Nature in America's most spectacular National Parks
-              
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-map-pin')
-              span Las Vegas, USA
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-calendar')
-              span August 2021
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-flag')
-              span 4 stops
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-user')
-              span 15 people
-          .card__footer
-            p
-              span.card__footer-value $1,497
-              span.card__footer-text per person
-            p.card__ratings
-              span.card__footer-value 4.9
-              span.card__footer-text rating (19)
-            a.btn.btn--green.btn--small(href='#') Details
-        .card
-          .card__header
-            .card__picture
-              .card__picture-overlay  
-              img.card__picture-img(src='./img/tours/tour-6-cover.jpg' alt='Tour 1')
-            h3.heading-tertirary
-              span The Sports Lover
-          .card__details
-            h4.card__sub-heading Difficult 14-day tour
-            p.card__text.
-              
-              Surfing, skating, parajumping, rock climbing and more, all in one tour
-              
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-map-pin')
-              span California, USA
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-calendar')
-              span July 2021
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-flag')
-              span 5 stops
-            .card__data
-              svg.card__icon
-                use(href='./img/icons.svg#icon-user')
-              span 8 people
-          .card__footer
-            p
-              span.card__footer-value $1,997
-              span.card__footer-text per person
-            p.card__ratings
-              span.card__footer-value 4.7
-              span.card__footer-text rating (23)
-            a.btn.btn--green.btn--small(href='#') Details
-    footer.footer
-      .footer__logo
-        img(src='./img/logo-green.png' alt='logo')
-      ul.footer__nav
-        li
-          a(href='#') About us
-        li
-          a(href='#') Download apps
-        li
-          a(href='#') Become a guide
-        li
-          a(href='#') Careers
-        li
-          a(href='#') Contact
-      p.footer__copyright.
-        
-        © by cstory.com. All rights reserved.
-        
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+  link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+  script(src="https://kit.fontawesome.com/7c7644cef1.js", crossorigin="anonymous")
+  script(src="https://unpkg.com/scrollreveal")
+  link(rel="stylesheet", href="./css/style.css")
+  link(rel="shortcut icon", type="image/png", href="./img/favicon.png")
+  title Natours | Exciting tours for adventurous people
+header
+  .container
+    nav.nav
+      .menu-toggle
+        i.fas.fa-bars
+        i.fas.fa-times
+      a.nav-brand(href="index.html")
+        img(src="./img/logo-white.png", alt="logo")
+      ul.nav-list
+        li.nav-item
+          form.nav-link
+            button.nav-search-btn
+              svg
+                use(href="./img/icons.svg#icon-search")
+            label
+              input.nav-search-input(type="text", placeholder="Search tours")
+        li.nav-item
+          a.nav-link(href="#") login
+        li.nav-item
+          a.nav-link(href="#") signup
+section#section.section
+  .card
+    .card-header
+      .card-picture
+        .card-picture-overlay &nbsp;
+        img.card-picture-img(src="./img/tours/tour-1-cover.jpg", alt="Tour 1")
+      h3.heading-tour
+        span The Forest Hiker
+    .card-details
+      h4.card-sub-heading Easy 5-day tour
+      p.card-text
+        | Breathtaking hike through the Canadian Banff National Park
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-map-pin")
+        span Banff, Canada
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-calendar")
+        span April 2021
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-flag")
+        span 3 stops
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-user")
+        span 25 people
+    .card-footer
+      p
+        span.card-footer-value $297
+        span.card-footer-text per person
+      p.card-ratings
+        span.card-footer-value 4.9
+        span.card-footer-text rating (21)
+      a.btn.btn-green.btn-small(href="#") Details
+  .card
+    .card-header
+      .card-picture
+        .card-picture-overlay &nbsp;
+        img.card-picture-img(src="./img/tours/tour-2-cover.jpg", alt="Tour 1")
+      h3.heading-tour
+        span The Sea Explorer
+    .card-details
+      h4.card-sub-heading Medium-difficult 7-day tour
+      p.card-text
+        | Exploring the jaw-dropping US east coast by foot and by boat
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-map-pin")
+        span Oregon, US
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-calendar")
+        span June 2021
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-flag")
+        span 4 stops
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-user")
+        span 15 people
+    .card-footer
+      p
+        span.card-footer-value $497
+        span.card-footer-text per person
+      p.card-ratings
+        span.card-footer-value 4.8
+        span.card-footer-text rating (12)
+      a.btn.btn-green.btn-small(href="#") Details
+  .card
+    .card-header
+      .card-picture
+        .card-picture-overlay &nbsp;
+        img.card-picture-img(src="./img/tours/tour-3-cover.jpg", alt="Tour 1")
+      h3.heading-tour
+        span The Snow Adventurer
+    .card-details
+      h4.card-sub-heading Difficult 3-day tour
+      p.card-text
+        | Exciting adventure in the snow with snowboarding and skiing
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-map-pin")
+        span Aspen, USA
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-calendar")
+        span January 2022
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-flag")
+        span 2 stops
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-user")
+        span 10 people
+    .card-footer
+      p
+        span.card-footer-value $697
+        span.card-footer-text per person
+      p.card-ratings
+        span.card-footer-value 4.9
+        span.card-footer-text rating (7)
+      a.btn.btn-green.btn-small(href="#") Details
+  .card
+    .card-header
+      .card-picture
+        .card-picture-overlay &nbsp;
+        img.card-picture-img(src="./img/tours/tour-4-cover.jpg", alt="Tour 1")
+      h3.heading-tour
+        span The City Wanderer
+    .card-details
+      h4.card-sub-heading Easy 7-day tour
+      p.card-text
+        | Living the life of Wanderlust in the US&apos; most beatiful cities
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-map-pin")
+        span NYC, USA
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-calendar")
+        span March 2021
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-flag")
+        span 3 stops
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-user")
+        span 20 people
+    .card-footer
+      p
+        span.card-footer-value $997
+        span.card-footer-text per person
+      p.card-ratings
+        span.card-footer-value 4.8
+        span.card-footer-text rating (31)
+      a.btn.btn-green.btn-small(href="#") Details
+  .card
+    .card-header
+      .card-picture
+        .card-picture-overlay &nbsp;
+        img.card-picture-img(src="./img/tours/tour-5-cover.jpg", alt="Tour 1")
+      h3.heading-tour
+        span The Park Camper
+    .card-details
+      h4.card-sub-heading Medium-Difficult 10-day tour
+      p.card-text
+        | Breathing in Nature in America&apos;s most spectacular National Parks
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-map-pin")
+        span Las Vegas, USA
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-calendar")
+        span August 2021
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-flag")
+        span 4 stops
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-user")
+        span 15 people
+    .card-footer
+      p
+        span.card-footer-value $1,497
+        span.card-footer-text per person
+      p.card-ratings
+        span.card-footer-value 4.9
+        span.card-footer-text rating (19)
+      a.btn.btn-green.btn-small(href="#") Details
+  .card
+    .card-header
+      .card-picture
+        .card-picture-overlay &nbsp;
+        img.card-picture-img(src="./img/tours/tour-6-cover.jpg", alt="Tour 1")
+      h3.heading-tour
+        span The Sports Lover
+    .card-details
+      h4.card-sub-heading Difficult 14-day tour
+      p.card-text
+        | Surfing, skating, parajumping, rock climbing and more, all in one tour
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-map-pin")
+        span California, USA
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-calendar")
+        span July 2021
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-flag")
+        span 5 stops
+      .card-data
+        svg.card-icon
+          use(href="./img/icons.svg#icon-user")
+        span 8 people
+    .card-footer
+      p
+        span.card-footer-value $1,997
+        span.card-footer-text per person
+      p.card-ratings
+        span.card-footer-value 4.7
+        span.card-footer-text rating (23)
+      a.btn.btn-green.btn-small(href="#") Details
+footer
+  .container
+    .back-to-top
+      a(href="#section")
+        i.fas.fa-chevron-up
+    .footer-content
+      .footer-content-about.animate-top
+        h4 About natours
+        .asterisk
+          i.fas.fa-asterisk
+        p
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, laborum autem quo
+          | corrupti quam enim, delectus repellat sit quos qui ullam ex voluptates asperiores
+          | numquam eius iste quisquam distinctio. Ipsum!
+      .footer-content-devider.animate-bottom
+        .social-media
+          h4 Follow along
+          ul.social-icons
+            li
+              a(href="#")
+                i.fab.fa-twitter
+            li
+              a(href="#")
+                i.fab.fa-facebook-square
+            li
+              a(href="#")
+                i.fab.fa-pinterest
+            li
+              a(href="#")
+                i.fab.fa-linkedin-in
+            li
+              a(href="#")
+                i.fab.fa-tripadvisor
+        .newsletter-container
+          h4 Newsletter
+          form.newsletter-form(action="")
+            label
+              input.newsletter-input(type="text", placeholder="Email Address")
+            button.newsletter-btn(type="submit")
+              i.fas.fa-envelope
+script(src="./js/main.js")
