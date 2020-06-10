@@ -9,11 +9,14 @@ const mongoSanitize = require("express-mongo-sanitize")
 const xss = require("xss-clean")
 const hpp = require("hpp")
 
+const viewRouter = require("./routes/views")
 const tourRouter = require("./routes/tours")
 const userRouter = require("./routes/users")
 const reviewRouter = require("./routes/reviews")
 
 const app = express()
+
+app.enable("trust proxy")
 
 app.set("view engine", "pug")
 app.set("views", path.join(__dirname, "views"))
@@ -58,10 +61,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.get("/", function (req, res) {
-  return res.status(200).render("base")
-})
-
+app.use("/", viewRouter)
 app.use("/api/tours", tourRouter)
 app.use("/api/users", userRouter)
 app.use("/api/reviews", reviewRouter)
