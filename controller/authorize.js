@@ -167,3 +167,30 @@ exports.updatePassword = async function (req, res, next) {
 
   saveTokenInCookie(user, 200, res)
 }
+
+exports.isLoggedIn = async function (req, res, next) {
+  // if (req.cookies.jwt) {
+  //   try {
+  //     const decoded = await promisify(jwt.verify)(
+  //         req.cookies.jwt,
+  //         process.env['JWT_HASHCODE']
+  //     );
+  //
+  //     const currentUser = await User.findById(decoded.id);
+  //     if (!currentUser) {
+  //       return next();
+  //     }
+  //
+  //     if (currentUser.changedPasswordAfter(decoded.iat)) {
+  //       return next();
+  //     }
+  //
+  //     // THERE IS A LOGGED IN USER
+  //     res.locals.user = currentUser;
+  //     return next();
+  //   } catch (error) {
+  //     return next();
+  //   }
+  // }
+  next()
+}

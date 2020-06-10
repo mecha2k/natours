@@ -8,27 +8,9 @@ head
   link(rel="stylesheet", href="./css/style.css")
   link(rel="shortcut icon", type="image/png", href="./img/favicon.png")
   title Natours | Exciting tours for adventurous people
-header
-  .container
-    nav.nav
-      .menu-toggle
-        i.fas.fa-bars
-        i.fas.fa-times
-      a.nav-brand(href="index.html")
-        img(src="./img/logo-white.png", alt="logo")
-      ul.nav-list
-        li.nav-item
-          form.nav-link
-            button.nav-search-btn
-              svg
-                use(href="./img/icons.svg#icon-search")
-            label
-              input.nav-search-input(type="text", placeholder="Search tours")
-        li.nav-item
-          a.nav-link(href="#") login
-        li.nav-item
-          a.nav-link(href="#") signup
-section#section.section
+
+body
+  section#section.section
   .card
     .card-header
       .card-picture
@@ -239,44 +221,6 @@ section#section.section
         span.card-footer-value 4.7
         span.card-footer-text rating (23)
       a.btn.btn-green.btn-small(href="#") Details
-footer
-  .container
-    .back-to-top
-      a(href="#section")
-        i.fas.fa-chevron-up
-    .footer-content
-      .footer-content-about.animate-top
-        h4 About natours
-        .asterisk
-          i.fas.fa-asterisk
-        p
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, laborum autem quo
-          | corrupti quam enim, delectus repellat sit quos qui ullam ex voluptates asperiores
-          | numquam eius iste quisquam distinctio. Ipsum!
-      .footer-content-devider.animate-bottom
-        .social-media
-          h4 Follow along
-          ul.social-icons
-            li
-              a(href="#")
-                i.fab.fa-twitter
-            li
-              a(href="#")
-                i.fab.fa-facebook-square
-            li
-              a(href="#")
-                i.fab.fa-pinterest
-            li
-              a(href="#")
-                i.fab.fa-linkedin-in
-            li
-              a(href="#")
-                i.fab.fa-tripadvisor
-        .newsletter-container
-          h4 Newsletter
-          form.newsletter-form(action="")
-            label
-              input.newsletter-input(type="text", placeholder="Email Address")
-            button.newsletter-btn(type="submit")
-              i.fas.fa-envelope
-script(src="./js/main.js")
+
+
+  script(src="./js/main.js")
