@@ -1,0 +1,372 @@
+doctype html
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  link(href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700", rel="stylesheet")
+  script(src="https://kit.fontawesome.com/7c7644cef1.js", crossorigin="anonymous")
+  script(src="https://unpkg.com/scrollreveal")
+  link(rel="stylesheet", href="./css/style.css")
+  link(rel="shortcut icon", type="image/png", href="./img/favicon.png")
+  title Natours | The Park Camper Tour
+  script(src="https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js")
+  link(href="https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css", rel="stylesheet")
+header
+  .container
+    nav.nav
+      .menu-toggle
+        i.fas.fa-bars
+        i.fas.fa-times
+      a.nav-brand(href="index.html")
+        img(src="./img/logo-white.png", alt="logo")
+      ul.nav-list
+        li.nav-item
+          form.nav-link
+            button.nav-search-btn
+              svg
+                use(href="./img/icons.svg#icon-search")
+            label
+              input.nav-search-input(type="text", placeholder="Search tours")
+        li.nav-item
+          a.nav-link(href="#") login
+        li.nav-item
+          a.nav-link(href="#") signup
+section#section.section-header
+  .heading-box
+    h1.heading-primary
+      span
+        | The Park
+        br
+        |
+        | Camper Tour
+    .heading-box-group
+      .heading-box-detail
+        svg.heading-box-icon
+          use(href="./img/icons.svg#icon-clock")
+        span.heading-box-text 10 days
+      .heading-box-detail
+        svg.heading-box-icon
+          use(href="./img/icons.svg#icon-map-pin")
+        span.heading-box-text Las Vegas, USA
+section.section-description
+  .overview-box
+    div
+      .overview-box-group
+        h2.heading-secondary.ma-bt-lg Quick facts
+        .overview-box-detail
+          svg.overview-box-icon
+            use(href="./img/icons.svg#icon-calendar")
+          span.overview-box-label Next date
+          span.overview-box-text August 2021
+        .overview-box-detail
+          svg.overview-box-icon
+            use(href="./img/icons.svg#icon-trending-up")
+          span.overview-box-label Difficulty
+          span.overview-box-text Medium
+        .overview-box-detail
+          svg.overview-box-icon
+            use(href="./img/icons.svg#icon-user")
+          span.overview-box-label Participants
+          span.overview-box-text 10 people
+        .overview-box-detail
+          svg.overview-box-icon
+            use(href="./img/icons.svg#icon-star")
+          span.overview-box-label Rating
+          span.overview-box-text 4.9 / 5
+      .overview-box-group
+        h2.heading-secondary.ma-bt-lg Your tour guides
+        .overview-box-detail
+          img.overview-box-img(src="img/users/user-19.jpg", alt="Lead guide")
+          span.overview-box-label Lead guide
+          span.overview-box-text Steven Miller
+        .overview-box-detail
+          img.overview-box-img(src="img/users/user-18.jpg", alt="Tour guide")
+          span.overview-box-label Tour guide
+          span.overview-box-text Lisa Brown
+        .overview-box-detail
+          img.overview-box-img(src="img/users/user-17.jpg", alt="Intern")
+          span.overview-box-label Intern
+          span.overview-box-text Max Smith
+  .description-box
+    h2.heading-secondary.ma-bt-lg About the park camper tour
+    p.description-text
+      | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+      | ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      | ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+      | reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    p.description-text
+      | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+      | nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+      | deserunt mollit anim id est laborum!
+section.section-pictures
+  .picture-box
+    img.picture-box-img.picture-box-img-1(
+      src="./img/tours/tour-5-1.jpg",
+      alt="The Park Camper Tour 1"
+    )
+  .picture-box
+    img.picture-box-img.picture-box-img-2(
+      src="./img/tours/tour-5-2.jpg",
+      alt="The Park Camper Tour 1"
+    )
+  .picture-box
+    img.picture-box-img.picture-box-img-3(
+      src="./img/tours/tour-5-3.jpg",
+      alt="The Park Camper Tour 1"
+    )
+section.section-map
+  #map
+  script.
+    mapboxgl.accessToken =
+    "pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A"
+    const geojson = {
+    type: "FeatureCollection",
+    features: [
+    {
+    type: "Feature",
+    geometry: {
+    type: "Point",
+    coordinates: [-112.987418, 37.198125]
+    },
+    properties: {
+    description: "Zion Canyon National Park"
+    }
+    },
+    {
+    type: "Feature",
+    geometry: {
+    type: "Point",
+    coordinates: [-111.376161, 36.86438]
+    },
+    properties: {
+    description: "Antelope Canyon"
+    }
+    },
+    {
+    type: "Feature",
+    geometry: {
+    type: "Point",
+    coordinates: [-112.115763, 36.058973]
+    },
+    properties: {
+    description: "Grand Canyon National Park"
+    }
+    },
+    {
+    type: "Feature",
+    geometry: {
+    type: "Point",
+    coordinates: [-116.107963, 34.011646]
+    },
+    properties: {
+    description: "Joshua Tree National Park"
+    }
+    }
+    ]
+    }
+    const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/jonasschmedtmann/cjnxfn3zk7bj52rpegdltx58h",
+    scrollZoom: false
+    })
+    const bounds = new mapboxgl.LngLatBounds()
+    geojson.features.forEach(function (marker) {
+    let el = document.createElement("div")
+    el.className = "marker"
+    new mapboxgl.Marker({
+    element: el,
+    anchor: "bottom"
+    })
+    .setLngLat(marker.geometry.coordinates)
+    .addTo(map)
+    new mapboxgl.Popup({
+    offset: 30,
+    closeOnClick: false
+    })
+    .setLngLat(marker.geometry.coordinates)
+    .setHTML("<p>" + marker.properties.description + "</p>")
+    .addTo(map)
+    bounds.extend(marker.geometry.coordinates)
+    })
+    map.fitBounds(bounds, {
+    padding: {
+    top: 200,
+    bottom: 150,
+    left: 50,
+    right: 50
+    }
+    })
+    map.on("load", function () {
+    map.addLayer({
+    id: "route",
+    type: "line",
+    source: {
+    type: "geojson",
+    data: {
+    type: "Feature",
+    properties: {},
+    geometry: {
+    type: "LineString",
+    coordinates: [
+    [-112.987418, 37.198125],
+    [-111.376161, 36.86438],
+    [-112.115763, 36.058973],
+    [-116.107963, 34.011646]
+    ]
+    }
+    }
+    },
+    layout: {
+    "line-join": "round",
+    "line-cap": "round"
+    },
+    paint: {
+    "line-color": "#55c57a",
+    "line-opacity": 0.6,
+    "line-width": 3
+    }
+    })
+    })
+section.section-reviews
+  .reviews
+    .reviews-card
+      .reviews-avatar
+        img.reviews-avatar-img(src="./img/users/user-7.jpg", alt="Jim Brown")
+        h6.reviews-user Jim Brown
+      p.reviews-text
+        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dignissimos sint quo
+        | commodi corrupti accusantium veniam saepe numquam.
+      .reviews-rating
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+    .reviews-card
+      .reviews-avatar
+        img.reviews-avatar-img(src="./img/users/user-14.jpg", alt="Laura Wilson")
+        h6.reviews-user Laura Wilson
+      p.reviews-text
+        | Veniam adipisci blanditiis, corporis sit magnam aperiam ad, fuga reiciendis provident
+        | deleniti cumque similique itaque animi, sapiente obcaecati beatae accusantium.
+      .reviews-rating
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-inactive
+          use(href="./img/icons.svg#icon-star")
+    .reviews-card
+      .reviews-avatar
+        img.reviews-avatar-img(src="./img/users/user-15.jpg", alt="Ben Hadley")
+        h6.reviews-user Ben Hadley
+      p.reviews-text
+        | Debitis, nesciunt itaque! At quis officia natus. Suscipit, reprehenderit blanditiis
+        | mollitia distinctio ducimus porro tempore perspiciatis sunt vel.
+      .reviews-rating
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+    .reviews-card
+      .reviews-avatar
+        img.reviews-avatar-img(src="./img/users/user-6.jpg", alt="Alexander Jones")
+        h6.reviews-user Alexander Jones
+      p.reviews-text
+        | Quaerat laborum eveniet ut aut maiores doloribus mollitia aperiam quis praesentium sed
+        | inventore harum aliquam veritatis at adipisci ea assumenda!
+      .reviews-rating
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+    .reviews-card
+      .reviews-avatar
+        img.reviews-avatar-img(src="./img/users/user-3.jpg", alt="Ayla Cornell")
+        h6.reviews-user Ayla Cornell
+      p.reviews-text
+        | Perferendis quo aliquid iste quas laboriosam molestias illo est voluptatem odit ea. Vero
+        | placeat culpa provident dicta maiores!
+      .reviews-rating
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+        svg.reviews-star.reviews-star-active
+          use(href="./img/icons.svg#icon-star")
+section.section-cta
+  .cta
+    .cta-img.cta-img-logo
+      img(src="img/logo-white.png", alt="Natours logo")
+    img.cta-img.cta-img-1(src="./img/tours/tour-5-2.jpg", alt="")
+    img.cta-img.cta-img-2(src="./img/tours/tour-5-1.jpg", alt="")
+    .cta-content
+      h2.heading-secondary What are you waiting for?
+      p.cta-text
+        | 10 days. 1 adventure. Infinite memories. Make it yours today!
+      button.btn.btn-green.span-all-rows Book tour now!
+footer
+  .container
+    .back-to-top
+      a(href="#section")
+        i.fas.fa-chevron-up
+    .footer-content
+      .footer-content-about.animate-top
+        h4 About natours
+        .asterisk
+          i.fas.fa-asterisk
+        p
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, laborum autem quo
+          | corrupti quam enim, delectus repellat sit quos qui ullam ex voluptates asperiores
+          | numquam eius iste quisquam distinctio. Ipsum!
+      .footer-content-devider.animate-bottom
+        .social-media
+          h4 Follow along
+          ul.social-icons
+            li
+              a(href="#")
+                i.fab.fa-twitter
+            li
+              a(href="#")
+                i.fab.fa-facebook-square
+            li
+              a(href="#")
+                i.fab.fa-pinterest
+            li
+              a(href="#")
+                i.fab.fa-linkedin-in
+            li
+              a(href="#")
+                i.fab.fa-tripadvisor
+        .newsletter-container
+          h4 Newsletter
+          form.newsletter-form(action="")
+            label
+              input.newsletter-input(type="text", placeholder="Email Address")
+            button.newsletter-btn(type="submit")
+              i.fas.fa-envelope
+script(src="./js/main.js")

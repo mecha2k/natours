@@ -16,8 +16,6 @@ const reviewRouter = require("./routes/reviews")
 
 const app = express()
 
-app.enable("trust proxy")
-
 app.set("view engine", "pug")
 app.set("views", path.join(__dirname, "views"))
 

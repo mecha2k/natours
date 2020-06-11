@@ -6,8 +6,8 @@ const router = express.Router()
 
 router.use(viewsControl.alerts)
 
-router.get("/", authControl.isLoggedIn, viewsControl.getOverview)
-router.get("/tour/:slug", authControl.isLoggedIn, viewsControl.getTour)
+router.get("/", authControl.isLoggedIn, viewsControl.getTours)
+router.get("/tours/:slug", authControl.isLoggedIn, viewsControl.getTour)
 router.get("/login", authControl.isLoggedIn, viewsControl.getLoginForm)
 router.get("/me", authControl.protect, viewsControl.getAccount)
 router.get("/my-tours", authControl.protect, viewsControl.getMyTours)
