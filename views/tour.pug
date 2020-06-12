@@ -1,311 +1,100 @@
 extends base
 
 block append head
-  script(src='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js')
-  link(href='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet')
 
-  
+mixin overviewBox(label, text, icon)
+  .overview-box-detail
+    svg.overview-box-icon
+      use(href=`/img/icons.svg#icon-${icon}`)
+    span.overview-box-label= label
+    span.overview-box-text= text
+
+mixin reviewCard(review)
+  .reviews-card
+    .reviews-avatar
+      img.reviews-avatar-img(src=`/img/users/${review.user.photo}`, alt=`${review.user.name}`)
+      h6.reviews-user= review.user.name
+    p.reviews-text= review.review
+    .reviews-rating
+      each star in [1, 2, 3, 4, 5]
+        svg.reviews-star(class=`reviews-star-${review.rating >= star ? 'active' : 'inactive'}`)
+          use(href='/img/icons.svg#icon-star')
+
+
 block contents
   section#section.section-header
-
-
-
-
+    .header-cover
+      .header-cover-overlay &nbsp;
+      img.header-cover-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
     .heading-box
       h1.heading-primary
-        span
-          | The Park
-          br
-          |
-          | Camper Tour
+        span= `${tour.name} tour`
       .heading-box-group
         .heading-box-detail
           svg.heading-box-icon
             use(href="/img/icons.svg#icon-clock")
-          span.heading-box-text 10 days
+          span.heading-box-text= `${tour.duration} days`
         .heading-box-detail
           svg.heading-box-icon
             use(href="/img/icons.svg#icon-map-pin")
-          span.heading-box-text Las Vegas, USA
+          span.heading-box-text= tour.startLocation.description
+
   section.section-description
     .overview-box
       div
         .overview-box-group
           h2.heading-secondary.ma-bt-lg Quick facts
-          .overview-box-detail
-            svg.overview-box-icon
-              use(href="/img/icons.svg#icon-calendar")
-            span.overview-box-label Next date
-            span.overview-box-text August 2021
-          .overview-box-detail
-            svg.overview-box-icon
-              use(href="/img/icons.svg#icon-trending-up")
-            span.overview-box-label Difficulty
-            span.overview-box-text Medium
-          .overview-box-detail
-            svg.overview-box-icon
-              use(href="/img/icons.svg#icon-user")
-            span.overview-box-label Participants
-            span.overview-box-text 10 people
-          .overview-box-detail
-            svg.overview-box-icon
-              use(href="/img/icons.svg#icon-star")
-            span.overview-box-label Rating
-            span.overview-box-text 4.9 / 5
+
+          - const date = tour.startDates[0].toLocaleString('en-US', {month: 'long', year: 'numeric'})
+          + overviewBox('Next date', date, 'calendar')
+          + overviewBox('Difficulty', tour.difficulty, 'trending-up')
+          + overviewBox('Participants', `${tour.maxGroupSize} people`, 'user')
+          + overviewBox('Rating', `${tour.ratingsAverage} / 5`, 'star')
+
         .overview-box-group
           h2.heading-secondary.ma-bt-lg Your tour guides
-          .overview-box-detail
-            img.overview-box-img(src="img/users/user-19.jpg", alt="Lead guide")
-            span.overview-box-label Lead guide
-            span.overview-box-text Steven Miller
-          .overview-box-detail
-            img.overview-box-img(src="img/users/user-18.jpg", alt="Tour guide")
-            span.overview-box-label Tour guide
-            span.overview-box-text Lisa Brown
-          .overview-box-detail
-            img.overview-box-img(src="img/users/user-17.jpg", alt="Intern")
-            span.overview-box-label Intern
-            span.overview-box-text Max Smith
+
+          each guide in tour.guides
+            .overview-box-detail
+              img.overview-box-img(src=`/img/users/${guide.photo}`, alt=`${guide.name}`)
+
+              - if (guide.role === 'lead-guide')
+                span.overview-box-label Lead guide
+              - if (guide.role === 'guide')
+                span.overview-box-label Tour guide
+              span.overview-box-text= guide.name
+
     .description-box
-      h2.heading-secondary.ma-bt-lg About the park camper tour
-      p.description-text
-        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-        | ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        | ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        | reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      p.description-text
-        | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-        | nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        | deserunt mollit anim id est laborum!
+      h2.heading-secondary.ma-bt-lg= `About ${tour.name} tour`
+      - const parapraphs = tour.description.split('\n');
+      each p in parapraphs
+        p.description-text= p
+
   section.section-pictures
-    .picture-box
-      img.picture-box-img.picture-box-img-1(
-        src="/img/tours/tour-5-1.jpg",
-        alt="The Park Camper Tour 1"
-      )
-    .picture-box
-      img.picture-box-img.picture-box-img-2(
-        src="/img/tours/tour-5-2.jpg",
-        alt="The Park Camper Tour 1"
-      )
-    .picture-box
-      img.picture-box-img.picture-box-img-3(
-        src="/img/tours/tour-5-3.jpg",
-        alt="The Park Camper Tour 1"
-      )
+    each img, i in tour.images
+      .picture-box
+        img.picture-box-img(src=`/img/tours/${img}`, alt=`The Park Camper Tour ${i + 1}`, class=`picture-box-img-${i + 1}`)
+
   section.section-map
-    #map
-    script.
-      mapboxgl.accessToken =
-          "pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A"
-      const geojson = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-112.987418, 37.198125]
-            },
-            properties: {
-              description: "Zion Canyon National Park"
-            }
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-111.376161, 36.86438]
-            },
-            properties: {
-              description: "Antelope Canyon"
-            }
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-112.115763, 36.058973]
-            },
-            properties: {
-              description: "Grand Canyon National Park"
-            }
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-116.107963, 34.011646]
-            },
-            properties: {
-              description: "Joshua Tree National Park"
-            }
-          }
-        ]
-      }
-      const map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/jonasschmedtmann/cjnxfn3zk7bj52rpegdltx58h",
-        scrollZoom: false
-      })
-      const bounds = new mapboxgl.LngLatBounds()
-      geojson.features.forEach(function (marker) {
-        let el = document.createElement("div")
-        el.className = "marker"
-        new mapboxgl.Marker({
-          element: el,
-          anchor: "bottom"
-        })
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map)
-        new mapboxgl.Popup({
-          offset: 30,
-          closeOnClick: false
-        })
-            .setLngLat(marker.geometry.coordinates)
-            .setHTML("<p>" + marker.properties.description + "</p>")
-            .addTo(map)
-        bounds.extend(marker.geometry.coordinates)
-      })
-      map.fitBounds(bounds, {
-        padding: {
-          top: 200,
-          bottom: 150,
-          left: 50,
-          right: 50
-        }
-      })
-      map.on("load", function () {
-        map.addLayer({
-          id: "route",
-          type: "line",
-          source: {
-            type: "geojson",
-            data: {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [-112.987418, 37.198125],
-                  [-111.376161, 36.86438],
-                  [-112.115763, 36.058973],
-                  [-116.107963, 34.011646]
-                ]
-              }
-            }
-          },
-          layout: {
-            "line-join": "round",
-            "line-cap": "round"
-          },
-          paint: {
-            "line-color": "#55c57a",
-            "line-opacity": 0.6,
-            "line-width": 3
-          }
-        })
-      })
+    #map(data-locations=`${JSON.stringify(tour.locations)}`)
+
   section.section-reviews
     .reviews
-      .reviews-card
-        .reviews-avatar
-          img.reviews-avatar-img(src="/img/users/user-7.jpg", alt="Jim Brown")
-          h6.reviews-user Jim Brown
-        p.reviews-text
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dignissimos sint quo
-          | commodi corrupti accusantium veniam saepe numquam.
-        .reviews-rating
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-      .reviews-card
-        .reviews-avatar
-          img.reviews-avatar-img(src="/img/users/user-14.jpg", alt="Laura Wilson")
-          h6.reviews-user Laura Wilson
-        p.reviews-text
-          | Veniam adipisci blanditiis, corporis sit magnam aperiam ad, fuga reiciendis provident
-          | deleniti cumque similique itaque animi, sapiente obcaecati beatae accusantium.
-        .reviews-rating
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-inactive
-            use(href="/img/icons.svg#icon-star")
-      .reviews-card
-        .reviews-avatar
-          img.reviews-avatar-img(src="/img/users/user-15.jpg", alt="Ben Hadley")
-          h6.reviews-user Ben Hadley
-        p.reviews-text
-          | Debitis, nesciunt itaque! At quis officia natus. Suscipit, reprehenderit blanditiis
-          | mollitia distinctio ducimus porro tempore perspiciatis sunt vel.
-        .reviews-rating
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-      .reviews-card
-        .reviews-avatar
-          img.reviews-avatar-img(src="/img/users/user-6.jpg", alt="Alexander Jones")
-          h6.reviews-user Alexander Jones
-        p.reviews-text
-          | Quaerat laborum eveniet ut aut maiores doloribus mollitia aperiam quis praesentium sed
-          | inventore harum aliquam veritatis at adipisci ea assumenda!
-        .reviews-rating
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-      .reviews-card
-        .reviews-avatar
-          img.reviews-avatar-img(src="/img/users/user-3.jpg", alt="Ayla Cornell")
-          h6.reviews-user Ayla Cornell
-        p.reviews-text
-          | Perferendis quo aliquid iste quas laboriosam molestias illo est voluptatem odit ea. Vero
-          | placeat culpa provident dicta maiores!
-        .reviews-rating
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
-          svg.reviews-star.reviews-star-active
-            use(href="/img/icons.svg#icon-star")
+      each review in tour.reviews
+        + reviewCard(review)
+
   section.section-cta
     .cta
       .cta-img.cta-img-logo
-        img(src="img/logo-white.png", alt="Natours logo")
-      img.cta-img.cta-img-1(src="/img/tours/tour-5-2.jpg", alt="")
-      img.cta-img.cta-img-2(src="/img/tours/tour-5-1.jpg", alt="")
+        img(src="/img/logo-white.png", alt="Natours logo")
+      img.cta-img.cta-img-1(src=`/img/tours/${tour.images[1]}`, alt='Tour picture')
+      img.cta-img.cta-img-2(src=src=`/img/tours/${tour.images[2]}`, alt='Tour picture')
       .cta-content
         h2.heading-secondary What are you waiting for?
-        p.cta-text
-          | 10 days. 1 adventure. Infinite memories. Make it yours today!
-        button.btn.btn-green.span-all-rows Book tour now!
+        p.cta-text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
+        if user
+          button.btn.btn-green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
+        else
+          a.btn.btn-green.span-all-rows(href='/login') Log in to book tour

@@ -1,14 +1,15 @@
 doctype html
 html
   head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
-    script(src="https://kit.fontawesome.com/7c7644cef1.js", crossorigin="anonymous")
-    script(src="https://unpkg.com/scrollreveal")
-    link(rel="stylesheet", href="/css/style.css")
-    link(rel="shortcut icon", type="image/png", href="/img/favicon.png")
-    title Natours | #{title}
+    block head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+      link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+      script(src="https://kit.fontawesome.com/7c7644cef1.js", crossorigin="anonymous")
+      script(src="https://unpkg.com/scrollreveal")
+      link(rel="stylesheet", href="/css/style.css")
+      link(rel="shortcut icon", type="image/png", href="/img/favicon.png")
+      title Natours | #{title}
 
   body
     include _header
@@ -18,3 +19,4 @@ html
 
     include _footer
     script(src="/js/main.js")
+    script(src="/js/mapbox.js")
