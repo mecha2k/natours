@@ -2,7 +2,6 @@ extends base
 
 block contents
   section#section.section
-
     each tour in tours
       .card
         .card-header
@@ -11,32 +10,32 @@ block contents
             img.card-picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
           h3.heading-tour
             span= tour.name
+
         .card-details
           h4.card-sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
           p.card-text= tour.summary
           .card-data
             svg.card-icon
-              use(href="/img/icons.svg#icon-map-pin")
+              use(href="./img/icons.svg#icon-map-pin")
             span= tour.startLocation.description
           .card-data
             svg.card-icon
-              use(href="/img/icons.svg#icon-calendar")
-            span= tour.startDates[0].toLocaleString("en-US", { month: "long", year: "numeric" })
+              use(href="./img/icons.svg#icon-calendar")
+            span= tour.startDates[0].toLocaleString('en-US', {month: 'long', year: 'numeric'})
           .card-data
             svg.card-icon
-              use(href="/img/icons.svg#icon-flag")
-            span=`${tour.locations.length} stops`
+              use(href="./img/icons.svg#icon-flag")
+            span= `${tour.locations.length} stops`
           .card-data
             svg.card-icon
-              use(href="/img/icons.svg#icon-user")
+              use(href="./img/icons.svg#icon-user")
             span= `${tour.maxGroupSize} people`
+
         .card-footer
           p
-            span.card-footer-value= `$${tour.price}`
-            |
+            span.card-footer-value= `$${tour.price} `
             span.card-footer-text per person
           p.card-ratings
             span.card-footer-value= tour.ratingsAverage
-            |
-            span.card-footer-text= `rating (${tour.ratingsQuantity})`
-          a.btn.btn-green.btn-small(href=`/tours/${tour.slug}`) Details
+            span.card-footer-text= ` rating (${tour.ratingsQuantity})`
+          a.btn.btn-green.btn-small(href=`/tour/${tour.slug}`) Details

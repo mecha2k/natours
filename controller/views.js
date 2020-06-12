@@ -15,9 +15,9 @@ exports.alerts = function (req, res, next) {
 exports.getTours = async function (req, res, next) {
   const tours = await Tour.find()
 
-  res.status(200).render("main", { title: "All Tours", tours })
+  res.status(200).render("index", { title: "All Tours", tours })
   console.log(tours[0].startLocation.description)
-  console.log(tours[0].startDates[0].toLocaleString("ko-KR", { month: "long", year: "numeric" }))
+  console.log(tours[0].guides)
 }
 
 exports.getTour = async function (req, res, next) {
@@ -49,7 +49,7 @@ exports.getMyTours = async function (req, res, next) {
   const tourIDs = bookings.map((el) => el.tour)
   const tours = await Tour.find({ _id: { $in: tourIDs } })
 
-  res.status(200).render("main", { title: "My Tours", tours })
+  res.status(200).render("index", { title: "My Tours", tours })
 }
 
 exports.updateUserData = async function (req, res, next) {
