@@ -56,6 +56,7 @@ app.use(function (req, res, next) {
 
 app.use(function (req, res, next) {
   req.requestTime = new Date().toISOString()
+  console.log(req.cookies)
   next()
 })
 

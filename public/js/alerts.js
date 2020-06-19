@@ -1,12 +1,9 @@
-/* eslint-disable */
-
-export const hideAlert = () => {
-  const el = document.querySelector(".alert")
-  if (el) el.parentElement.removeChild(el)
+export const hideAlert = function () {
+  const alert = document.querySelector(".alert")
+  if (alert) alert.parentElement.removeChild(el)
 }
 
-// type is 'success' or 'error'
-export const showAlert = (type, msg, time = 7) => {
+export const showAlert = function (type, msg, time = 7) {
   hideAlert()
   const markup = `<div class="alert alert--${type}">${msg}</div>`
   document.querySelector("body").insertAdjacentHTML("afterbegin", markup)

@@ -1,22 +1,23 @@
 parcelRequire = (function (e, r, t, n) {
-  var i,
+  let i,
     o = "function" == typeof parcelRequire && parcelRequire,
     u = "function" == typeof require && require
+
   function f(t, n) {
     if (!r[t]) {
       if (!e[t]) {
-        var i = "function" == typeof parcelRequire && parcelRequire
+        const i = "function" == typeof parcelRequire && parcelRequire
         if (!n && i) return i(t, !0)
         if (o) return o(t, !0)
         if (u && "string" == typeof t) return u(t)
-        var c = new Error("Cannot find module '" + t + "'")
+        const c = new Error("Cannot find module '" + t + "'")
         throw ((c.code = "MODULE_NOT_FOUND"), c)
       }
       ;(p.resolve = function (r) {
         return e[t][1][r] || r
       }),
         (p.cache = {})
-      var l = (r[t] = new f.Module(t))
+      const l = (r[t] = new f.Module(t))
       e[t][0].call(l.exports, p, l, l.exports, this)
     }
     return r[t].exports
@@ -39,14 +40,14 @@ parcelRequire = (function (e, r, t, n) {
         {}
       ]
     })
-  for (var c = 0; c < t.length; c++)
+  for (let c = 0; c < t.length; c++)
     try {
       f(t[c])
     } catch (e) {
       i || (i = e)
     }
   if (t.length) {
-    var l = f(t[t.length - 1])
+    const l = f(t[t.length - 1])
     "object" == typeof exports && "undefined" != typeof module
       ? (module.exports = l)
       : "function" == typeof define && define.amd
@@ -61,10 +62,10 @@ parcelRequire = (function (e, r, t, n) {
   {
     "8QiI": [
       function (require, module, exports) {
-        var e = (module.exports =
-          "undefined" != typeof window && window.Math == Math
+        const e = (module.exports =
+          "undefined" != typeof window && window.Math === Math
             ? window
-            : "undefined" != typeof self && self.Math == Math
+            : "undefined" != typeof self && self.Math === Math
             ? self
             : Function("return this")())
         "number" == typeof __g && (__g = e)
@@ -73,7 +74,7 @@ parcelRequire = (function (e, r, t, n) {
     ],
     "6DcE": [
       function (require, module, exports) {
-        var e = (module.exports = { version: "2.6.5" })
+        const e = (module.exports = { version: "2.6.5" })
         "number" == typeof __e && (__e = e)
       },
       {}
@@ -88,7 +89,7 @@ parcelRequire = (function (e, r, t, n) {
     ],
     "1087": [
       function (require, module, exports) {
-        var r = require("./_is-object")
+        const r = require("./_is-object")
         module.exports = function (e) {
           if (!r(e)) throw TypeError(e + " is not an object!")
           return e
@@ -125,7 +126,7 @@ parcelRequire = (function (e, r, t, n) {
     ],
     "4cz6": [
       function (require, module, exports) {
-        var e = require("./_is-object"),
+        const e = require("./_is-object"),
           r = require("./_global").document,
           t = e(r) && e(r.createElement)
         module.exports = function (e) {
@@ -153,10 +154,10 @@ parcelRequire = (function (e, r, t, n) {
     ],
     S7GM: [
       function (require, module, exports) {
-        var t = require("./_is-object")
+        const t = require("./_is-object")
         module.exports = function (r, e) {
           if (!t(r)) return r
-          var o, n
+          let o, n
           if (e && "function" == typeof (o = r.toString) && !t((n = o.call(r)))) return n
           if ("function" == typeof (o = r.valueOf) && !t((n = o.call(r)))) return n
           if (!e && "function" == typeof (o = r.toString) && !t((n = o.call(r)))) return n
