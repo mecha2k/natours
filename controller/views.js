@@ -1,7 +1,7 @@
 const Tour = require("../models/tours")
 const User = require("../models/users")
 const Booking = require("../models/booking")
-const appError = require("./apperror")
+const appError = require("../utils/apperror")
 
 exports.alerts = function(req, res, next) {
   const { alert } = req.query

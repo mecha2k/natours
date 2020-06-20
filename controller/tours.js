@@ -1,6 +1,6 @@
 const Tour = require("../models/tours")
 const commons = require("./commons")
-const appError = require("./apperror")
+const appError = require("../utils/apperror")
 
 exports.aliasTopTours = function(req, res, next) {
   req.query.limit = "5"

@@ -3,8 +3,8 @@ const { promisify } = require("util")
 const jwt = require("jsonwebtoken")
 
 const User = require("../models/users")
-const sendEmail = require("./email")
-const appError = require("./apperror")
+const sendEmail = require("../utils/email")
+const appError = require("../utils/apperror")
 
 const createToken = function(id) {
   return jwt.sign({ id }, process.env["JWT_HASHCODE"], {
@@ -69,7 +69,10 @@ exports.protect = async function(req, res, next) {
 
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
       token = req.headers.authorization.split(" ")[1]
+    } else if (req.cookies.jwt) {
+      token = req.cookies.jwt
     }
+
     if (!token) {
       return next(new appError("You are not logged in! Please log in to get access.", 401))
     }
@@ -172,28 +175,27 @@ exports.updatePassword = async function(req, res, next) {
 }
 
 exports.isLoggedIn = async function(req, res, next) {
-  // if (req.cookies.jwt) {
-  //   try {
-  //     const decoded = await promisify(jwt.verify)(
-  //         req.cookies.jwt,
-  //         process.env['JWT_HASHCODE']
-  //     );
-  //
-  //     const currentUser = await User.findById(decoded.id);
-  //     if (!currentUser) {
-  //       return next();
-  //     }
-  //
-  //     if (currentUser.changedPasswordAfter(decoded.iat)) {
-  //       return next();
-  //     }
-  //
-  //     // THERE IS A LOGGED IN USER
-  //     res.locals.user = currentUser;
-  //     return next();
-  //   } catch (error) {
-  //     return next();
-  //   }
-  // }
+  if (req.cookies["jwt"]) {
+    try {
+      const decoded = await promisify(jwt.verify)(req.cookies["jwt"], process.env["JWT_HASHCODE"])
+      const currentUser = await User.findById(decoded.id)
+
+      if (!currentUser) return next()
+      if (currentUser.changedPasswd(decoded.iat)) return next()
+
+      res.locals.user = currentUser
+      return next()
+    } catch (error) {
+      return next()
+    }
+  }
   next()
+}
+
+exports.logout = function(req, res) {
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  })
+  res.status(200).json({ status: "success" })
 }

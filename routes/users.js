@@ -6,6 +6,8 @@ const authControl = require("../controller/authorize")
 
 router.post("/signup", authControl.signup)
 router.post("/login", authControl.login)
+router.get("/logout", authControl.logout)
+
 router.post("/forgotPassword", authControl.forgotPassword)
 router.patch("/resetPassword/:token", authControl.resetPassword)
 

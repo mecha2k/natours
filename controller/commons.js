@@ -1,5 +1,5 @@
-const appError = require("./apperror")
-const apiFeatures = require("./apiFeatures")
+const appError = require("../utils/apperror")
+const apiFeatures = require("../utils/apiFeatures")
 
 exports.deleteOne = function(model) {
   return async function(req, res, next) {

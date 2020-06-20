@@ -1,6 +1,6 @@
 const User = require("../models/users")
 const commons = require("./commons")
-const appError = require("./apperror")
+const appError = require("../utils/apperror")
 
 const filterObj = function(obj, ...allowedFields) {
   const newObj = {}
