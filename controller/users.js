@@ -2,7 +2,7 @@ const User = require("../models/users")
 const commons = require("./commons")
 const appError = require("./apperror")
 
-const filterObj = function (obj, ...allowedFields) {
+const filterObj = function(obj, ...allowedFields) {
   const newObj = {}
   Object.keys(obj).forEach((elem) => {
     if (allowedFields.includes(elem)) newObj[elem] = obj[elem]
@@ -11,12 +11,12 @@ const filterObj = function (obj, ...allowedFields) {
   return newObj
 }
 
-exports.getMe = function (req, res, next) {
+exports.getMe = function(req, res, next) {
   req.params.id = req.user.id
   next()
 }
 
-exports.getAllUsers = async function (req, res, next) {
+exports.getAllUsers = async function(req, res, next) {
   try {
     const users = await User.find()
 
@@ -26,7 +26,7 @@ exports.getAllUsers = async function (req, res, next) {
   }
 }
 
-exports.updateMe = async function (req, res, next) {
+exports.updateMe = async function(req, res, next) {
   try {
     if (req.body.password || req.body.passwordConfirm) {
       return next(
@@ -46,7 +46,7 @@ exports.updateMe = async function (req, res, next) {
   }
 }
 
-exports.deleteMe = async function (req, res) {
+exports.deleteMe = async function(req, res) {
   try {
     await User.findByIdAndUpdate(req.user.id, { active: false })
 
@@ -56,7 +56,7 @@ exports.deleteMe = async function (req, res) {
   }
 }
 
-exports.createUser = function (req, res) {
+exports.createUser = function(req, res) {
   res
     .status(500)
     .json({ status: "error", message: "This route is not defined! Please use /signup instead" })

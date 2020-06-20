@@ -18,7 +18,10 @@ router.delete("/deleteMe", userControl.deleteMe)
 
 router.use(authControl.restrictTo("admin"))
 
-router.route("/").get(userControl.getAllUsers).post(userControl.createUser)
+router
+  .route("/")
+  .get(userControl.getAllUsers)
+  .post(userControl.createUser)
 
 router
   .route("/:id")
