@@ -5,9 +5,11 @@
   "scripts": {
     "start": "node index.js",
     "debug": "ndb index.js",
-    "watch:js": "parcel watch"
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.10.1",
     "@prettier/plugin-pug": "^1.4.0",
     "axios": "^0.19.2",
     "bcrypt": "^4.0.1",

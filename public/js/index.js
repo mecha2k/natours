@@ -1,9 +1,12 @@
 import "@babel/polyfill"
+// import "core-js"
+// import "regenerator-runtime"
+
 import { displayMap } from "./mapbox"
 import { login, logout } from "./login"
-import { updateSettings } from "./updateSettings"
-import { bookTour } from "./stripe"
-import { showAlert } from "./alerts"
+// import { updateSettings } from "./updateSettings"
+// import { bookTour } from "./stripe"
+// import { showAlert } from "./alerts"
 
 const mapBox = document.getElementById("map")
 const loginForm = document.querySelector(".form")
@@ -14,6 +17,7 @@ const bookBtn = document.getElementById("book-tour")
 
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations)
+  console.log(locations)
   displayMap(locations)
 }
 
