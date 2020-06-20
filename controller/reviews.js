@@ -1,7 +1,7 @@
 const Review = require("./../models/reviews")
 const commons = require("./commons")
 
-exports.setTourUserIds = function (req, res, next) {
+exports.setTourUserIds = function(req, res, next) {
   if (!req.body.tour) req.body.tour = req.params.id
   if (!req.body.user) req.body.user = req.user.id
   next()

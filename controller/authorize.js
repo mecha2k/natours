@@ -3,16 +3,16 @@ const { promisify } = require("util")
 const jwt = require("jsonwebtoken")
 
 const User = require("../models/users")
-const sendEmail = require("./email")
-const appError = require("./apperror")
+const sendEmail = require("../utils/email")
+const appError = require("../utils/apperror")
 
-const createToken = function (id) {
+const createToken = function(id) {
   return jwt.sign({ id }, process.env["JWT_HASHCODE"], {
     expiresIn: process.env["JWT_EXPIRES_IN"]
   })
 }
 
-const saveTokenInCookie = function (user, status, res) {
+const saveTokenInCookie = function(user, status, res) {
   const token = createToken(user._id)
   const cookieOptions = {
     expires: new Date(Date.now() + process.env["JWT_COOKIE_EXPIRES_IN"] * 24 * 60 * 60 * 1000),
@@ -28,7 +28,7 @@ const saveTokenInCookie = function (user, status, res) {
   return token
 }
 
-exports.signup = async function (req, res, next) {
+exports.signup = async function(req, res, next) {
   try {
     const newUser = await User.create({
       name: req.body.name,
@@ -44,7 +44,7 @@ exports.signup = async function (req, res, next) {
   }
 }
 
-exports.login = async function (req, res, next) {
+exports.login = async function(req, res, next) {
   try {
     const { email, password } = req.body
     if (!email || !password) return next(new appError("Please provide email and password!", 400))
@@ -63,13 +63,16 @@ exports.login = async function (req, res, next) {
   }
 }
 
-exports.protect = async function (req, res, next) {
+exports.protect = async function(req, res, next) {
   try {
     let token
 
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
       token = req.headers.authorization.split(" ")[1]
+    } else if (req.cookies.jwt) {
+      token = req.cookies.jwt
     }
+
     if (!token) {
       return next(new appError("You are not logged in! Please log in to get access.", 401))
     }
@@ -91,8 +94,8 @@ exports.protect = async function (req, res, next) {
   next()
 }
 
-exports.restrictTo = function (...roles) {
-  return function (req, res, next) {
+exports.restrictTo = function(...roles) {
+  return function(req, res, next) {
     if (!roles.includes(req.user.role)) {
       return next(new appError("You do not have permission to perform this action", 403))
     }
@@ -100,7 +103,7 @@ exports.restrictTo = function (...roles) {
   }
 }
 
-exports.forgotPassword = async function (req, res, next) {
+exports.forgotPassword = async function(req, res, next) {
   const user = await User.findOne({ email: req.body.email })
   if (!user) {
     return next(new appError("There is no user with email address.", 404))
@@ -134,8 +137,11 @@ exports.forgotPassword = async function (req, res, next) {
   }
 }
 
-exports.resetPassword = async function (req, res, next) {
-  const hashedToken = crypto.createHash("sha256").update(req.params.token).digest("hex")
+exports.resetPassword = async function(req, res, next) {
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex")
 
   const user = await User.findOne({
     passwordResetToken: hashedToken,
@@ -154,7 +160,7 @@ exports.resetPassword = async function (req, res, next) {
   saveTokenInCookie(user, 200, res)
 }
 
-exports.updatePassword = async function (req, res, next) {
+exports.updatePassword = async function(req, res, next) {
   const user = await User.findById(req.user.id).select("+password")
 
   if (!(await user.comparePasswd(req.body.passwordCurrent, user.password))) {
@@ -168,29 +174,28 @@ exports.updatePassword = async function (req, res, next) {
   saveTokenInCookie(user, 200, res)
 }
 
-exports.isLoggedIn = async function (req, res, next) {
-  // if (req.cookies.jwt) {
-  //   try {
-  //     const decoded = await promisify(jwt.verify)(
-  //         req.cookies.jwt,
-  //         process.env['JWT_HASHCODE']
-  //     );
-  //
-  //     const currentUser = await User.findById(decoded.id);
-  //     if (!currentUser) {
-  //       return next();
-  //     }
-  //
-  //     if (currentUser.changedPasswordAfter(decoded.iat)) {
-  //       return next();
-  //     }
-  //
-  //     // THERE IS A LOGGED IN USER
-  //     res.locals.user = currentUser;
-  //     return next();
-  //   } catch (error) {
-  //     return next();
-  //   }
-  // }
+exports.isLoggedIn = async function(req, res, next) {
+  if (req.cookies["jwt"]) {
+    try {
+      const decoded = await promisify(jwt.verify)(req.cookies["jwt"], process.env["JWT_HASHCODE"])
+      const currentUser = await User.findById(decoded.id)
+
+      if (!currentUser) return next()
+      if (currentUser.changedPasswd(decoded.iat)) return next()
+
+      res.locals.user = currentUser
+      return next()
+    } catch (error) {
+      return next()
+    }
+  }
   next()
+}
+
+exports.logout = function(req, res) {
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  })
+  res.status(200).json({ status: "success" })
 }

@@ -26,7 +26,7 @@ const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, "UTF-8").toS
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, "UTF-8").toString())
 const reviews = JSON.parse(fs.readFileSync(`${__dirname}/reviews.json`, "UTF-8").toString())
 
-const importData = async function () {
+const importData = async function() {
   try {
     await Tour.create(tours)
     await User.create(users, { validateBeforeSave: false })
@@ -38,7 +38,7 @@ const importData = async function () {
   process.exit()
 }
 
-const deleteData = async function () {
+const deleteData = async function() {
   try {
     await Tour.deleteMany({})
     await User.deleteMany({})

@@ -1,8 +1,8 @@
 const Tour = require("../models/tours")
 const commons = require("./commons")
-const appError = require("./apperror")
+const appError = require("../utils/apperror")
 
-exports.aliasTopTours = function (req, res, next) {
+exports.aliasTopTours = function(req, res, next) {
   req.query.limit = "5"
   req.query.sort = "-ratingsAverage, -price"
   req.query.fields = "name, price, ratingsAverage, summary, difficulty"
@@ -15,7 +15,7 @@ exports.createTour = commons.createOne(Tour)
 exports.updateTour = commons.updateOne(Tour)
 exports.deleteTour = commons.deleteOne(Tour)
 
-exports.getTourStats = async function (req, res) {
+exports.getTourStats = async function(req, res) {
   try {
     const stats = await Tour.aggregate([
       { $match: { ratingsAverage: { $gte: 4.5 } } },
@@ -39,7 +39,7 @@ exports.getTourStats = async function (req, res) {
   }
 }
 
-exports.getMonthlyPlan = async function (req, res) {
+exports.getMonthlyPlan = async function(req, res) {
   try {
     const year = req.params.year * 1
 
@@ -69,7 +69,7 @@ exports.getMonthlyPlan = async function (req, res) {
   }
 }
 
-exports.getToursWithin = async function (req, res, next) {
+exports.getToursWithin = async function(req, res, next) {
   try {
     const { distance, latlng, unit } = req.params
     const [latitude, longitude] = latlng.split(",")
@@ -87,7 +87,7 @@ exports.getToursWithin = async function (req, res, next) {
   }
 }
 
-exports.getDistances = async function (req, res, next) {
+exports.getDistances = async function(req, res, next) {
   try {
     const { latlng, unit } = req.params
     const [latitude, longitude] = latlng.split(",")
