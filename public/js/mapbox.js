@@ -49,7 +49,7 @@ const locations = JSON.parse(document.getElementById("map").dataset.locations)
 const bounds = new mapboxgl.LngLatBounds()
 console.log(locations)
 
-locations.forEach(function (loc) {
+locations.forEach(function(loc) {
   const element = document.createElement("div")
   element.className = "marker"
 

@@ -2,7 +2,7 @@
 import axios from "axios"
 import { showAlert } from "./alerts"
 
-export const login = async function (email, password) {
+export const login = async function(email, password) {
   try {
     const res = await axios({
       method: "POST",
@@ -48,7 +48,7 @@ export const login = async function (email, password) {
 const loginForm = document.querySelector(".form")
 
 if (loginForm)
-  loginForm.addEventListener("submit", function (e) {
+  loginForm.addEventListener("submit", function(e) {
     e.preventDefault()
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value

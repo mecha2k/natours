@@ -5,7 +5,7 @@
 //
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
-parcelRequire = (function (modules, cache, entry, globalName) {
+parcelRequire = (function(modules, cache, entry, globalName) {
   // Save the require from previous bundle to this closure if any
   var previousRequire = typeof parcelRequire === "function" && parcelRequire
   var nodeRequire = typeof require === "function" && require
@@ -69,9 +69,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   newRequire.modules = modules
   newRequire.cache = cache
   newRequire.parent = previousRequire
-  newRequire.register = function (id, exports) {
+  newRequire.register = function(id, exports) {
     modules[id] = [
-      function (require, module) {
+      function(require, module) {
         module.exports = exports
       },
       {}
@@ -101,7 +101,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
       // RequireJS
     } else if (typeof define === "function" && define.amd) {
-      define(function () {
+      define(function() {
         return mainExports
       })
 
@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })(
   {
     "../../node_modules/core-js/modules/_global.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
         var global = (module.exports =
           typeof window != "undefined" && window.Math == Math
@@ -137,24 +137,24 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_core.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var core = (module.exports = { version: "2.6.11" })
         if (typeof __e == "number") __e = core // eslint-disable-line no-undef
       },
       {}
     ],
     "../../node_modules/core-js/modules/_is-object.js": [
-      function (require, module, exports) {
-        module.exports = function (it) {
+      function(require, module, exports) {
+        module.exports = function(it) {
           return typeof it === "object" ? it !== null : typeof it === "function"
         }
       },
       {}
     ],
     "../../node_modules/core-js/modules/_an-object.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var isObject = require("./_is-object")
-        module.exports = function (it) {
+        module.exports = function(it) {
           if (!isObject(it)) throw TypeError(it + " is not an object!")
           return it
         }
@@ -162,8 +162,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_is-object": "../../node_modules/core-js/modules/_is-object.js" }
     ],
     "../../node_modules/core-js/modules/_fails.js": [
-      function (require, module, exports) {
-        module.exports = function (exec) {
+      function(require, module, exports) {
+        module.exports = function(exec) {
           try {
             return !!exec()
           } catch (e) {
@@ -174,12 +174,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_descriptors.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // Thank's IE8 for his funny defineProperty
-        module.exports = !require("./_fails")(function () {
+        module.exports = !require("./_fails")(function() {
           return (
             Object.defineProperty({}, "a", {
-              get: function () {
+              get: function() {
                 return 7
               }
             }).a != 7
@@ -189,12 +189,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_fails": "../../node_modules/core-js/modules/_fails.js" }
     ],
     "../../node_modules/core-js/modules/_dom-create.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var isObject = require("./_is-object")
         var document = require("./_global").document
         // typeof document.createElement is 'object' in old IE
         var is = isObject(document) && isObject(document.createElement)
-        module.exports = function (it) {
+        module.exports = function(it) {
           return is ? document.createElement(it) : {}
         }
       },
@@ -204,13 +204,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_ie8-dom-define.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         module.exports =
           !require("./_descriptors") &&
-          !require("./_fails")(function () {
+          !require("./_fails")(function() {
             return (
               Object.defineProperty(require("./_dom-create")("div"), "a", {
-                get: function () {
+                get: function() {
                   return 7
                 }
               }).a != 7
@@ -224,12 +224,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_to-primitive.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.1.1 ToPrimitive(input [, PreferredType])
         var isObject = require("./_is-object")
         // instead of the ES6 spec version, we didn't implement @@toPrimitive case
         // and the second argument - flag - preferred type is a string
-        module.exports = function (it, S) {
+        module.exports = function(it, S) {
           if (!isObject(it)) return it
           var fn, val
           if (S && typeof (fn = it.toString) == "function" && !isObject((val = fn.call(it))))
@@ -243,7 +243,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_is-object": "../../node_modules/core-js/modules/_is-object.js" }
     ],
     "../../node_modules/core-js/modules/_object-dp.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var anObject = require("./_an-object")
         var IE8_DOM_DEFINE = require("./_ie8-dom-define")
         var toPrimitive = require("./_to-primitive")
@@ -275,8 +275,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_property-desc.js": [
-      function (require, module, exports) {
-        module.exports = function (bitmap, value) {
+      function(require, module, exports) {
+        module.exports = function(bitmap, value) {
           return {
             enumerable: !(bitmap & 1),
             configurable: !(bitmap & 2),
@@ -288,14 +288,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_hide.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var dP = require("./_object-dp")
         var createDesc = require("./_property-desc")
         module.exports = require("./_descriptors")
-          ? function (object, key, value) {
+          ? function(object, key, value) {
               return dP.f(object, key, createDesc(1, value))
             }
-          : function (object, key, value) {
+          : function(object, key, value) {
               object[key] = value
               return object
             }
@@ -307,38 +307,38 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_has.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var hasOwnProperty = {}.hasOwnProperty
-        module.exports = function (it, key) {
+        module.exports = function(it, key) {
           return hasOwnProperty.call(it, key)
         }
       },
       {}
     ],
     "../../node_modules/core-js/modules/_uid.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var id = 0
         var px = Math.random()
-        module.exports = function (key) {
+        module.exports = function(key) {
           return "Symbol(".concat(key === undefined ? "" : key, ")_", (++id + px).toString(36))
         }
       },
       {}
     ],
     "../../node_modules/core-js/modules/_library.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         module.exports = false
       },
       {}
     ],
     "../../node_modules/core-js/modules/_shared.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var core = require("./_core")
         var global = require("./_global")
         var SHARED = "__core-js_shared__"
         var store = global[SHARED] || (global[SHARED] = {})
 
-        ;(module.exports = function (key, value) {
+        ;(module.exports = function(key, value) {
           return store[key] || (store[key] = value !== undefined ? value : {})
         })("versions", []).push({
           version: core.version,
@@ -353,13 +353,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_function-to-string.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         module.exports = require("./_shared")("native-function-to-string", Function.toString)
       },
       { "./_shared": "../../node_modules/core-js/modules/_shared.js" }
     ],
     "../../node_modules/core-js/modules/_redefine.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = require("./_global")
         var hide = require("./_hide")
         var has = require("./_has")
@@ -368,10 +368,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var TO_STRING = "toString"
         var TPL = ("" + $toString).split(TO_STRING)
 
-        require("./_core").inspectSource = function (it) {
+        require("./_core").inspectSource = function(it) {
           return $toString.call(it)
         }
-        ;(module.exports = function (O, key, val, safe) {
+        ;(module.exports = function(O, key, val, safe) {
           var isFunction = typeof val == "function"
           if (isFunction) has(val, "name") || hide(val, "name", key)
           if (O[key] === val) return
@@ -402,8 +402,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_a-function.js": [
-      function (require, module, exports) {
-        module.exports = function (it) {
+      function(require, module, exports) {
+        module.exports = function(it) {
           if (typeof it != "function") throw TypeError(it + " is not a function!")
           return it
         }
@@ -411,27 +411,27 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_ctx.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // optional / simple context binding
         var aFunction = require("./_a-function")
-        module.exports = function (fn, that, length) {
+        module.exports = function(fn, that, length) {
           aFunction(fn)
           if (that === undefined) return fn
           switch (length) {
             case 1:
-              return function (a) {
+              return function(a) {
                 return fn.call(that, a)
               }
             case 2:
-              return function (a, b) {
+              return function(a, b) {
                 return fn.call(that, a, b)
               }
             case 3:
-              return function (a, b, c) {
+              return function(a, b, c) {
                 return fn.call(that, a, b, c)
               }
           }
-          return function (/* ...args */) {
+          return function(/* ...args */) {
             return fn.apply(that, arguments)
           }
         }
@@ -439,7 +439,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_a-function": "../../node_modules/core-js/modules/_a-function.js" }
     ],
     "../../node_modules/core-js/modules/_export.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = require("./_global")
         var core = require("./_core")
         var hide = require("./_hide")
@@ -447,7 +447,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var ctx = require("./_ctx")
         var PROTOTYPE = "prototype"
 
-        var $export = function (type, name, source) {
+        var $export = function(type, name, source) {
           var IS_FORCED = type & $export.F
           var IS_GLOBAL = type & $export.G
           var IS_STATIC = type & $export.S
@@ -502,9 +502,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_defined.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.2.1 RequireObjectCoercible(argument)
-        module.exports = function (it) {
+        module.exports = function(it) {
           if (it == undefined) throw TypeError("Can't call method on  " + it)
           return it
         }
@@ -512,32 +512,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_to-object.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.1.13 ToObject(argument)
         var defined = require("./_defined")
-        module.exports = function (it) {
+        module.exports = function(it) {
           return Object(defined(it))
         }
       },
       { "./_defined": "../../node_modules/core-js/modules/_defined.js" }
     ],
     "../../node_modules/core-js/modules/_to-integer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.1.4 ToInteger
         var ceil = Math.ceil
         var floor = Math.floor
-        module.exports = function (it) {
+        module.exports = function(it) {
           return isNaN((it = +it)) ? 0 : (it > 0 ? floor : ceil)(it)
         }
       },
       {}
     ],
     "../../node_modules/core-js/modules/_to-absolute-index.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var toInteger = require("./_to-integer")
         var max = Math.max
         var min = Math.min
-        module.exports = function (index, length) {
+        module.exports = function(index, length) {
           index = toInteger(index)
           return index < 0 ? max(index + length, 0) : min(index, length)
         }
@@ -545,18 +545,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_to-integer": "../../node_modules/core-js/modules/_to-integer.js" }
     ],
     "../../node_modules/core-js/modules/_to-length.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.1.15 ToLength
         var toInteger = require("./_to-integer")
         var min = Math.min
-        module.exports = function (it) {
+        module.exports = function(it) {
           return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0 // pow(2, 53) - 1 == 9007199254740991
         }
       },
       { "./_to-integer": "../../node_modules/core-js/modules/_to-integer.js" }
     ],
     "../../node_modules/core-js/modules/_array-copy-within.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
         "use strict"
         var toObject = require("./_to-object")
@@ -597,13 +597,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_wks.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var store = require("./_shared")("wks")
         var uid = require("./_uid")
         var Symbol = require("./_global").Symbol
         var USE_SYMBOL = typeof Symbol == "function"
 
-        var $exports = (module.exports = function (name) {
+        var $exports = (module.exports = function(name) {
           return (
             store[name] ||
             (store[name] =
@@ -620,12 +620,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_add-to-unscopables.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 22.1.3.31 Array.prototype[@@unscopables]
         var UNSCOPABLES = require("./_wks")("unscopables")
         var ArrayProto = Array.prototype
         if (ArrayProto[UNSCOPABLES] == undefined) require("./_hide")(ArrayProto, UNSCOPABLES, {})
-        module.exports = function (key) {
+        module.exports = function(key) {
           ArrayProto[UNSCOPABLES][key] = true
         }
       },
@@ -635,7 +635,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.array.copy-within.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
         var $export = require("./_export")
 
@@ -650,7 +650,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_array-fill.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
         "use strict"
         var toObject = require("./_to-object")
@@ -674,7 +674,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.array.fill.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
         var $export = require("./_export")
 
@@ -689,30 +689,30 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_cof.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var toString = {}.toString
 
-        module.exports = function (it) {
+        module.exports = function(it) {
           return toString.call(it).slice(8, -1)
         }
       },
       {}
     ],
     "../../node_modules/core-js/modules/_iobject.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // fallback for non-array-like ES3 and non-enumerable old V8 strings
         var cof = require("./_cof")
         // eslint-disable-next-line no-prototype-builtins
         module.exports = Object("z").propertyIsEnumerable(0)
           ? Object
-          : function (it) {
+          : function(it) {
               return cof(it) == "String" ? it.split("") : Object(it)
             }
       },
       { "./_cof": "../../node_modules/core-js/modules/_cof.js" }
     ],
     "../../node_modules/core-js/modules/_is-array.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.2.2 IsArray(argument)
         var cof = require("./_cof")
         module.exports =
@@ -724,12 +724,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_cof": "../../node_modules/core-js/modules/_cof.js" }
     ],
     "../../node_modules/core-js/modules/_array-species-constructor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var isObject = require("./_is-object")
         var isArray = require("./_is-array")
         var SPECIES = require("./_wks")("species")
 
-        module.exports = function (original) {
+        module.exports = function(original) {
           var C
           if (isArray(original)) {
             C = original.constructor
@@ -750,11 +750,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_array-species-create.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
         var speciesConstructor = require("./_array-species-constructor")
 
-        module.exports = function (original, length) {
+        module.exports = function(original, length) {
           return new (speciesConstructor(original))(length)
         }
       },
@@ -764,7 +764,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_array-methods.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 0 -> Array#forEach
         // 1 -> Array#map
         // 2 -> Array#filter
@@ -777,7 +777,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var toObject = require("./_to-object")
         var toLength = require("./_to-length")
         var asc = require("./_array-species-create")
-        module.exports = function (TYPE, $create) {
+        module.exports = function(TYPE, $create) {
           var IS_MAP = TYPE == 1
           var IS_FILTER = TYPE == 2
           var IS_SOME = TYPE == 3
@@ -785,7 +785,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           var IS_FIND_INDEX = TYPE == 6
           var NO_HOLES = TYPE == 5 || IS_FIND_INDEX
           var create = $create || asc
-          return function ($this, callbackfn, that) {
+          return function($this, callbackfn, that) {
             var O = toObject($this)
             var self = IObject(O)
             var f = ctx(callbackfn, that, 3)
@@ -827,7 +827,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.array.find.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
         var $export = require("./_export")
@@ -836,7 +836,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var forced = true
         // Shouldn't skip holes
         if (KEY in [])
-          Array(1)[KEY](function () {
+          Array(1)[KEY](function() {
             forced = false
           })
         $export($export.P + $export.F * forced, "Array", {
@@ -853,7 +853,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.array.find-index.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
         var $export = require("./_export")
@@ -862,7 +862,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var forced = true
         // Shouldn't skip holes
         if (KEY in [])
-          Array(1)[KEY](function () {
+          Array(1)[KEY](function() {
             forced = false
           })
         $export($export.P + $export.F * forced, "Array", {
@@ -879,7 +879,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_flatten-into-array.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
         var isArray = require("./_is-array")
@@ -948,7 +948,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.array.flat-map.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap
         var $export = require("./_export")
@@ -983,10 +983,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_iter-call.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // call something on iterator step with safe closing on error
         var anObject = require("./_an-object")
-        module.exports = function (iterator, fn, value, entries) {
+        module.exports = function(iterator, fn, value, entries) {
           try {
             return entries ? fn(anObject(value)[0], value[1]) : fn(value)
             // 7.4.6 IteratorClose(iterator, completion)
@@ -1000,19 +1000,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_an-object": "../../node_modules/core-js/modules/_an-object.js" }
     ],
     "../../node_modules/core-js/modules/_iterators.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         module.exports = {}
       },
       {}
     ],
     "../../node_modules/core-js/modules/_is-array-iter.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // check on default Array iterator
         var Iterators = require("./_iterators")
         var ITERATOR = require("./_wks")("iterator")
         var ArrayProto = Array.prototype
 
-        module.exports = function (it) {
+        module.exports = function(it) {
           return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it)
         }
       },
@@ -1022,12 +1022,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_create-property.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $defineProperty = require("./_object-dp")
         var createDesc = require("./_property-desc")
 
-        module.exports = function (object, index, value) {
+        module.exports = function(object, index, value) {
           if (index in object) $defineProperty.f(object, index, createDesc(0, value))
           else object[index] = value
         }
@@ -1038,20 +1038,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_classof.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // getting tag from 19.1.3.6 Object.prototype.toString()
         var cof = require("./_cof")
         var TAG = require("./_wks")("toStringTag")
         // ES3 wrong here
         var ARG =
           cof(
-            (function () {
+            (function() {
               return arguments
             })()
           ) == "Arguments"
 
         // fallback for IE11 Script Access Denied error
-        var tryGet = function (it, key) {
+        var tryGet = function(it, key) {
           try {
             return it[key]
           } catch (e) {
@@ -1059,7 +1059,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           }
         }
 
-        module.exports = function (it) {
+        module.exports = function(it) {
           var O, T, B
           return it === undefined
             ? "Undefined"
@@ -1083,11 +1083,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/core.get-iterator-method.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var classof = require("./_classof")
         var ITERATOR = require("./_wks")("iterator")
         var Iterators = require("./_iterators")
-        module.exports = require("./_core").getIteratorMethod = function (it) {
+        module.exports = require("./_core").getIteratorMethod = function(it) {
           if (it != undefined) return it[ITERATOR] || it["@@iterator"] || Iterators[classof(it)]
         }
       },
@@ -1099,33 +1099,33 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_iter-detect.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var ITERATOR = require("./_wks")("iterator")
         var SAFE_CLOSING = false
 
         try {
           var riter = [7][ITERATOR]()
-          riter["return"] = function () {
+          riter["return"] = function() {
             SAFE_CLOSING = true
           }
           // eslint-disable-next-line no-throw-literal
-          Array.from(riter, function () {
+          Array.from(riter, function() {
             throw 2
           })
         } catch (e) {
           /* empty */
         }
 
-        module.exports = function (exec, skipClosing) {
+        module.exports = function(exec, skipClosing) {
           if (!skipClosing && !SAFE_CLOSING) return false
           var safe = false
           try {
             var arr = [7]
             var iter = arr[ITERATOR]()
-            iter.next = function () {
+            iter.next = function() {
               return { done: (safe = true) }
             }
-            arr[ITERATOR] = function () {
+            arr[ITERATOR] = function() {
               return iter
             }
             exec(arr)
@@ -1138,7 +1138,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_wks": "../../node_modules/core-js/modules/_wks.js" }
     ],
     "../../node_modules/core-js/modules/es6.array.from.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var ctx = require("./_ctx")
         var $export = require("./_export")
@@ -1152,7 +1152,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         $export(
           $export.S +
             $export.F *
-              !require("./_iter-detect")(function (iter) {
+              !require("./_iter-detect")(function(iter) {
                 Array.from(iter)
               }),
           "Array",
@@ -1207,11 +1207,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_to-iobject.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // to indexed object, toObject with fallback for non-array-like ES3 strings
         var IObject = require("./_iobject")
         var defined = require("./_defined")
-        module.exports = function (it) {
+        module.exports = function(it) {
           return IObject(defined(it))
         }
       },
@@ -1221,14 +1221,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_array-includes.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // false -> Array#indexOf
         // true  -> Array#includes
         var toIObject = require("./_to-iobject")
         var toLength = require("./_to-length")
         var toAbsoluteIndex = require("./_to-absolute-index")
-        module.exports = function (IS_INCLUDES) {
-          return function ($this, el, fromIndex) {
+        module.exports = function(IS_INCLUDES) {
+          return function($this, el, fromIndex) {
             var O = toIObject($this)
             var length = toLength(O.length)
             var index = toAbsoluteIndex(fromIndex, length)
@@ -1258,7 +1258,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.array.includes.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // https://github.com/tc39/Array.prototype.includes
         var $export = require("./_export")
@@ -1279,18 +1279,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_iter-step.js": [
-      function (require, module, exports) {
-        module.exports = function (done, value) {
+      function(require, module, exports) {
+        module.exports = function(done, value) {
           return { value: value, done: !!done }
         }
       },
       {}
     ],
     "../../node_modules/core-js/modules/_shared-key.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var shared = require("./_shared")("keys")
         var uid = require("./_uid")
-        module.exports = function (key) {
+        module.exports = function(key) {
           return shared[key] || (shared[key] = uid(key))
         }
       },
@@ -1300,13 +1300,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-keys-internal.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var has = require("./_has")
         var toIObject = require("./_to-iobject")
         var arrayIndexOf = require("./_array-includes")(false)
         var IE_PROTO = require("./_shared-key")("IE_PROTO")
 
-        module.exports = function (object, names) {
+        module.exports = function(object, names) {
           var O = toIObject(object)
           var i = 0
           var result = []
@@ -1328,7 +1328,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_enum-bug-keys.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // IE 8- don't enum bug keys
         module.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(
           ","
@@ -1337,7 +1337,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_object-keys.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.14 / 15.2.3.14 Object.keys(O)
         var $keys = require("./_object-keys-internal")
         var enumBugKeys = require("./_enum-bug-keys")
@@ -1354,7 +1354,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-dps.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var dP = require("./_object-dp")
         var anObject = require("./_an-object")
         var getKeys = require("./_object-keys")
@@ -1379,26 +1379,26 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_html.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var document = require("./_global").document
         module.exports = document && document.documentElement
       },
       { "./_global": "../../node_modules/core-js/modules/_global.js" }
     ],
     "../../node_modules/core-js/modules/_object-create.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
         var anObject = require("./_an-object")
         var dPs = require("./_object-dps")
         var enumBugKeys = require("./_enum-bug-keys")
         var IE_PROTO = require("./_shared-key")("IE_PROTO")
-        var Empty = function () {
+        var Empty = function() {
           /* empty */
         }
         var PROTOTYPE = "prototype"
 
         // Create object with fake `null` prototype: use iframe Object with cleared prototype
-        var createDict = function () {
+        var createDict = function() {
           // Thrash, waste and sodomy: IE GC bug
           var iframe = require("./_dom-create")("iframe")
           var i = enumBugKeys.length
@@ -1443,12 +1443,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_set-to-string-tag.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var def = require("./_object-dp").f
         var has = require("./_has")
         var TAG = require("./_wks")("toStringTag")
 
-        module.exports = function (it, tag, stat) {
+        module.exports = function(it, tag, stat) {
           if (it && !has((it = stat ? it : it.prototype), TAG))
             def(it, TAG, { configurable: true, value: tag })
         }
@@ -1460,7 +1460,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_iter-create.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var create = require("./_object-create")
         var descriptor = require("./_property-desc")
@@ -1468,11 +1468,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var IteratorPrototype = {}
 
         // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-        require("./_hide")(IteratorPrototype, require("./_wks")("iterator"), function () {
+        require("./_hide")(IteratorPrototype, require("./_wks")("iterator"), function() {
           return this
         })
 
-        module.exports = function (Constructor, NAME, next) {
+        module.exports = function(Constructor, NAME, next) {
           Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) })
           setToStringTag(Constructor, NAME + " Iterator")
         }
@@ -1486,7 +1486,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-gpo.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
         var has = require("./_has")
         var toObject = require("./_to-object")
@@ -1495,7 +1495,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         module.exports =
           Object.getPrototypeOf ||
-          function (O) {
+          function(O) {
             O = toObject(O)
             if (has(O, IE_PROTO)) return O[IE_PROTO]
             if (typeof O.constructor == "function" && O instanceof O.constructor) {
@@ -1511,7 +1511,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_iter-define.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var LIBRARY = require("./_library")
         var $export = require("./_export")
@@ -1527,13 +1527,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var KEYS = "keys"
         var VALUES = "values"
 
-        var returnThis = function () {
+        var returnThis = function() {
           return this
         }
 
-        module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+        module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
           $iterCreate(Constructor, NAME, next)
-          var getMethod = function (kind) {
+          var getMethod = function(kind) {
             if (!BUGGY && kind in proto) return proto[kind]
             switch (kind) {
               case KEYS:
@@ -1611,7 +1611,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.array.iterator.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var addToUnscopables = require("./_add-to-unscopables")
         var step = require("./_iter-step")
@@ -1625,13 +1625,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         module.exports = require("./_iter-define")(
           Array,
           "Array",
-          function (iterated, kind) {
+          function(iterated, kind) {
             this._t = toIObject(iterated) // target
             this._i = 0 // next index
             this._k = kind // kind
             // 22.1.5.2.1 %ArrayIteratorPrototype%.next()
           },
-          function () {
+          function() {
             var O = this._t
             var kind = this._k
             var index = this._i++
@@ -1662,7 +1662,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.array.of.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var createProperty = require("./_create-property")
@@ -1671,7 +1671,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         $export(
           $export.S +
             $export.F *
-              require("./_fails")(function () {
+              require("./_fails")(function() {
                 function F() {
                   /* empty */
                 }
@@ -1698,19 +1698,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_strict-method.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var fails = require("./_fails")
 
-        module.exports = function (method, arg) {
+        module.exports = function(method, arg) {
           return (
             !!method &&
-            fails(function () {
+            fails(function() {
               // eslint-disable-next-line no-useless-call
               arg
                 ? method.call(
                     null,
-                    function () {
+                    function() {
                       /* empty */
                     },
                     1
@@ -1723,7 +1723,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_fails": "../../node_modules/core-js/modules/_fails.js" }
     ],
     "../../node_modules/core-js/modules/es6.array.sort.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var aFunction = require("./_a-function")
@@ -1735,11 +1735,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         $export(
           $export.P +
             $export.F *
-              (fails(function () {
+              (fails(function() {
                 // IE8-
                 test.sort(undefined)
               }) ||
-                !fails(function () {
+                !fails(function() {
                   // V8 bug
                   test.sort(null)
                   // Old WebKit
@@ -1765,19 +1765,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_set-species.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var global = require("./_global")
         var dP = require("./_object-dp")
         var DESCRIPTORS = require("./_descriptors")
         var SPECIES = require("./_wks")("species")
 
-        module.exports = function (KEY) {
+        module.exports = function(KEY) {
           var C = global[KEY]
           if (DESCRIPTORS && C && !C[SPECIES])
             dP.f(C, SPECIES, {
               configurable: true,
-              get: function () {
+              get: function() {
                 return this
               }
             })
@@ -1791,19 +1791,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.array.species.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         require("./_set-species")("Array")
       },
       { "./_set-species": "../../node_modules/core-js/modules/_set-species.js" }
     ],
     "../../node_modules/core-js/modules/_date-to-primitive.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var anObject = require("./_an-object")
         var toPrimitive = require("./_to-primitive")
         var NUMBER = "number"
 
-        module.exports = function (hint) {
+        module.exports = function(hint) {
           if (hint !== "string" && hint !== NUMBER && hint !== "default")
             throw TypeError("Incorrect hint")
           return toPrimitive(anObject(this), hint != NUMBER)
@@ -1815,7 +1815,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.date.to-primitive.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var TO_PRIMITIVE = require("./_wks")("toPrimitive")
         var proto = Date.prototype
 
@@ -1829,7 +1829,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.function.has-instance.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var isObject = require("./_is-object")
         var getPrototypeOf = require("./_object-gpo")
@@ -1838,7 +1838,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // 19.2.3.6 Function.prototype[@@hasInstance](V)
         if (!(HAS_INSTANCE in FunctionProto))
           require("./_object-dp").f(FunctionProto, HAS_INSTANCE, {
-            value: function (O) {
+            value: function(O) {
               if (typeof this != "function" || !isObject(O)) return false
               if (!isObject(this.prototype)) return O instanceof this
               // for environment w/o native `@@hasInstance` logic enough `instanceof`, but add this:
@@ -1855,7 +1855,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.function.name.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var dP = require("./_object-dp").f
         var FProto = Function.prototype
         var nameRE = /^\s*function ([^ (]*)/
@@ -1866,7 +1866,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           (require("./_descriptors") &&
             dP(FProto, NAME, {
               configurable: true,
-              get: function () {
+              get: function() {
                 try {
                   return ("" + this).match(nameRE)[1]
                 } catch (e) {
@@ -1881,9 +1881,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_redefine-all.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var redefine = require("./_redefine")
-        module.exports = function (target, src, safe) {
+        module.exports = function(target, src, safe) {
           for (var key in src) redefine(target, key, src[key], safe)
           return target
         }
@@ -1891,8 +1891,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_redefine": "../../node_modules/core-js/modules/_redefine.js" }
     ],
     "../../node_modules/core-js/modules/_an-instance.js": [
-      function (require, module, exports) {
-        module.exports = function (it, Constructor, name, forbiddenField) {
+      function(require, module, exports) {
+        module.exports = function(it, Constructor, name, forbiddenField) {
           if (
             !(it instanceof Constructor) ||
             (forbiddenField !== undefined && forbiddenField in it)
@@ -1905,7 +1905,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_for-of.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var ctx = require("./_ctx")
         var call = require("./_iter-call")
         var isArrayIter = require("./_is-array-iter")
@@ -1914,9 +1914,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var getIterFn = require("./core.get-iterator-method")
         var BREAK = {}
         var RETURN = {}
-        var exports = (module.exports = function (iterable, entries, fn, that, ITERATOR) {
+        var exports = (module.exports = function(iterable, entries, fn, that, ITERATOR) {
           var iterFn = ITERATOR
-            ? function () {
+            ? function() {
                 return iterable
               }
             : getIterFn(iterable)
@@ -1952,7 +1952,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_meta.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var META = require("./_uid")("meta")
         var isObject = require("./_is-object")
         var has = require("./_has")
@@ -1960,13 +1960,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var id = 0
         var isExtensible =
           Object.isExtensible ||
-          function () {
+          function() {
             return true
           }
-        var FREEZE = !require("./_fails")(function () {
+        var FREEZE = !require("./_fails")(function() {
           return isExtensible(Object.preventExtensions({}))
         })
-        var setMeta = function (it) {
+        var setMeta = function(it) {
           setDesc(it, META, {
             value: {
               i: "O" + ++id, // object ID
@@ -1974,7 +1974,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             }
           })
         }
-        var fastKey = function (it, create) {
+        var fastKey = function(it, create) {
           // return primitive with prefix
           if (!isObject(it))
             return typeof it == "symbol" ? it : (typeof it == "string" ? "S" : "P") + it
@@ -1989,7 +1989,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           }
           return it[META].i
         }
-        var getWeak = function (it, create) {
+        var getWeak = function(it, create) {
           if (!has(it, META)) {
             // can't set metadata to uncaught frozen object
             if (!isExtensible(it)) return true
@@ -2002,7 +2002,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           return it[META].w
         }
         // add metadata on freeze-family methods calling
-        var onFreeze = function (it) {
+        var onFreeze = function(it) {
           if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it)
           return it
         }
@@ -2023,9 +2023,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_validate-collection.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var isObject = require("./_is-object")
-        module.exports = function (it, TYPE) {
+        module.exports = function(it, TYPE) {
           if (!isObject(it) || it._t !== TYPE)
             throw TypeError("Incompatible receiver, " + TYPE + " required!")
           return it
@@ -2034,7 +2034,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_is-object": "../../node_modules/core-js/modules/_is-object.js" }
     ],
     "../../node_modules/core-js/modules/_collection-strong.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var dP = require("./_object-dp").f
         var create = require("./_object-create")
@@ -2050,7 +2050,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var validate = require("./_validate-collection")
         var SIZE = DESCRIPTORS ? "_s" : "size"
 
-        var getEntry = function (that, key) {
+        var getEntry = function(that, key) {
           // fast case
           var index = fastKey(key)
           var entry
@@ -2062,8 +2062,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         }
 
         module.exports = {
-          getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
-            var C = wrapper(function (that, iterable) {
+          getConstructor: function(wrapper, NAME, IS_MAP, ADDER) {
+            var C = wrapper(function(that, iterable) {
               anInstance(that, C, NAME, "_i")
               that._t = NAME // collection type
               that._i = create(null) // index
@@ -2090,7 +2090,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               },
               // 23.1.3.3 Map.prototype.delete(key)
               // 23.2.3.4 Set.prototype.delete(value)
-              delete: function (key) {
+              delete: function(key) {
                 var that = validate(this, NAME)
                 var entry = getEntry(that, key)
                 if (entry) {
@@ -2126,13 +2126,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             })
             if (DESCRIPTORS)
               dP(C.prototype, "size", {
-                get: function () {
+                get: function() {
                   return validate(this, NAME)[SIZE]
                 }
               })
             return C
           },
-          def: function (that, key, value) {
+          def: function(that, key, value) {
             var entry = getEntry(that, key)
             var prev, index
             // change existing entry
@@ -2157,18 +2157,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             return that
           },
           getEntry: getEntry,
-          setStrong: function (C, NAME, IS_MAP) {
+          setStrong: function(C, NAME, IS_MAP) {
             // add .keys, .values, .entries, [@@iterator]
             // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
             $iterDefine(
               C,
               NAME,
-              function (iterated, kind) {
+              function(iterated, kind) {
                 this._t = validate(iterated, NAME) // target
                 this._k = kind // kind
                 this._l = undefined // previous
               },
-              function () {
+              function() {
                 var that = this
                 var kind = that._k
                 var entry = that._l
@@ -2211,13 +2211,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-pie.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         exports.f = {}.propertyIsEnumerable
       },
       {}
     ],
     "../../node_modules/core-js/modules/_object-gopd.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var pIE = require("./_object-pie")
         var createDesc = require("./_property-desc")
         var toIObject = require("./_to-iobject")
@@ -2251,12 +2251,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_set-proto.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // Works with __proto__ only. Old v8 can't work with null proto objects.
         /* eslint-disable no-proto */
         var isObject = require("./_is-object")
         var anObject = require("./_an-object")
-        var check = function (O, proto) {
+        var check = function(O, proto) {
           anObject(O)
           if (!isObject(proto) && proto !== null)
             throw TypeError(proto + ": can't set as prototype!")
@@ -2265,7 +2265,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           set:
             Object.setPrototypeOf ||
             ("__proto__" in {} // eslint-disable-line
-              ? (function (test, buggy, set) {
+              ? (function(test, buggy, set) {
                   try {
                     set = require("./_ctx")(
                       Function.call,
@@ -2296,10 +2296,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_inherit-if-required.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var isObject = require("./_is-object")
         var setPrototypeOf = require("./_set-proto").set
-        module.exports = function (that, target, C) {
+        module.exports = function(that, target, C) {
           var S = target.constructor
           var P
           if (
@@ -2320,7 +2320,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_collection.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var global = require("./_global")
         var $export = require("./_export")
@@ -2335,19 +2335,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var setToStringTag = require("./_set-to-string-tag")
         var inheritIfRequired = require("./_inherit-if-required")
 
-        module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
+        module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
           var Base = global[NAME]
           var C = Base
           var ADDER = IS_MAP ? "set" : "add"
           var proto = C && C.prototype
           var O = {}
-          var fixMethod = function (KEY) {
+          var fixMethod = function(KEY) {
             var fn = proto[KEY]
             redefine(
               proto,
               KEY,
               KEY == "delete"
-                ? function (a) {
+                ? function(a) {
                     return IS_WEAK && !isObject(a) ? false : fn.call(this, a === 0 ? 0 : a)
                   }
                 : KEY == "has"
@@ -2374,7 +2374,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             !(
               IS_WEAK ||
               (proto.forEach &&
-                !fails(function () {
+                !fails(function() {
                   new C().entries().next()
                 }))
             )
@@ -2388,17 +2388,17 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             // early implementations not supports chaining
             var HASNT_CHAINING = instance[ADDER](IS_WEAK ? {} : -0, 1) != instance
             // V8 ~  Chromium 40- weak-collections throws on primitives, but should return false
-            var THROWS_ON_PRIMITIVES = fails(function () {
+            var THROWS_ON_PRIMITIVES = fails(function() {
               instance.has(1)
             })
             // most early implementations doesn't supports iterables, most modern - not close it correctly
-            var ACCEPT_ITERABLES = $iterDetect(function (iter) {
+            var ACCEPT_ITERABLES = $iterDetect(function(iter) {
               new C(iter)
             }) // eslint-disable-line no-new
             // for early implementations -0 and +0 not the same
             var BUGGY_ZERO =
               !IS_WEAK &&
-              fails(function () {
+              fails(function() {
                 // V8 ~ Chromium 42- fails only with 5+ elements
                 var $instance = new C()
                 var index = 5
@@ -2406,7 +2406,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                 return !$instance.has(-0)
               })
             if (!ACCEPT_ITERABLES) {
-              C = wrapper(function (target, iterable) {
+              C = wrapper(function(target, iterable) {
                 anInstance(target, C, NAME)
                 var that = inheritIfRequired(new Base(), target, C)
                 if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that)
@@ -2451,7 +2451,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.map.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var strong = require("./_collection-strong")
         var validate = require("./_validate-collection")
@@ -2460,7 +2460,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // 23.1 Map Objects
         module.exports = require("./_collection")(
           MAP,
-          function (get) {
+          function(get) {
             return function Map() {
               return get(this, arguments.length > 0 ? arguments[0] : undefined)
             }
@@ -2487,7 +2487,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_math-log1p.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.20 Math.log1p(x)
         module.exports =
           Math.log1p ||
@@ -2498,7 +2498,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/es6.math.acosh.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.3 Math.acosh(x)
         var $export = require("./_export")
         var log1p = require("./_math-log1p")
@@ -2533,7 +2533,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.asinh.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.5 Math.asinh(x)
         var $export = require("./_export")
         var $asinh = Math.asinh
@@ -2552,7 +2552,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.math.atanh.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.7 Math.atanh(x)
         var $export = require("./_export")
         var $atanh = Math.atanh
@@ -2567,7 +2567,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/_math-sign.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.28 Math.sign(x)
         module.exports =
           Math.sign ||
@@ -2579,7 +2579,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/es6.math.cbrt.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.9 Math.cbrt(x)
         var $export = require("./_export")
         var sign = require("./_math-sign")
@@ -2596,7 +2596,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.clz32.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.11 Math.clz32(x)
         var $export = require("./_export")
 
@@ -2609,7 +2609,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.math.cosh.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.12 Math.cosh(x)
         var $export = require("./_export")
         var exp = Math.exp
@@ -2623,7 +2623,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/_math-expm1.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.14 Math.expm1(x)
         var $expm1 = Math.expm1
         module.exports =
@@ -2641,7 +2641,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/es6.math.expm1.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.14 Math.expm1(x)
         var $export = require("./_export")
         var $expm1 = require("./_math-expm1")
@@ -2654,7 +2654,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_math-fround.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.16 Math.fround(x)
         var sign = require("./_math-sign")
         var pow = Math.pow
@@ -2663,7 +2663,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var MAX32 = pow(2, 127) * (2 - EPSILON32)
         var MIN32 = pow(2, -126)
 
-        var roundTiesToEven = function (n) {
+        var roundTiesToEven = function(n) {
           return n + 1 / EPSILON - 1 / EPSILON
         }
 
@@ -2685,7 +2685,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_math-sign": "../../node_modules/core-js/modules/_math-sign.js" }
     ],
     "../../node_modules/core-js/modules/es6.math.fround.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.16 Math.fround(x)
         var $export = require("./_export")
 
@@ -2697,7 +2697,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.hypot.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
         var $export = require("./_export")
         var abs = Math.abs
@@ -2728,7 +2728,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.math.imul.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.18 Math.imul(x, y)
         var $export = require("./_export")
         var $imul = Math.imul
@@ -2737,7 +2737,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         $export(
           $export.S +
             $export.F *
-              require("./_fails")(function () {
+              require("./_fails")(function() {
                 return $imul(0xffffffff, 5) != -5 || $imul.length != 2
               }),
           "Math",
@@ -2763,7 +2763,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.log1p.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.20 Math.log1p(x)
         var $export = require("./_export")
 
@@ -2775,7 +2775,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.log10.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.21 Math.log10(x)
         var $export = require("./_export")
 
@@ -2788,7 +2788,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.math.log2.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.22 Math.log2(x)
         var $export = require("./_export")
 
@@ -2801,7 +2801,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.math.sign.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.28 Math.sign(x)
         var $export = require("./_export")
 
@@ -2813,7 +2813,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.sinh.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.30 Math.sinh(x)
         var $export = require("./_export")
         var expm1 = require("./_math-expm1")
@@ -2823,7 +2823,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         $export(
           $export.S +
             $export.F *
-              require("./_fails")(function () {
+              require("./_fails")(function() {
                 return !Math.sinh(-2e-17) != -2e-17
               }),
           "Math",
@@ -2843,7 +2843,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.tanh.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.33 Math.tanh(x)
         var $export = require("./_export")
         var expm1 = require("./_math-expm1")
@@ -2863,7 +2863,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.math.trunc.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.2.2.34 Math.trunc(x)
         var $export = require("./_export")
 
@@ -2876,7 +2876,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/_object-gopn.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
         var $keys = require("./_object-keys-internal")
         var hiddenKeys = require("./_enum-bug-keys").concat("length", "prototype")
@@ -2893,7 +2893,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_string-ws.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         module.exports =
           "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
           "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF"
@@ -2901,7 +2901,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_string-trim.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
         var defined = require("./_defined")
         var fails = require("./_fails")
@@ -2911,9 +2911,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var ltrim = RegExp("^" + space + space + "*")
         var rtrim = RegExp(space + space + "*$")
 
-        var exporter = function (KEY, exec, ALIAS) {
+        var exporter = function(KEY, exec, ALIAS) {
           var exp = {}
-          var FORCE = fails(function () {
+          var FORCE = fails(function() {
             return !!spaces[KEY]() || non[KEY]() != non
           })
           var fn = (exp[KEY] = FORCE ? exec(trim) : spaces[KEY])
@@ -2924,7 +2924,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // 1 -> String#trimLeft
         // 2 -> String#trimRight
         // 3 -> String#trim
-        var trim = (exporter.trim = function (string, TYPE) {
+        var trim = (exporter.trim = function(string, TYPE) {
           string = String(defined(string))
           if (TYPE & 1) string = string.replace(ltrim, "")
           if (TYPE & 2) string = string.replace(rtrim, "")
@@ -2941,7 +2941,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.number.constructor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var global = require("./_global")
         var has = require("./_has")
@@ -2962,7 +2962,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var TRIM = "trim" in String.prototype
 
         // 7.1.3 ToNumber(argument)
-        var toNumber = function (argument) {
+        var toNumber = function(argument) {
           var it = toPrimitive(argument, false)
           if (typeof it == "string" && it.length > 2) {
             it = TRIM ? it.trim() : $trim(it, 3)
@@ -3005,7 +3005,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             return that instanceof $Number &&
               // check on 1..constructor(foo) case
               (BROKEN_COF
-                ? fails(function () {
+                ? fails(function() {
                     proto.valueOf.call(that)
                   })
                 : cof(that) != NUMBER)
@@ -3053,7 +3053,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.number.epsilon.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.1 Number.EPSILON
         var $export = require("./_export")
 
@@ -3062,7 +3062,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.number.is-finite.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.2 Number.isFinite(number)
         var $export = require("./_export")
         var _isFinite = require("./_global").isFinite
@@ -3079,7 +3079,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_is-integer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.3 Number.isInteger(number)
         var isObject = require("./_is-object")
         var floor = Math.floor
@@ -3090,7 +3090,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_is-object": "../../node_modules/core-js/modules/_is-object.js" }
     ],
     "../../node_modules/core-js/modules/es6.number.is-integer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.3 Number.isInteger(number)
         var $export = require("./_export")
 
@@ -3102,7 +3102,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.number.is-nan.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.4 Number.isNaN(number)
         var $export = require("./_export")
 
@@ -3116,7 +3116,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.number.is-safe-integer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.5 Number.isSafeInteger(number)
         var $export = require("./_export")
         var isInteger = require("./_is-integer")
@@ -3134,7 +3134,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.number.max-safe-integer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.6 Number.MAX_SAFE_INTEGER
         var $export = require("./_export")
 
@@ -3143,7 +3143,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.number.min-safe-integer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 20.1.2.10 Number.MIN_SAFE_INTEGER
         var $export = require("./_export")
 
@@ -3152,7 +3152,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/_parse-float.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $parseFloat = require("./_global").parseFloat
         var $trim = require("./_string-trim").trim
 
@@ -3172,7 +3172,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.number.parse-float.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
         var $parseFloat = require("./_parse-float")
         // 20.1.2.12 Number.parseFloat(string)
@@ -3186,7 +3186,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_parse-int.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $parseInt = require("./_global").parseInt
         var $trim = require("./_string-trim").trim
         var ws = require("./_string-ws")
@@ -3207,7 +3207,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.number.parse-int.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
         var $parseInt = require("./_parse-int")
         // 20.1.2.13 Number.parseInt(string, radix)
@@ -3221,13 +3221,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-gops.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         exports.f = Object.getOwnPropertySymbols
       },
       {}
     ],
     "../../node_modules/core-js/modules/_object-assign.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // 19.1.2.1 Object.assign(target, source, ...)
         var DESCRIPTORS = require("./_descriptors")
@@ -3241,14 +3241,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // should work with symbols and should have deterministic property order (V8 bug)
         module.exports =
           !$assign ||
-          require("./_fails")(function () {
+          require("./_fails")(function() {
             var A = {}
             var B = {}
             // eslint-disable-next-line no-undef
             var S = Symbol()
             var K = "abcdefghijklmnopqrst"
             A[S] = 7
-            K.split("").forEach(function (k) {
+            K.split("").forEach(function(k) {
               B[k] = k
             })
             return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join("") != K
@@ -3286,7 +3286,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.assign.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.3.1 Object.assign(target, source)
         var $export = require("./_export")
 
@@ -3298,16 +3298,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-forced-pam.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // Forced replacement prototype accessors methods
         module.exports =
           require("./_library") ||
-          !require("./_fails")(function () {
+          !require("./_fails")(function() {
             var K = Math.random()
             // In FF throws only define methods
             // eslint-disable-next-line no-undef, no-useless-call
-            __defineSetter__.call(null, K, function () {
+            __defineSetter__.call(null, K, function() {
               /* empty */
             })
             delete require("./_global")[K]
@@ -3320,7 +3320,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.object.define-getter.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var toObject = require("./_to-object")
@@ -3349,7 +3349,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.object.define-setter.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var toObject = require("./_to-object")
@@ -3378,13 +3378,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-to-array.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var DESCRIPTORS = require("./_descriptors")
         var getKeys = require("./_object-keys")
         var toIObject = require("./_to-iobject")
         var isEnum = require("./_object-pie").f
-        module.exports = function (isEntries) {
-          return function (it) {
+        module.exports = function(isEntries) {
+          return function(it) {
             var O = toIObject(it)
             var keys = getKeys(O)
             var length = keys.length
@@ -3409,7 +3409,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.object.entries.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // https://github.com/tc39/proposal-object-values-entries
         var $export = require("./_export")
         var $entries = require("./_object-to-array")(true)
@@ -3426,19 +3426,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-sap.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // most Object methods by ES6 should accept primitives
         var $export = require("./_export")
         var core = require("./_core")
         var fails = require("./_fails")
-        module.exports = function (KEY, exec) {
+        module.exports = function(KEY, exec) {
           var fn = (core.Object || {})[KEY] || Object[KEY]
           var exp = {}
           exp[KEY] = exec(fn)
           $export(
             $export.S +
               $export.F *
-                fails(function () {
+                fails(function() {
                   fn(1)
                 }),
             "Object",
@@ -3453,12 +3453,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.freeze.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.5 Object.freeze(O)
         var isObject = require("./_is-object")
         var meta = require("./_meta").onFreeze
 
-        require("./_object-sap")("freeze", function ($freeze) {
+        require("./_object-sap")("freeze", function($freeze) {
           return function freeze(it) {
             return $freeze && isObject(it) ? $freeze(meta(it)) : it
           }
@@ -3471,12 +3471,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
         var toIObject = require("./_to-iobject")
         var $getOwnPropertyDescriptor = require("./_object-gopd").f
 
-        require("./_object-sap")("getOwnPropertyDescriptor", function () {
+        require("./_object-sap")("getOwnPropertyDescriptor", function() {
           return function getOwnPropertyDescriptor(it, key) {
             return $getOwnPropertyDescriptor(toIObject(it), key)
           }
@@ -3489,7 +3489,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_own-keys.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // all object keys, includes non-enumerable and symbols
         var gOPN = require("./_object-gopn")
         var gOPS = require("./_object-gops")
@@ -3511,7 +3511,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // https://github.com/tc39/proposal-object-getownpropertydescriptors
         var $export = require("./_export")
         var ownKeys = require("./_own-keys")
@@ -3544,7 +3544,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_object-gopn-ext.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
         var toIObject = require("./_to-iobject")
         var gOPN = require("./_object-gopn").f
@@ -3555,7 +3555,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             ? Object.getOwnPropertyNames(window)
             : []
 
-        var getWindowNames = function (it) {
+        var getWindowNames = function(it) {
           try {
             return gOPN(it)
           } catch (e) {
@@ -3575,9 +3575,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.get-own-property-names.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.7 Object.getOwnPropertyNames(O)
-        require("./_object-sap")("getOwnPropertyNames", function () {
+        require("./_object-sap")("getOwnPropertyNames", function() {
           return require("./_object-gopn-ext").f
         })
       },
@@ -3587,12 +3587,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.get-prototype-of.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.9 Object.getPrototypeOf(O)
         var toObject = require("./_to-object")
         var $getPrototypeOf = require("./_object-gpo")
 
-        require("./_object-sap")("getPrototypeOf", function () {
+        require("./_object-sap")("getPrototypeOf", function() {
           return function getPrototypeOf(it) {
             return $getPrototypeOf(toObject(it))
           }
@@ -3605,7 +3605,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.object.lookup-getter.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var toObject = require("./_to-object")
@@ -3637,7 +3637,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.object.lookup-setter.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var toObject = require("./_to-object")
@@ -3669,12 +3669,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.prevent-extensions.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.15 Object.preventExtensions(O)
         var isObject = require("./_is-object")
         var meta = require("./_meta").onFreeze
 
-        require("./_object-sap")("preventExtensions", function ($preventExtensions) {
+        require("./_object-sap")("preventExtensions", function($preventExtensions) {
           return function preventExtensions(it) {
             return $preventExtensions && isObject(it) ? $preventExtensions(meta(it)) : it
           }
@@ -3687,7 +3687,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.to-string.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // 19.1.3.6 Object.prototype.toString()
         var classof = require("./_classof")
@@ -3711,7 +3711,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_same-value.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.2.9 SameValue(x, y)
         module.exports =
           Object.is ||
@@ -3723,7 +3723,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/es6.object.is.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.3.10 Object.is(value1, value2)
         var $export = require("./_export")
         $export($export.S, "Object", { is: require("./_same-value") })
@@ -3734,11 +3734,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.is-frozen.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.12 Object.isFrozen(O)
         var isObject = require("./_is-object")
 
-        require("./_object-sap")("isFrozen", function ($isFrozen) {
+        require("./_object-sap")("isFrozen", function($isFrozen) {
           return function isFrozen(it) {
             return isObject(it) ? ($isFrozen ? $isFrozen(it) : false) : true
           }
@@ -3750,11 +3750,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.is-sealed.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.13 Object.isSealed(O)
         var isObject = require("./_is-object")
 
-        require("./_object-sap")("isSealed", function ($isSealed) {
+        require("./_object-sap")("isSealed", function($isSealed) {
           return function isSealed(it) {
             return isObject(it) ? ($isSealed ? $isSealed(it) : false) : true
           }
@@ -3766,11 +3766,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.is-extensible.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.11 Object.isExtensible(O)
         var isObject = require("./_is-object")
 
-        require("./_object-sap")("isExtensible", function ($isExtensible) {
+        require("./_object-sap")("isExtensible", function($isExtensible) {
           return function isExtensible(it) {
             return isObject(it) ? ($isExtensible ? $isExtensible(it) : true) : false
           }
@@ -3782,12 +3782,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.keys.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.14 Object.keys(O)
         var toObject = require("./_to-object")
         var $keys = require("./_object-keys")
 
-        require("./_object-sap")("keys", function () {
+        require("./_object-sap")("keys", function() {
           return function keys(it) {
             return $keys(toObject(it))
           }
@@ -3800,12 +3800,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.object.seal.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 19.1.2.17 Object.seal(O)
         var isObject = require("./_is-object")
         var meta = require("./_meta").onFreeze
 
-        require("./_object-sap")("seal", function ($seal) {
+        require("./_object-sap")("seal", function($seal) {
           return function seal(it) {
             return $seal && isObject(it) ? $seal(meta(it)) : it
           }
@@ -3818,7 +3818,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.object.values.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // https://github.com/tc39/proposal-object-values-entries
         var $export = require("./_export")
         var $values = require("./_object-to-array")(false)
@@ -3835,12 +3835,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_species-constructor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.3.20 SpeciesConstructor(O, defaultConstructor)
         var anObject = require("./_an-object")
         var aFunction = require("./_a-function")
         var SPECIES = require("./_wks")("species")
-        module.exports = function (O, D) {
+        module.exports = function(O, D) {
           var C = anObject(O).constructor
           var S
           return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S)
@@ -3853,9 +3853,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_invoke.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // fast apply, http://jsperf.lnkit.com/fast-apply/5
-        module.exports = function (fn, args, that) {
+        module.exports = function(fn, args, that) {
           var un = that === undefined
           switch (args.length) {
             case 0:
@@ -3877,7 +3877,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_task.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var ctx = require("./_ctx")
         var invoke = require("./_invoke")
         var html = require("./_html")
@@ -3892,7 +3892,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var queue = {}
         var ONREADYSTATECHANGE = "onreadystatechange"
         var defer, channel, port
-        var run = function () {
+        var run = function() {
           var id = +this
           // eslint-disable-next-line no-prototype-builtins
           if (queue.hasOwnProperty(id)) {
@@ -3901,7 +3901,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             fn()
           }
         }
-        var listener = function (event) {
+        var listener = function(event) {
           run.call(event.data)
         }
         // Node.js 0.9+ & IE10+ has setImmediate, otherwise:
@@ -3910,7 +3910,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             var args = []
             var i = 1
             while (arguments.length > i) args.push(arguments[i++])
-            queue[++counter] = function () {
+            queue[++counter] = function() {
               // eslint-disable-next-line no-new-func
               invoke(typeof fn == "function" ? fn : Function(fn), args)
             }
@@ -3922,12 +3922,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           }
           // Node.js 0.8-
           if (require("./_cof")(process) == "process") {
-            defer = function (id) {
+            defer = function(id) {
               process.nextTick(ctx(run, id, 1))
             }
             // Sphere (JS game engine) Dispatch API
           } else if (Dispatch && Dispatch.now) {
-            defer = function (id) {
+            defer = function(id) {
               Dispatch.now(ctx(run, id, 1))
             }
             // Browsers with MessageChannel, includes WebWorkers
@@ -3943,21 +3943,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             typeof postMessage == "function" &&
             !global.importScripts
           ) {
-            defer = function (id) {
+            defer = function(id) {
               global.postMessage(id + "", "*")
             }
             global.addEventListener("message", listener, false)
             // IE8-
           } else if (ONREADYSTATECHANGE in cel("script")) {
-            defer = function (id) {
-              html.appendChild(cel("script"))[ONREADYSTATECHANGE] = function () {
+            defer = function(id) {
+              html.appendChild(cel("script"))[ONREADYSTATECHANGE] = function() {
                 html.removeChild(this)
                 run.call(id)
               }
             }
             // Rest old browsers
           } else {
-            defer = function (id) {
+            defer = function(id) {
               setTimeout(ctx(run, id, 1), 0)
             }
           }
@@ -3977,7 +3977,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_microtask.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = require("./_global")
         var macrotask = require("./_task").set
         var Observer = global.MutationObserver || global.WebKitMutationObserver
@@ -3985,10 +3985,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var Promise = global.Promise
         var isNode = require("./_cof")(process) == "process"
 
-        module.exports = function () {
+        module.exports = function() {
           var head, last, notify
 
-          var flush = function () {
+          var flush = function() {
             var parent, fn
             if (isNode && (parent = process.domain)) parent.exit()
             while (head) {
@@ -4008,7 +4008,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
           // Node.js
           if (isNode) {
-            notify = function () {
+            notify = function() {
               process.nextTick(flush)
             }
             // browsers with MutationObserver, except iOS Safari - https://github.com/zloirock/core-js/issues/339
@@ -4016,14 +4016,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             var toggle = true
             var node = document.createTextNode("")
             new Observer(flush).observe(node, { characterData: true }) // eslint-disable-line no-new
-            notify = function () {
+            notify = function() {
               node.data = toggle = !toggle
             }
             // environments with maybe non-completely correct, but existent Promise
           } else if (Promise && Promise.resolve) {
             // Promise.resolve without an argument throws an error in LG WebOS 2
             var promise = Promise.resolve(undefined)
-            notify = function () {
+            notify = function() {
               promise.then(flush)
             }
             // for other environments - macrotask based on:
@@ -4033,13 +4033,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             // - onreadystatechange
             // - setTimeout
           } else {
-            notify = function () {
+            notify = function() {
               // strange IE + webpack dev server bug - use .call(global)
               macrotask.call(global, flush)
             }
           }
 
-          return function (fn) {
+          return function(fn) {
             var task = { fn: fn, next: undefined }
             if (last) last.next = task
             if (!head) {
@@ -4057,14 +4057,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_new-promise-capability.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // 25.4.1.5 NewPromiseCapability(C)
         var aFunction = require("./_a-function")
 
         function PromiseCapability(C) {
           var resolve, reject
-          this.promise = new C(function ($$resolve, $$reject) {
+          this.promise = new C(function($$resolve, $$reject) {
             if (resolve !== undefined || reject !== undefined)
               throw TypeError("Bad Promise constructor")
             resolve = $$resolve
@@ -4074,15 +4074,15 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           this.reject = aFunction(reject)
         }
 
-        module.exports.f = function (C) {
+        module.exports.f = function(C) {
           return new PromiseCapability(C)
         }
       },
       { "./_a-function": "../../node_modules/core-js/modules/_a-function.js" }
     ],
     "../../node_modules/core-js/modules/_perform.js": [
-      function (require, module, exports) {
-        module.exports = function (exec) {
+      function(require, module, exports) {
+        module.exports = function(exec) {
           try {
             return { e: false, v: exec() }
           } catch (e) {
@@ -4093,7 +4093,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/core-js/modules/_user-agent.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = require("./_global")
         var navigator = global.navigator
 
@@ -4102,12 +4102,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_global": "../../node_modules/core-js/modules/_global.js" }
     ],
     "../../node_modules/core-js/modules/_promise-resolve.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var anObject = require("./_an-object")
         var isObject = require("./_is-object")
         var newPromiseCapability = require("./_new-promise-capability")
 
-        module.exports = function (C, x) {
+        module.exports = function(C, x) {
           anObject(C)
           if (isObject(x) && x.constructor === C) return x
           var promiseCapability = newPromiseCapability.f(C)
@@ -4123,7 +4123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.promise.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var LIBRARY = require("./_library")
         var global = require("./_global")
@@ -4148,17 +4148,17 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var v8 = (versions && versions.v8) || ""
         var $Promise = global[PROMISE]
         var isNode = classof(process) == "process"
-        var empty = function () {
+        var empty = function() {
           /* empty */
         }
         var Internal, newGenericPromiseCapability, OwnPromiseCapability, Wrapper
         var newPromiseCapability = (newGenericPromiseCapability = newPromiseCapabilityModule.f)
 
-        var USE_NATIVE = !!(function () {
+        var USE_NATIVE = !!(function() {
           try {
             // correct subclassing with @@species support
             var promise = $Promise.resolve(1)
-            var FakePromise = ((promise.constructor = {})[require("./_wks")("species")] = function (
+            var FakePromise = ((promise.constructor = {})[require("./_wks")("species")] = function(
               exec
             ) {
               exec(empty, empty)
@@ -4179,19 +4179,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         })()
 
         // helpers
-        var isThenable = function (it) {
+        var isThenable = function(it) {
           var then
           return isObject(it) && typeof (then = it.then) == "function" ? then : false
         }
-        var notify = function (promise, isReject) {
+        var notify = function(promise, isReject) {
           if (promise._n) return
           promise._n = true
           var chain = promise._c
-          microtask(function () {
+          microtask(function() {
             var value = promise._v
             var ok = promise._s == 1
             var i = 0
-            var run = function (reaction) {
+            var run = function(reaction) {
               var handler = ok ? reaction.ok : reaction.fail
               var resolve = reaction.resolve
               var reject = reaction.reject
@@ -4229,13 +4229,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             if (isReject && !promise._h) onUnhandled(promise)
           })
         }
-        var onUnhandled = function (promise) {
-          task.call(global, function () {
+        var onUnhandled = function(promise) {
+          task.call(global, function() {
             var value = promise._v
             var unhandled = isUnhandled(promise)
             var result, handler, console
             if (unhandled) {
-              result = perform(function () {
+              result = perform(function() {
                 if (isNode) {
                   process.emit("unhandledRejection", value, promise)
                 } else if ((handler = global.onunhandledrejection)) {
@@ -4251,11 +4251,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             if (unhandled && result.e) throw result.v
           })
         }
-        var isUnhandled = function (promise) {
+        var isUnhandled = function(promise) {
           return promise._h !== 1 && (promise._a || promise._c).length === 0
         }
-        var onHandleUnhandled = function (promise) {
-          task.call(global, function () {
+        var onHandleUnhandled = function(promise) {
+          task.call(global, function() {
             var handler
             if (isNode) {
               process.emit("rejectionHandled", promise)
@@ -4264,7 +4264,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             }
           })
         }
-        var $reject = function (value) {
+        var $reject = function(value) {
           var promise = this
           if (promise._d) return
           promise._d = true
@@ -4274,7 +4274,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           if (!promise._a) promise._a = promise._c.slice()
           notify(promise, true)
         }
-        var $resolve = function (value) {
+        var $resolve = function(value) {
           var promise = this
           var then
           if (promise._d) return
@@ -4283,7 +4283,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           try {
             if (promise === value) throw TypeError("Promise can't be resolved itself")
             if ((then = isThenable(value))) {
-              microtask(function () {
+              microtask(function() {
                 var wrapper = { _w: promise, _d: false } // wrap
                 try {
                   then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1))
@@ -4337,17 +4337,17 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               return reaction.promise
             },
             // 25.4.5.1 Promise.prototype.catch(onRejected)
-            catch: function (onRejected) {
+            catch: function(onRejected) {
               return this.then(undefined, onRejected)
             }
           })
-          OwnPromiseCapability = function () {
+          OwnPromiseCapability = function() {
             var promise = new Internal()
             this.promise = promise
             this.resolve = ctx($resolve, promise, 1)
             this.reject = ctx($reject, promise, 1)
           }
-          newPromiseCapabilityModule.f = newPromiseCapability = function (C) {
+          newPromiseCapabilityModule.f = newPromiseCapability = function(C) {
             return C === $Promise || C === Wrapper
               ? new OwnPromiseCapability(C)
               : newGenericPromiseCapability(C)
@@ -4380,7 +4380,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             $export.F *
               !(
                 USE_NATIVE &&
-                require("./_iter-detect")(function (iter) {
+                require("./_iter-detect")(function(iter) {
                   $Promise.all(iter)["catch"](empty)
                 })
               ),
@@ -4392,16 +4392,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               var capability = newPromiseCapability(C)
               var resolve = capability.resolve
               var reject = capability.reject
-              var result = perform(function () {
+              var result = perform(function() {
                 var values = []
                 var index = 0
                 var remaining = 1
-                forOf(iterable, false, function (promise) {
+                forOf(iterable, false, function(promise) {
                   var $index = index++
                   var alreadyCalled = false
                   values.push(undefined)
                   remaining++
-                  C.resolve(promise).then(function (value) {
+                  C.resolve(promise).then(function(value) {
                     if (alreadyCalled) return
                     alreadyCalled = true
                     values[$index] = value
@@ -4418,8 +4418,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               var C = this
               var capability = newPromiseCapability(C)
               var reject = capability.reject
-              var result = perform(function () {
-                forOf(iterable, false, function (promise) {
+              var result = perform(function() {
+                forOf(iterable, false, function(promise) {
                   C.resolve(promise).then(capability.resolve, reject)
                 })
               })
@@ -4456,7 +4456,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.promise.finally.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // https://github.com/tc39/proposal-promise-finally
         "use strict"
         var $export = require("./_export")
@@ -4466,20 +4466,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var promiseResolve = require("./_promise-resolve")
 
         $export($export.P + $export.R, "Promise", {
-          finally: function (onFinally) {
+          finally: function(onFinally) {
             var C = speciesConstructor(this, core.Promise || global.Promise)
             var isFunction = typeof onFinally == "function"
             return this.then(
               isFunction
-                ? function (x) {
-                    return promiseResolve(C, onFinally()).then(function () {
+                ? function(x) {
+                    return promiseResolve(C, onFinally()).then(function() {
                       return x
                     })
                   }
                 : onFinally,
               isFunction
-                ? function (e) {
-                    return promiseResolve(C, onFinally()).then(function () {
+                ? function(e) {
+                    return promiseResolve(C, onFinally()).then(function() {
                       throw e
                     })
                   }
@@ -4497,7 +4497,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.apply.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
         var $export = require("./_export")
         var aFunction = require("./_a-function")
@@ -4508,8 +4508,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         $export(
           $export.S +
             $export.F *
-              !require("./_fails")(function () {
-                rApply(function () {
+              !require("./_fails")(function() {
+                rApply(function() {
                   /* empty */
                 })
               }),
@@ -4532,7 +4532,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_bind.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var aFunction = require("./_a-function")
         var isObject = require("./_is-object")
@@ -4540,7 +4540,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var arraySlice = [].slice
         var factories = {}
 
-        var construct = function (F, len, args) {
+        var construct = function(F, len, args) {
           if (!(len in factories)) {
             for (var n = [], i = 0; i < len; i++) n[i] = "a[" + i + "]"
             // eslint-disable-next-line no-new-func
@@ -4554,7 +4554,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           function bind(that /* , ...args */) {
             var fn = aFunction(this)
             var partArgs = arraySlice.call(arguments, 1)
-            var bound = function (/* args... */) {
+            var bound = function(/* args... */) {
               var args = partArgs.concat(arraySlice.call(arguments))
               return this instanceof bound
                 ? construct(fn, args.length, args)
@@ -4571,7 +4571,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.construct.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
         var $export = require("./_export")
         var create = require("./_object-create")
@@ -4584,13 +4584,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         // MS Edge supports only 2 arguments and argumentsList argument is optional
         // FF Nightly sets third argument as `new.target`, but does not create `this` from it
-        var NEW_TARGET_BUG = fails(function () {
+        var NEW_TARGET_BUG = fails(function() {
           function F() {
             /* empty */
           }
           return !(
             rConstruct(
-              function () {
+              function() {
                 /* empty */
               },
               [],
@@ -4598,8 +4598,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             ) instanceof F
           )
         })
-        var ARGS_BUG = !fails(function () {
-          rConstruct(function () {
+        var ARGS_BUG = !fails(function() {
+          rConstruct(function() {
             /* empty */
           })
         })
@@ -4649,7 +4649,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.define-property.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
         var dP = require("./_object-dp")
         var $export = require("./_export")
@@ -4660,7 +4660,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         $export(
           $export.S +
             $export.F *
-              require("./_fails")(function () {
+              require("./_fails")(function() {
                 // eslint-disable-next-line no-undef
                 Reflect.defineProperty(dP.f({}, 1, { value: 1 }), 1, { value: 2 })
               }),
@@ -4689,7 +4689,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.delete-property.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.4 Reflect.deleteProperty(target, propertyKey)
         var $export = require("./_export")
         var gOPD = require("./_object-gopd").f
@@ -4709,7 +4709,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.get.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.6 Reflect.get(target, propertyKey [, receiver])
         var gOPD = require("./_object-gopd")
         var getPrototypeOf = require("./_object-gpo")
@@ -4743,7 +4743,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
         var gOPD = require("./_object-gopd")
         var $export = require("./_export")
@@ -4762,7 +4762,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.8 Reflect.getPrototypeOf(target)
         var $export = require("./_export")
         var getProto = require("./_object-gpo")
@@ -4781,7 +4781,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.has.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.9 Reflect.has(target, propertyKey)
         var $export = require("./_export")
 
@@ -4794,7 +4794,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_export": "../../node_modules/core-js/modules/_export.js" }
     ],
     "../../node_modules/core-js/modules/es6.reflect.is-extensible.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.10 Reflect.isExtensible(target)
         var $export = require("./_export")
         var anObject = require("./_an-object")
@@ -4813,7 +4813,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.own-keys.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.11 Reflect.ownKeys(target)
         var $export = require("./_export")
 
@@ -4825,7 +4825,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.12 Reflect.preventExtensions(target)
         var $export = require("./_export")
         var anObject = require("./_an-object")
@@ -4849,7 +4849,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.set.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
         var dP = require("./_object-dp")
         var gOPD = require("./_object-gopd")
@@ -4901,7 +4901,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 26.1.14 Reflect.setPrototypeOf(target, proto)
         var $export = require("./_export")
         var setProto = require("./_set-proto")
@@ -4925,12 +4925,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_is-regexp.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 7.2.8 IsRegExp(argument)
         var isObject = require("./_is-object")
         var cof = require("./_cof")
         var MATCH = require("./_wks")("match")
-        module.exports = function (it) {
+        module.exports = function(it) {
           var isRegExp
           return (
             isObject(it) &&
@@ -4945,11 +4945,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_flags.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // 21.2.5.3 get RegExp.prototype.flags
         var anObject = require("./_an-object")
-        module.exports = function () {
+        module.exports = function() {
           var that = anObject(this)
           var result = ""
           if (that.global) result += "g"
@@ -4963,7 +4963,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_an-object": "../../node_modules/core-js/modules/_an-object.js" }
     ],
     "../../node_modules/core-js/modules/es6.regexp.constructor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = require("./_global")
         var inheritIfRequired = require("./_inherit-if-required")
         var dP = require("./_object-dp").f
@@ -4981,7 +4981,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         if (
           require("./_descriptors") &&
           (!CORRECT_NEW ||
-            require("./_fails")(function () {
+            require("./_fails")(function() {
               re2[require("./_wks")("match")] = false
               // RegExp constructor can alter flags and IsRegExp works correct with @@match
               return $RegExp(re1) != re1 || $RegExp(re2) == re2 || $RegExp(re1, "i") != "/a/i"
@@ -5004,14 +5004,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                   $RegExp
                 )
           }
-          var proxy = function (key) {
+          var proxy = function(key) {
             key in $RegExp ||
               dP($RegExp, key, {
                 configurable: true,
-                get: function () {
+                get: function() {
                   return Base[key]
                 },
-                set: function (it) {
+                set: function(it) {
                   Base[key] = it
                 }
               })
@@ -5039,7 +5039,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.regexp.flags.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 21.2.5.3 get RegExp.prototype.flags()
         if (require("./_descriptors") && /./g.flags != "g")
           require("./_object-dp").f(RegExp.prototype, "flags", {
@@ -5054,13 +5054,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_string-at.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var toInteger = require("./_to-integer")
         var defined = require("./_defined")
         // true  -> String#at
         // false -> String#codePointAt
-        module.exports = function (TO_STRING) {
-          return function (that, pos) {
+        module.exports = function(TO_STRING) {
+          return function(that, pos) {
             var s = String(defined(that))
             var i = toInteger(pos)
             var l = s.length
@@ -5087,20 +5087,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_advance-string-index.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var at = require("./_string-at")(true)
 
         // `AdvanceStringIndex` abstract operation
         // https://tc39.github.io/ecma262/#sec-advancestringindex
-        module.exports = function (S, index, unicode) {
+        module.exports = function(S, index, unicode) {
           return index + (unicode ? at(S, index).length : 1)
         }
       },
       { "./_string-at": "../../node_modules/core-js/modules/_string-at.js" }
     ],
     "../../node_modules/core-js/modules/_regexp-exec-abstract.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var classof = require("./_classof")
@@ -5108,7 +5108,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         // `RegExpExec` abstract operation
         // https://tc39.github.io/ecma262/#sec-regexpexec
-        module.exports = function (R, S) {
+        module.exports = function(R, S) {
           var exec = R.exec
           if (typeof exec === "function") {
             var result = exec.call(R, S)
@@ -5128,7 +5128,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_classof": "../../node_modules/core-js/modules/_classof.js" }
     ],
     "../../node_modules/core-js/modules/_regexp-exec.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var regexpFlags = require("./_flags")
@@ -5143,7 +5143,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         var LAST_INDEX = "lastIndex"
 
-        var UPDATES_LAST_INDEX_WRONG = (function () {
+        var UPDATES_LAST_INDEX_WRONG = (function() {
           var re1 = /a/,
             re2 = /b*/g
           nativeExec.call(re1, "a")
@@ -5175,7 +5175,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               // Fix browsers whose `exec` methods don't consistently return `undefined`
               // for NPCG, like IE8. NOTE: This doesn' work for /(.?)?/
               // eslint-disable-next-line no-loop-func
-              nativeReplace.call(match[0], reCopy, function () {
+              nativeReplace.call(match[0], reCopy, function() {
                 for (i = 1; i < arguments.length - 2; i++) {
                   if (arguments[i] === undefined) match[i] = undefined
                 }
@@ -5191,7 +5191,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_flags": "../../node_modules/core-js/modules/_flags.js" }
     ],
     "../../node_modules/core-js/modules/es6.regexp.exec.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var regexpExec = require("./_regexp-exec")
         require("./_export")(
@@ -5211,7 +5211,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_fix-re-wks.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         require("./es6.regexp.exec")
         var redefine = require("./_redefine")
@@ -5223,12 +5223,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         var SPECIES = wks("species")
 
-        var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
+        var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function() {
           // #replace needs built-in support for named groups.
           // #match works fine because it just return the exec results, even if it has
           // a "grops" property.
           var re = /./
-          re.exec = function () {
+          re.exec = function() {
             var result = []
             result.groups = { a: "7" }
             return result
@@ -5236,35 +5236,35 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           return "".replace(re, "$<a>") !== "7"
         })
 
-        var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = (function () {
+        var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = (function() {
           // Chrome 51 has a buggy "split" implementation when RegExp#exec !== nativeExec
           var re = /(?:)/
           var originalExec = re.exec
-          re.exec = function () {
+          re.exec = function() {
             return originalExec.apply(this, arguments)
           }
           var result = "ab".split(re)
           return result.length === 2 && result[0] === "a" && result[1] === "b"
         })()
 
-        module.exports = function (KEY, length, exec) {
+        module.exports = function(KEY, length, exec) {
           var SYMBOL = wks(KEY)
 
-          var DELEGATES_TO_SYMBOL = !fails(function () {
+          var DELEGATES_TO_SYMBOL = !fails(function() {
             // String methods call symbol-named RegEp methods
             var O = {}
-            O[SYMBOL] = function () {
+            O[SYMBOL] = function() {
               return 7
             }
             return ""[KEY](O) != 7
           })
 
           var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL
-            ? !fails(function () {
+            ? !fails(function() {
                 // Symbol-named RegExp methods call .exec
                 var execCalled = false
                 var re = /a/
-                re.exec = function () {
+                re.exec = function() {
                   execCalled = true
                   return null
                 }
@@ -5272,7 +5272,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                   // RegExp[@@split] doesn't call the regex's exec method, but first creates
                   // a new one. We need to return the patched regex when creating the new one.
                   re.constructor = {}
-                  re.constructor[SPECIES] = function () {
+                  re.constructor[SPECIES] = function() {
                     return re
                   }
                 }
@@ -5316,12 +5316,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               length == 2
                 ? // 21.2.5.8 RegExp.prototype[@@replace](string, replaceValue)
                   // 21.2.5.11 RegExp.prototype[@@split](string, limit)
-                  function (string, arg) {
+                  function(string, arg) {
                     return rxfn.call(string, this, arg)
                   }
                 : // 21.2.5.6 RegExp.prototype[@@match](string)
                   // 21.2.5.9 RegExp.prototype[@@search](string)
-                  function (string) {
+                  function(string) {
                     return rxfn.call(string, this)
                   }
             )
@@ -5339,7 +5339,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.regexp.match.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var anObject = require("./_an-object")
@@ -5348,7 +5348,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var regExpExec = require("./_regexp-exec-abstract")
 
         // @@match logic
-        require("./_fix-re-wks")("match", 1, function (defined, MATCH, $match, maybeCallNative) {
+        require("./_fix-re-wks")("match", 1, function(defined, MATCH, $match, maybeCallNative) {
           return [
             // `String.prototype.match` method
             // https://tc39.github.io/ecma262/#sec-string.prototype.match
@@ -5359,7 +5359,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             },
             // `RegExp.prototype[@@match]` method
             // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@match
-            function (regexp) {
+            function(regexp) {
               var res = maybeCallNative($match, regexp, this)
               if (res.done) return res.value
               var rx = anObject(regexp)
@@ -5391,7 +5391,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.regexp.replace.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = arguments[3]
         ;("use strict")
 
@@ -5407,12 +5407,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var SUBSTITUTION_SYMBOLS = /\$([$&`']|\d\d?|<[^>]*>)/g
         var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&`']|\d\d?)/g
 
-        var maybeToString = function (it) {
+        var maybeToString = function(it) {
           return it === undefined ? it : String(it)
         }
 
         // @@replace logic
-        require("./_fix-re-wks")("replace", 2, function (
+        require("./_fix-re-wks")("replace", 2, function(
           defined,
           REPLACE,
           $replace,
@@ -5430,7 +5430,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             },
             // `RegExp.prototype[@@replace]` method
             // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@replace
-            function (regexp, replaceValue) {
+            function(regexp, replaceValue) {
               var res = maybeCallNative($replace, regexp, this, replaceValue)
               if (res.done) return res.value
 
@@ -5499,7 +5499,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               namedCaptures = toObject(namedCaptures)
               symbols = SUBSTITUTION_SYMBOLS
             }
-            return $replace.call(replacement, symbols, function (match, ch) {
+            return $replace.call(replacement, symbols, function(match, ch) {
               var capture
               switch (ch.charAt(0)) {
                 case "$":
@@ -5544,7 +5544,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.regexp.split.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var isRegExp = require("./_is-regexp")
@@ -5563,12 +5563,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var MAX_UINT32 = 0xffffffff
 
         // babel-minify transpiles RegExp('x', 'y') -> /x/y and it causes SyntaxError
-        var SUPPORTS_Y = !fails(function () {
+        var SUPPORTS_Y = !fails(function() {
           RegExp(MAX_UINT32, "y")
         })
 
         // @@split logic
-        require("./_fix-re-wks")("split", 2, function (defined, SPLIT, $split, maybeCallNative) {
+        require("./_fix-re-wks")("split", 2, function(defined, SPLIT, $split, maybeCallNative) {
           var internalSplit
           if (
             "abbc"[$SPLIT](/(b)*/)[1] == "c" ||
@@ -5579,7 +5579,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             ""[$SPLIT](/.?/)[LENGTH]
           ) {
             // based on es5-shim implementation, need to rework it
-            internalSplit = function (separator, limit) {
+            internalSplit = function(separator, limit) {
               var string = String(this)
               if (separator === undefined && limit === 0) return []
               // If `separator` is not a regex, use native split
@@ -5614,7 +5614,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             }
             // Chakra, V8
           } else if ("0"[$SPLIT](undefined, 0)[LENGTH]) {
-            internalSplit = function (separator, limit) {
+            internalSplit = function(separator, limit) {
               return separator === undefined && limit === 0
                 ? []
                 : $split.call(this, separator, limit)
@@ -5638,7 +5638,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             //
             // NOTE: This cannot be properly polyfilled in engines that don't support
             // the 'y' flag.
-            function (regexp, limit) {
+            function(regexp, limit) {
               var res = maybeCallNative(
                 internalSplit,
                 regexp,
@@ -5706,7 +5706,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.regexp.search.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var anObject = require("./_an-object")
@@ -5714,7 +5714,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var regExpExec = require("./_regexp-exec-abstract")
 
         // @@search logic
-        require("./_fix-re-wks")("search", 1, function (defined, SEARCH, $search, maybeCallNative) {
+        require("./_fix-re-wks")("search", 1, function(defined, SEARCH, $search, maybeCallNative) {
           return [
             // `String.prototype.search` method
             // https://tc39.github.io/ecma262/#sec-string.prototype.search
@@ -5725,7 +5725,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             },
             // `RegExp.prototype[@@search]` method
             // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@search
-            function (regexp) {
+            function(regexp) {
               var res = maybeCallNative($search, regexp, this)
               if (res.done) return res.value
               var rx = anObject(regexp)
@@ -5747,7 +5747,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.regexp.to-string.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         require("./es6.regexp.flags")
         var anObject = require("./_an-object")
@@ -5756,13 +5756,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var TO_STRING = "toString"
         var $toString = /./[TO_STRING]
 
-        var define = function (fn) {
+        var define = function(fn) {
           require("./_redefine")(RegExp.prototype, TO_STRING, fn, true)
         }
 
         // 21.2.5.14 RegExp.prototype.toString()
         if (
-          require("./_fails")(function () {
+          require("./_fails")(function() {
             return $toString.call({ source: "a", flags: "b" }) != "/a/b"
           })
         ) {
@@ -5795,7 +5795,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.set.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var strong = require("./_collection-strong")
         var validate = require("./_validate-collection")
@@ -5804,7 +5804,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // 23.2 Set Objects
         module.exports = require("./_collection")(
           SET,
-          function (get) {
+          function(get) {
             return function Set() {
               return get(this, arguments.length > 0 ? arguments[0] : undefined)
             }
@@ -5825,19 +5825,19 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_wks-ext.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         exports.f = require("./_wks")
       },
       { "./_wks": "../../node_modules/core-js/modules/_wks.js" }
     ],
     "../../node_modules/core-js/modules/_wks-define.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = require("./_global")
         var core = require("./_core")
         var LIBRARY = require("./_library")
         var wksExt = require("./_wks-ext")
         var defineProperty = require("./_object-dp").f
-        module.exports = function (name) {
+        module.exports = function(name) {
           var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {})
           if (name.charAt(0) != "_" && !(name in $Symbol))
             defineProperty($Symbol, name, { value: wksExt.f(name) })
@@ -5852,12 +5852,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_enum-keys.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // all enumerable object keys, includes symbols
         var getKeys = require("./_object-keys")
         var gOPS = require("./_object-gops")
         var pIE = require("./_object-pie")
-        module.exports = function (it) {
+        module.exports = function(it) {
           var result = getKeys(it)
           var getSymbols = gOPS.f
           if (getSymbols) {
@@ -5877,7 +5877,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.symbol.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // ECMAScript 6 symbols shim
         var global = require("./_global")
@@ -5929,18 +5929,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
         var setSymbolDesc =
           DESCRIPTORS &&
-          $fails(function () {
+          $fails(function() {
             return (
               _create(
                 dP({}, "a", {
-                  get: function () {
+                  get: function() {
                     return dP(this, "a", { value: 7 }).a
                   }
                 })
               ).a != 7
             )
           })
-            ? function (it, key, D) {
+            ? function(it, key, D) {
                 var protoDesc = gOPD(ObjectProto, key)
                 if (protoDesc) delete ObjectProto[key]
                 dP(it, key, D)
@@ -5948,7 +5948,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               }
             : dP
 
-        var wrap = function (tag) {
+        var wrap = function(tag) {
           var sym = (AllSymbols[tag] = _create($Symbol[PROTOTYPE]))
           sym._k = tag
           return sym
@@ -5956,10 +5956,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         var isSymbol =
           USE_NATIVE && typeof $Symbol.iterator == "symbol"
-            ? function (it) {
+            ? function(it) {
                 return typeof it == "symbol"
               }
-            : function (it) {
+            : function(it) {
                 return it instanceof $Symbol
               }
 
@@ -6040,7 +6040,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           $Symbol = function Symbol() {
             if (this instanceof $Symbol) throw TypeError("Symbol is not a constructor!")
             var tag = uid(arguments.length > 0 ? arguments[0] : undefined)
-            var $set = function (value) {
+            var $set = function(value) {
               if (this === ObjectProto) $set.call(OPSymbols, value)
               if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false
               setSymbolDesc(this, tag, createDesc(1, value))
@@ -6063,7 +6063,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             redefine(ObjectProto, "propertyIsEnumerable", $propertyIsEnumerable, true)
           }
 
-          wksExt.f = function (name) {
+          wksExt.f = function(name) {
             return wrap(wks(name))
           }
         }
@@ -6086,7 +6086,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         $export($export.S + $export.F * !USE_NATIVE, "Symbol", {
           // 19.4.2.1 Symbol.for(key)
-          for: function (key) {
+          for: function(key) {
             return has(SymbolRegistry, (key += ""))
               ? SymbolRegistry[key]
               : (SymbolRegistry[key] = $Symbol(key))
@@ -6096,10 +6096,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             if (!isSymbol(sym)) throw TypeError(sym + " is not a symbol!")
             for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key
           },
-          useSetter: function () {
+          useSetter: function() {
             setter = true
           },
-          useSimple: function () {
+          useSimple: function() {
             setter = false
           }
         })
@@ -6121,7 +6121,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         // Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
         // https://bugs.chromium.org/p/v8/issues/detail?id=3443
-        var FAILS_ON_PRIMITIVES = $fails(function () {
+        var FAILS_ON_PRIMITIVES = $fails(function() {
           $GOPS.f(1)
         })
 
@@ -6137,7 +6137,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             $export.S +
               $export.F *
                 (!USE_NATIVE ||
-                  $fails(function () {
+                  $fails(function() {
                     var S = $Symbol()
                     // MS Edge converts symbol values to JSON as {}
                     // WebKit converts symbol values to JSON as null
@@ -6158,7 +6158,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                 $replacer = replacer = args[1]
                 if ((!isObject(replacer) && it === undefined) || isSymbol(it)) return // IE8 returns string on undefined
                 if (!isArray(replacer))
-                  replacer = function (key, value) {
+                  replacer = function(key, value) {
                     if (typeof $replacer == "function") value = $replacer.call(this, key, value)
                     if (!isSymbol(value)) return value
                   }
@@ -6213,32 +6213,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.symbol.async-iterator.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         require("./_wks-define")("asyncIterator")
       },
       { "./_wks-define": "../../node_modules/core-js/modules/_wks-define.js" }
     ],
     "../../node_modules/core-js/modules/_string-html.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
         var fails = require("./_fails")
         var defined = require("./_defined")
         var quot = /"/g
         // B.2.3.2.1 CreateHTML(string, tag, attribute, value)
-        var createHTML = function (string, tag, attribute, value) {
+        var createHTML = function(string, tag, attribute, value) {
           var S = String(defined(string))
           var p1 = "<" + tag
           if (attribute !== "")
             p1 += " " + attribute + '="' + String(value).replace(quot, "&quot;") + '"'
           return p1 + ">" + S + "</" + tag + ">"
         }
-        module.exports = function (NAME, exec) {
+        module.exports = function(NAME, exec) {
           var O = {}
           O[NAME] = exec(createHTML)
           $export(
             $export.P +
               $export.F *
-                fails(function () {
+                fails(function() {
                   var test = ""[NAME]('"')
                   return test !== test.toLowerCase() || test.split('"').length > 3
                 }),
@@ -6254,10 +6254,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.anchor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.2 String.prototype.anchor(name)
-        require("./_string-html")("anchor", function (createHTML) {
+        require("./_string-html")("anchor", function(createHTML) {
           return function anchor(name) {
             return createHTML(this, "a", "name", name)
           }
@@ -6266,10 +6266,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.big.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.3 String.prototype.big()
-        require("./_string-html")("big", function (createHTML) {
+        require("./_string-html")("big", function(createHTML) {
           return function big() {
             return createHTML(this, "big", "", "")
           }
@@ -6278,10 +6278,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.blink.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.4 String.prototype.blink()
-        require("./_string-html")("blink", function (createHTML) {
+        require("./_string-html")("blink", function(createHTML) {
           return function blink() {
             return createHTML(this, "blink", "", "")
           }
@@ -6290,10 +6290,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.bold.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.5 String.prototype.bold()
-        require("./_string-html")("bold", function (createHTML) {
+        require("./_string-html")("bold", function(createHTML) {
           return function bold() {
             return createHTML(this, "b", "", "")
           }
@@ -6302,7 +6302,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.code-point-at.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var $at = require("./_string-at")(false)
@@ -6319,12 +6319,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_string-context.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // helper for String#{startsWith, endsWith, includes}
         var isRegExp = require("./_is-regexp")
         var defined = require("./_defined")
 
-        module.exports = function (that, searchString, NAME) {
+        module.exports = function(that, searchString, NAME) {
           if (isRegExp(searchString)) throw TypeError("String#" + NAME + " doesn't accept regex!")
           return String(defined(that))
         }
@@ -6335,9 +6335,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_fails-is-regexp.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var MATCH = require("./_wks")("match")
-        module.exports = function (KEY) {
+        module.exports = function(KEY) {
           var re = /./
           try {
             "/./"[KEY](re)
@@ -6355,7 +6355,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_wks": "../../node_modules/core-js/modules/_wks.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.ends-with.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 21.1.3.6 String.prototype.endsWith(searchString [, endPosition])
         "use strict"
         var $export = require("./_export")
@@ -6385,10 +6385,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.fixed.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.6 String.prototype.fixed()
-        require("./_string-html")("fixed", function (createHTML) {
+        require("./_string-html")("fixed", function(createHTML) {
           return function fixed() {
             return createHTML(this, "tt", "", "")
           }
@@ -6397,10 +6397,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.fontcolor.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.7 String.prototype.fontcolor(color)
-        require("./_string-html")("fontcolor", function (createHTML) {
+        require("./_string-html")("fontcolor", function(createHTML) {
           return function fontcolor(color) {
             return createHTML(this, "font", "color", color)
           }
@@ -6409,10 +6409,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.fontsize.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.8 String.prototype.fontsize(size)
-        require("./_string-html")("fontsize", function (createHTML) {
+        require("./_string-html")("fontsize", function(createHTML) {
           return function fontsize(size) {
             return createHTML(this, "font", "size", size)
           }
@@ -6421,7 +6421,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.from-code-point.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
         var toAbsoluteIndex = require("./_to-absolute-index")
         var fromCharCode = String.fromCharCode
@@ -6460,7 +6460,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.includes.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 21.1.3.7 String.prototype.includes(searchString, position = 0)
         "use strict"
         var $export = require("./_export")
@@ -6483,10 +6483,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.italics.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.9 String.prototype.italics()
-        require("./_string-html")("italics", function (createHTML) {
+        require("./_string-html")("italics", function(createHTML) {
           return function italics() {
             return createHTML(this, "i", "", "")
           }
@@ -6495,7 +6495,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.iterator.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $at = require("./_string-at")(true)
 
@@ -6503,12 +6503,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         require("./_iter-define")(
           String,
           "String",
-          function (iterated) {
+          function(iterated) {
             this._t = String(iterated) // target
             this._i = 0 // next index
             // 21.1.5.2.1 %StringIteratorPrototype%.next()
           },
-          function () {
+          function() {
             var O = this._t
             var index = this._i
             var point
@@ -6525,10 +6525,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.link.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.10 String.prototype.link(url)
-        require("./_string-html")("link", function (createHTML) {
+        require("./_string-html")("link", function(createHTML) {
           return function link(url) {
             return createHTML(this, "a", "href", url)
           }
@@ -6537,7 +6537,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/_string-repeat.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var toInteger = require("./_to-integer")
         var defined = require("./_defined")
@@ -6557,13 +6557,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_string-pad.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // https://github.com/tc39/proposal-string-pad-start-end
         var toLength = require("./_to-length")
         var repeat = require("./_string-repeat")
         var defined = require("./_defined")
 
-        module.exports = function (that, maxLength, fillString, left) {
+        module.exports = function(that, maxLength, fillString, left) {
           var S = String(defined(that))
           var stringLength = S.length
           var fillStr = fillString === undefined ? " " : String(fillString)
@@ -6582,7 +6582,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.string.pad-start.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // https://github.com/tc39/proposal-string-pad-start-end
         var $export = require("./_export")
@@ -6605,7 +6605,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es7.string.pad-end.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // https://github.com/tc39/proposal-string-pad-start-end
         var $export = require("./_export")
@@ -6628,7 +6628,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.raw.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
         var toIObject = require("./_to-iobject")
         var toLength = require("./_to-length")
@@ -6656,7 +6656,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.repeat.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
 
         $export($export.P, "String", {
@@ -6670,10 +6670,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.small.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.11 String.prototype.small()
-        require("./_string-html")("small", function (createHTML) {
+        require("./_string-html")("small", function(createHTML) {
           return function small() {
             return createHTML(this, "small", "", "")
           }
@@ -6682,7 +6682,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.starts-with.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // 21.1.3.18 String.prototype.startsWith(searchString [, position ])
         "use strict"
         var $export = require("./_export")
@@ -6712,10 +6712,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.string.strike.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.12 String.prototype.strike()
-        require("./_string-html")("strike", function (createHTML) {
+        require("./_string-html")("strike", function(createHTML) {
           return function strike() {
             return createHTML(this, "strike", "", "")
           }
@@ -6724,10 +6724,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.sub.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.13 String.prototype.sub()
-        require("./_string-html")("sub", function (createHTML) {
+        require("./_string-html")("sub", function(createHTML) {
           return function sub() {
             return createHTML(this, "sub", "", "")
           }
@@ -6736,10 +6736,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es6.string.sup.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // B.2.3.14 String.prototype.sup()
-        require("./_string-html")("sup", function (createHTML) {
+        require("./_string-html")("sup", function(createHTML) {
           return function sup() {
             return createHTML(this, "sup", "", "")
           }
@@ -6748,12 +6748,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-html": "../../node_modules/core-js/modules/_string-html.js" }
     ],
     "../../node_modules/core-js/modules/es7.string.trim-left.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
         require("./_string-trim")(
           "trimLeft",
-          function ($trim) {
+          function($trim) {
             return function trimLeft() {
               return $trim(this, 1)
             }
@@ -6764,12 +6764,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-trim": "../../node_modules/core-js/modules/_string-trim.js" }
     ],
     "../../node_modules/core-js/modules/es7.string.trim-right.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
         require("./_string-trim")(
           "trimRight",
-          function ($trim) {
+          function($trim) {
             return function trimRight() {
               return $trim(this, 2)
             }
@@ -6780,7 +6780,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_string-trim": "../../node_modules/core-js/modules/_string-trim.js" }
     ],
     "../../node_modules/core-js/modules/_typed.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = require("./_global")
         var hide = require("./_hide")
         var uid = require("./_uid")
@@ -6817,11 +6817,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_to-index.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // https://tc39.github.io/ecma262/#sec-toindex
         var toInteger = require("./_to-integer")
         var toLength = require("./_to-length")
-        module.exports = function (it) {
+        module.exports = function(it) {
           if (it === undefined) return 0
           var number = toInteger(it)
           var length = toLength(number)
@@ -6835,7 +6835,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_typed-buffer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var global = require("./_global")
         var DESCRIPTORS = require("./_descriptors")
@@ -6972,7 +6972,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         function addGetter(C, key, internal) {
           dP(C[PROTOTYPE], key, {
-            get: function () {
+            get: function() {
               return this[internal]
             }
           })
@@ -7080,13 +7080,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           })
         } else {
           if (
-            !fails(function () {
+            !fails(function() {
               $ArrayBuffer(1)
             }) ||
-            !fails(function () {
+            !fails(function() {
               new $ArrayBuffer(-1) // eslint-disable-line no-new
             }) ||
-            fails(function () {
+            fails(function() {
               new $ArrayBuffer() // eslint-disable-line no-new
               new $ArrayBuffer(1.5) // eslint-disable-line no-new
               new $ArrayBuffer(NaN) // eslint-disable-line no-new
@@ -7147,7 +7147,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.typed.array-buffer.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var $export = require("./_export")
         var $typed = require("./_typed")
@@ -7180,7 +7180,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           $export.P +
             $export.U +
             $export.F *
-              require("./_fails")(function () {
+              require("./_fails")(function() {
                 return !new $ArrayBuffer(2).slice(1, undefined).byteLength
               }),
           ARRAY_BUFFER,
@@ -7221,7 +7221,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/_typed-array.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = arguments[3]
         ;("use strict")
         if (require("./_descriptors")) {
@@ -7303,11 +7303,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           var VIEW = $typed.VIEW
           var WRONG_LENGTH = "Wrong length!"
 
-          var $map = createArrayMethod(1, function (O, length) {
+          var $map = createArrayMethod(1, function(O, length) {
             return allocate(speciesConstructor(O, O[DEF_CONSTRUCTOR]), length)
           })
 
-          var LITTLE_ENDIAN = fails(function () {
+          var LITTLE_ENDIAN = fails(function() {
             // eslint-disable-next-line no-undef
             return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1
           })
@@ -7315,33 +7315,33 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           var FORCED_SET =
             !!Uint8Array &&
             !!Uint8Array[PROTOTYPE].set &&
-            fails(function () {
+            fails(function() {
               new Uint8Array(1).set({})
             })
 
-          var toOffset = function (it, BYTES) {
+          var toOffset = function(it, BYTES) {
             var offset = toInteger(it)
             if (offset < 0 || offset % BYTES) throw RangeError("Wrong offset!")
             return offset
           }
 
-          var validate = function (it) {
+          var validate = function(it) {
             if (isObject(it) && TYPED_ARRAY in it) return it
             throw TypeError(it + " is not a typed array!")
           }
 
-          var allocate = function (C, length) {
+          var allocate = function(C, length) {
             if (!(isObject(C) && TYPED_CONSTRUCTOR in C)) {
               throw TypeError("It is not a typed array constructor!")
             }
             return new C(length)
           }
 
-          var speciesFromList = function (O, list) {
+          var speciesFromList = function(O, list) {
             return fromList(speciesConstructor(O, O[DEF_CONSTRUCTOR]), list)
           }
 
-          var fromList = function (C, list) {
+          var fromList = function(C, list) {
             var index = 0
             var length = list.length
             var result = allocate(C, length)
@@ -7349,9 +7349,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             return result
           }
 
-          var addGetter = function (it, key, internal) {
+          var addGetter = function(it, key, internal) {
             dP(it, key, {
-              get: function () {
+              get: function() {
                 return this._d[internal]
               }
             })
@@ -7396,7 +7396,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           // iOS Safari 6.x fails here
           var TO_LOCALE_BUG =
             !!Uint8Array &&
-            fails(function () {
+            fails(function() {
               arrayToLocaleString.call(new Uint8Array(1))
             })
 
@@ -7553,7 +7553,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             }
           }
 
-          var isTAIndex = function (target, key) {
+          var isTAIndex = function(target, key) {
             return (
               isObject(target) &&
               target[TYPED_ARRAY] &&
@@ -7596,7 +7596,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           })
 
           if (
-            fails(function () {
+            fails(function() {
               arrayToString.call({})
             })
           ) {
@@ -7611,7 +7611,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           redefineAll($TypedArrayPrototype$, {
             slice: $slice,
             set: $set,
-            constructor: function () {
+            constructor: function() {
               /* noop */
             },
             toString: arrayToString,
@@ -7622,13 +7622,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           addGetter($TypedArrayPrototype$, "byteLength", "l")
           addGetter($TypedArrayPrototype$, "length", "e")
           dP($TypedArrayPrototype$, TAG, {
-            get: function () {
+            get: function() {
               return this[TYPED_ARRAY]
             }
           })
 
           // eslint-disable-next-line max-statements
-          module.exports = function (KEY, BYTES, wrapper, CLAMPED) {
+          module.exports = function(KEY, BYTES, wrapper, CLAMPED) {
             CLAMPED = !!CLAMPED
             var NAME = KEY + (CLAMPED ? "Clamped" : "") + "Array"
             var GETTER = "get" + KEY
@@ -7639,29 +7639,29 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             var FORCED = !TypedArray || !$typed.ABV
             var O = {}
             var TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE]
-            var getter = function (that, index) {
+            var getter = function(that, index) {
               var data = that._d
               return data.v[GETTER](index * BYTES + data.o, LITTLE_ENDIAN)
             }
-            var setter = function (that, index, value) {
+            var setter = function(that, index, value) {
               var data = that._d
               if (CLAMPED)
                 value = (value = Math.round(value)) < 0 ? 0 : value > 0xff ? 0xff : value & 0xff
               data.v[SETTER](index * BYTES + data.o, value, LITTLE_ENDIAN)
             }
-            var addElement = function (that, index) {
+            var addElement = function(that, index) {
               dP(that, index, {
-                get: function () {
+                get: function() {
                   return getter(this, index)
                 },
-                set: function (value) {
+                set: function(value) {
                   return setter(this, index, value)
                 },
                 enumerable: true
               })
             }
             if (FORCED) {
-              TypedArray = wrapper(function (that, data, $offset, $length) {
+              TypedArray = wrapper(function(that, data, $offset, $length) {
                 anInstance(that, TypedArray, NAME, "_d")
                 var index = 0
                 var offset = 0
@@ -7704,20 +7704,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               TypedArrayPrototype = TypedArray[PROTOTYPE] = create($TypedArrayPrototype$)
               hide(TypedArrayPrototype, "constructor", TypedArray)
             } else if (
-              !fails(function () {
+              !fails(function() {
                 TypedArray(1)
               }) ||
-              !fails(function () {
+              !fails(function() {
                 new TypedArray(-1) // eslint-disable-line no-new
               }) ||
-              !$iterDetect(function (iter) {
+              !$iterDetect(function(iter) {
                 new TypedArray() // eslint-disable-line no-new
                 new TypedArray(null) // eslint-disable-line no-new
                 new TypedArray(1.5) // eslint-disable-line no-new
                 new TypedArray(iter) // eslint-disable-line no-new
               }, true)
             ) {
-              TypedArray = wrapper(function (that, data, $offset, $length) {
+              TypedArray = wrapper(function(that, data, $offset, $length) {
                 anInstance(that, TypedArray, NAME)
                 var klass
                 // `ws` module bug, temporarily remove validation length for Uint8Array
@@ -7739,7 +7739,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               })
               arrayForEach(
                 TAC !== Function.prototype ? gOPN(Base).concat(gOPN(TAC)) : gOPN(Base),
-                function (key) {
+                function(key) {
                   if (!(key in TypedArray)) hide(TypedArray, key, Base[key])
                 }
               )
@@ -7758,7 +7758,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
             if (CLAMPED ? new TypedArray(1)[TAG] != NAME : !(TAG in TypedArrayPrototype)) {
               dP(TypedArrayPrototype, TAG, {
-                get: function () {
+                get: function() {
                   return NAME
                 }
               })
@@ -7775,7 +7775,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             $export(
               $export.S +
                 $export.F *
-                  fails(function () {
+                  fails(function() {
                     Base.of.call(TypedArray, 1)
                   }),
               NAME,
@@ -7802,7 +7802,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             $export(
               $export.P +
                 $export.F *
-                  fails(function () {
+                  fails(function() {
                     new TypedArray(1).slice()
                   }),
               NAME,
@@ -7812,10 +7812,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             $export(
               $export.P +
                 $export.F *
-                  (fails(function () {
+                  (fails(function() {
                     return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString()
                   }) ||
-                    !fails(function () {
+                    !fails(function() {
                       TypedArrayPrototype.toLocaleString.call([1, 2])
                     })),
               NAME,
@@ -7826,7 +7826,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             if (!LIBRARY && !CORRECT_ITER_NAME) hide(TypedArrayPrototype, ITERATOR, $iterator)
           }
         } else
-          module.exports = function () {
+          module.exports = function() {
             /* empty */
           }
       },
@@ -7874,8 +7874,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.typed.int8-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Int8", 1, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Int8", 1, function(init) {
           return function Int8Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7884,8 +7884,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.uint8-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Uint8", 1, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Uint8", 1, function(init) {
           return function Uint8Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7894,11 +7894,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         require("./_typed-array")(
           "Uint8",
           1,
-          function (init) {
+          function(init) {
             return function Uint8ClampedArray(data, byteOffset, length) {
               return init(this, data, byteOffset, length)
             }
@@ -7909,8 +7909,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.int16-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Int16", 2, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Int16", 2, function(init) {
           return function Int16Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7919,8 +7919,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.uint16-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Uint16", 2, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Uint16", 2, function(init) {
           return function Uint16Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7929,8 +7929,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.int32-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Int32", 4, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Int32", 4, function(init) {
           return function Int32Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7939,8 +7939,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.uint32-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Uint32", 4, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Uint32", 4, function(init) {
           return function Uint32Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7949,8 +7949,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.float32-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Float32", 4, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Float32", 4, function(init) {
           return function Float32Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7959,8 +7959,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/es6.typed.float64-array.js": [
-      function (require, module, exports) {
-        require("./_typed-array")("Float64", 8, function (init) {
+      function(require, module, exports) {
+        require("./_typed-array")("Float64", 8, function(init) {
           return function Float64Array(data, byteOffset, length) {
             return init(this, data, byteOffset, length)
           }
@@ -7969,7 +7969,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./_typed-array": "../../node_modules/core-js/modules/_typed-array.js" }
     ],
     "../../node_modules/core-js/modules/_collection-weak.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var redefineAll = require("./_redefine-all")
         var getWeak = require("./_meta").getWeak
@@ -7985,32 +7985,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var id = 0
 
         // fallback for uncaught frozen keys
-        var uncaughtFrozenStore = function (that) {
+        var uncaughtFrozenStore = function(that) {
           return that._l || (that._l = new UncaughtFrozenStore())
         }
-        var UncaughtFrozenStore = function () {
+        var UncaughtFrozenStore = function() {
           this.a = []
         }
-        var findUncaughtFrozen = function (store, key) {
-          return arrayFind(store.a, function (it) {
+        var findUncaughtFrozen = function(store, key) {
+          return arrayFind(store.a, function(it) {
             return it[0] === key
           })
         }
         UncaughtFrozenStore.prototype = {
-          get: function (key) {
+          get: function(key) {
             var entry = findUncaughtFrozen(this, key)
             if (entry) return entry[1]
           },
-          has: function (key) {
+          has: function(key) {
             return !!findUncaughtFrozen(this, key)
           },
-          set: function (key, value) {
+          set: function(key, value) {
             var entry = findUncaughtFrozen(this, key)
             if (entry) entry[1] = value
             else this.a.push([key, value])
           },
-          delete: function (key) {
-            var index = arrayFindIndex(this.a, function (it) {
+          delete: function(key) {
+            var index = arrayFindIndex(this.a, function(it) {
               return it[0] === key
             })
             if (~index) this.a.splice(index, 1)
@@ -8019,8 +8019,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         }
 
         module.exports = {
-          getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
-            var C = wrapper(function (that, iterable) {
+          getConstructor: function(wrapper, NAME, IS_MAP, ADDER) {
+            var C = wrapper(function(that, iterable) {
               anInstance(that, C, NAME, "_i")
               that._t = NAME // collection type
               that._i = id++ // collection id
@@ -8030,7 +8030,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             redefineAll(C.prototype, {
               // 23.3.3.2 WeakMap.prototype.delete(key)
               // 23.4.3.3 WeakSet.prototype.delete(value)
-              delete: function (key) {
+              delete: function(key) {
                 if (!isObject(key)) return false
                 var data = getWeak(key)
                 if (data === true) return uncaughtFrozenStore(validate(this, NAME))["delete"](key)
@@ -8047,7 +8047,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             })
             return C
           },
-          def: function (that, key, value) {
+          def: function(that, key, value) {
             var data = getWeak(anObject(key), true)
             if (data === true) uncaughtFrozenStore(that).set(key, value)
             else data[that._i] = value
@@ -8069,7 +8069,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.weak-map.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var global = require("./_global")
         var each = require("./_array-methods")(0)
@@ -8087,7 +8087,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         var uncaughtFrozenStore = weak.ufstore
         var InternalMap
 
-        var wrapper = function (get) {
+        var wrapper = function(get) {
           return function WeakMap() {
             return get(this, arguments.length > 0 ? arguments[0] : undefined)
           }
@@ -8123,10 +8123,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           InternalMap = weak.getConstructor(wrapper, WEAK_MAP)
           assign(InternalMap.prototype, methods)
           meta.NEED = true
-          each(["delete", "has", "get", "set"], function (key) {
+          each(["delete", "has", "get", "set"], function(key) {
             var proto = $WeakMap.prototype
             var method = proto[key]
-            redefine(proto, key, function (a, b) {
+            redefine(proto, key, function(a, b) {
               // store frozen objects on internal weakmap shim
               if (isObject(a) && !isExtensible(a)) {
                 if (!this._f) this._f = new InternalMap()
@@ -8152,7 +8152,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/es6.weak-set.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
         var weak = require("./_collection-weak")
         var validate = require("./_validate-collection")
@@ -8161,7 +8161,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // 23.4 WeakSet Objects
         require("./_collection")(
           WEAK_SET,
-          function (get) {
+          function(get) {
             return function WeakSet() {
               return get(this, arguments.length > 0 ? arguments[0] : undefined)
             }
@@ -8184,20 +8184,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/web.timers.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // ie9- setTimeout & setInterval additional parameters fix
         var global = require("./_global")
         var $export = require("./_export")
         var userAgent = require("./_user-agent")
         var slice = [].slice
         var MSIE = /MSIE .\./.test(userAgent) // <- dirty ie9- check
-        var wrap = function (set) {
-          return function (fn, time /* , ...args */) {
+        var wrap = function(set) {
+          return function(fn, time /* , ...args */) {
             var boundArgs = arguments.length > 2
             var args = boundArgs ? slice.call(arguments, 2) : false
             return set(
               boundArgs
-                ? function () {
+                ? function() {
                     // eslint-disable-next-line no-new-func
                     ;(typeof fn == "function" ? fn : Function(fn)).apply(this, args)
                   }
@@ -8218,7 +8218,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/web.immediate.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $export = require("./_export")
         var $task = require("./_task")
         $export($export.G + $export.B, {
@@ -8232,7 +8232,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/core-js/modules/web.dom.iterable.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var $iterators = require("./es6.array.iterator")
         var getKeys = require("./_object-keys")
         var redefine = require("./_redefine")
@@ -8304,7 +8304,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/regenerator-runtime/runtime.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = arguments[3]
         /**
          * Copyright (c) 2014-present, Facebook, Inc.
@@ -8313,7 +8313,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
          * LICENSE file in the root directory of this source tree.
          */
 
-        !(function (global) {
+        !(function(global) {
           "use strict"
 
           var Op = Object.prototype
@@ -8394,7 +8394,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           // This is a polyfill for %IteratorPrototype% for environments that
           // don't natively support it.
           var IteratorPrototype = {}
-          IteratorPrototype[iteratorSymbol] = function () {
+          IteratorPrototype[iteratorSymbol] = function() {
             return this
           }
 
@@ -8421,14 +8421,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           // Helper for defining the .next, .throw, and .return methods of the
           // Iterator interface in terms of a single ._invoke method.
           function defineIteratorMethods(prototype) {
-            ;["next", "throw", "return"].forEach(function (method) {
-              prototype[method] = function (arg) {
+            ;["next", "throw", "return"].forEach(function(method) {
+              prototype[method] = function(arg) {
                 return this._invoke(method, arg)
               }
             })
           }
 
-          runtime.isGeneratorFunction = function (genFun) {
+          runtime.isGeneratorFunction = function(genFun) {
             var ctor = typeof genFun === "function" && genFun.constructor
             return ctor
               ? ctor === GeneratorFunction ||
@@ -8438,7 +8438,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               : false
           }
 
-          runtime.mark = function (genFun) {
+          runtime.mark = function(genFun) {
             if (Object.setPrototypeOf) {
               Object.setPrototypeOf(genFun, GeneratorFunctionPrototype)
             } else {
@@ -8455,7 +8455,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
           // `hasOwn.call(value, "__await")` to determine if the yielded value is
           // meant to be awaited.
-          runtime.awrap = function (arg) {
+          runtime.awrap = function(arg) {
             return { __await: arg }
           }
 
@@ -8469,16 +8469,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                 var value = result.value
                 if (value && typeof value === "object" && hasOwn.call(value, "__await")) {
                   return Promise.resolve(value.__await).then(
-                    function (value) {
+                    function(value) {
                       invoke("next", value, resolve, reject)
                     },
-                    function (err) {
+                    function(err) {
                       invoke("throw", err, resolve, reject)
                     }
                   )
                 }
 
-                return Promise.resolve(value).then(function (unwrapped) {
+                return Promise.resolve(value).then(function(unwrapped) {
                   // When a yielded Promise is resolved, its final value becomes
                   // the .value of the Promise<{value,done}> result for the
                   // current iteration. If the Promise is rejected, however, the
@@ -8504,7 +8504,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
             function enqueue(method, arg) {
               function callInvokeWithMethodAndArg() {
-                return new Promise(function (resolve, reject) {
+                return new Promise(function(resolve, reject) {
                   invoke(method, arg, resolve, reject)
                 })
               }
@@ -8538,7 +8538,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           }
 
           defineIteratorMethods(AsyncIterator.prototype)
-          AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+          AsyncIterator.prototype[asyncIteratorSymbol] = function() {
             return this
           }
           runtime.AsyncIterator = AsyncIterator
@@ -8546,12 +8546,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           // Note that simple async functions are implemented on top of
           // AsyncIterator objects; they just return a Promise for the value of
           // the final result produced by the iterator.
-          runtime.async = function (innerFn, outerFn, self, tryLocsList) {
+          runtime.async = function(innerFn, outerFn, self, tryLocsList) {
             var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList))
 
             return runtime.isGeneratorFunction(outerFn)
               ? iter // If outerFn is a generator, return the full iterator.
-              : iter.next().then(function (result) {
+              : iter.next().then(function(result) {
                   return result.done ? result.value : iter.next()
                 })
           }
@@ -8720,11 +8720,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           // iterator prototype chain incorrectly implement this, causing the Generator
           // object to not be returned from this call. This ensures that doesn't happen.
           // See https://github.com/facebook/regenerator/issues/274 for more details.
-          Gp[iteratorSymbol] = function () {
+          Gp[iteratorSymbol] = function() {
             return this
           }
 
-          Gp.toString = function () {
+          Gp.toString = function() {
             return "[object Generator]"
           }
 
@@ -8759,7 +8759,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             this.reset(true)
           }
 
-          runtime.keys = function (object) {
+          runtime.keys = function(object) {
             var keys = []
             for (var key in object) {
               keys.push(key)
@@ -8830,7 +8830,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           Context.prototype = {
             constructor: Context,
 
-            reset: function (skipTempReset) {
+            reset: function(skipTempReset) {
               this.prev = 0
               this.next = 0
               // Resetting context._sent for legacy support of Babel's
@@ -8854,7 +8854,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               }
             },
 
-            stop: function () {
+            stop: function() {
               this.done = true
 
               var rootEntry = this.tryEntries[0]
@@ -8866,7 +8866,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               return this.rval
             },
 
-            dispatchException: function (exception) {
+            dispatchException: function(exception) {
               if (this.done) {
                 throw exception
               }
@@ -8923,7 +8923,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               }
             },
 
-            abrupt: function (type, arg) {
+            abrupt: function(type, arg) {
               for (var i = this.tryEntries.length - 1; i >= 0; --i) {
                 var entry = this.tryEntries[i]
                 if (
@@ -8960,7 +8960,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               return this.complete(record)
             },
 
-            complete: function (record, afterLoc) {
+            complete: function(record, afterLoc) {
               if (record.type === "throw") {
                 throw record.arg
               }
@@ -8978,7 +8978,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               return ContinueSentinel
             },
 
-            finish: function (finallyLoc) {
+            finish: function(finallyLoc) {
               for (var i = this.tryEntries.length - 1; i >= 0; --i) {
                 var entry = this.tryEntries[i]
                 if (entry.finallyLoc === finallyLoc) {
@@ -8989,7 +8989,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               }
             },
 
-            catch: function (tryLoc) {
+            catch: function(tryLoc) {
               for (var i = this.tryEntries.length - 1; i >= 0; --i) {
                 var entry = this.tryEntries[i]
                 if (entry.tryLoc === tryLoc) {
@@ -9007,7 +9007,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
               throw new Error("illegal catch attempt")
             },
 
-            delegateYield: function (iterable, resultName, nextLoc) {
+            delegateYield: function(iterable, resultName, nextLoc) {
               this.delegate = {
                 iterator: values(iterable),
                 resultName: resultName,
@@ -9027,7 +9027,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           // In sloppy mode, unbound `this` refers to the global object, fallback to
           // Function constructor if we're in global strict mode. That is sadly a form
           // of indirect eval which violates Content Security Policy.
-          (function () {
+          (function() {
             return this
           })() || Function("return this")()
         )
@@ -9035,7 +9035,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/regenerator-runtime/runtime-module.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         /**
          * Copyright (c) 2014-present, Facebook, Inc.
          *
@@ -9046,7 +9046,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // This method of obtaining a reference to the global object needs to be
         // kept identical to the way it is obtained in runtime.js
         var g =
-          (function () {
+          (function() {
             return this
           })() || Function("return this")()
 
@@ -9078,7 +9078,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./runtime": "../../node_modules/regenerator-runtime/runtime.js" }
     ],
     "mapbox.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         Object.defineProperty(exports, "__esModule", {
@@ -9098,7 +9098,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           })
           var bounds = new mapboxgl.LngLatBounds()
           console.log(locations)
-          locations.forEach(function (loc) {
+          locations.forEach(function(loc) {
             var element = document.createElement("div")
             element.className = "marker"
             new mapboxgl.Marker({
@@ -9150,7 +9150,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/helpers/bind.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         module.exports = function bind(fn, thisArg) {
@@ -9166,7 +9166,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/utils.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var bind = require("./helpers/bind")
@@ -9521,7 +9521,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./helpers/bind": "../../node_modules/axios/lib/helpers/bind.js" }
     ],
     "../../node_modules/axios/lib/helpers/buildURL.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -9597,7 +9597,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/core/InterceptorManager.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -9654,7 +9654,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/core/transformData.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -9679,7 +9679,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/cancel/isCancel.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         module.exports = function isCancel(value) {
@@ -9689,7 +9689,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/helpers/normalizeHeaderName.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("../utils")
@@ -9706,7 +9706,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/core/enhanceError.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         /**
@@ -9729,7 +9729,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           error.response = response
           error.isAxiosError = true
 
-          error.toJSON = function () {
+          error.toJSON = function() {
             return {
               // Standard
               message: this.message,
@@ -9753,7 +9753,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/core/createError.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var enhanceError = require("./enhanceError")
@@ -9776,7 +9776,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./enhanceError": "../../node_modules/axios/lib/core/enhanceError.js" }
     ],
     "../../node_modules/axios/lib/core/settle.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var createError = require("./createError")
@@ -9808,7 +9808,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./createError": "../../node_modules/axios/lib/core/createError.js" }
     ],
     "../../node_modules/axios/lib/helpers/isAbsoluteURL.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         /**
@@ -9827,7 +9827,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/helpers/combineURLs.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         /**
@@ -9846,7 +9846,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/core/buildFullPath.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var isAbsoluteURL = require("../helpers/isAbsoluteURL")
@@ -9874,7 +9874,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/axios/lib/helpers/parseHeaders.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -9947,7 +9947,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/helpers/isURLSameOrigin.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -10018,7 +10018,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/helpers/cookies.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -10074,7 +10074,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/adapters/xhr.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -10281,7 +10281,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         // shim for using process in browser
         var process = (module.exports = {}) // cached from whatever global is present so that test runners that stub it
         // don't break things.  But we need to wrap it in a try catch in case it is
@@ -10299,7 +10299,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           throw new Error("clearTimeout has not been defined")
         }
 
-        ;(function () {
+        ;(function() {
           try {
             if (typeof setTimeout === "function") {
               cachedSetTimeout = setTimeout
@@ -10423,7 +10423,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           runClearTimeout(timeout)
         }
 
-        process.nextTick = function (fun) {
+        process.nextTick = function(fun) {
           var args = new Array(arguments.length - 1)
 
           if (arguments.length > 1) {
@@ -10444,7 +10444,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           this.array = array
         }
 
-        Item.prototype.run = function () {
+        Item.prototype.run = function() {
           this.fun.apply(null, this.array)
         }
 
@@ -10467,30 +10467,30 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         process.prependListener = noop
         process.prependOnceListener = noop
 
-        process.listeners = function (name) {
+        process.listeners = function(name) {
           return []
         }
 
-        process.binding = function (name) {
+        process.binding = function(name) {
           throw new Error("process.binding is not supported")
         }
 
-        process.cwd = function () {
+        process.cwd = function() {
           return "/"
         }
 
-        process.chdir = function (dir) {
+        process.chdir = function(dir) {
           throw new Error("process.chdir is not supported")
         }
 
-        process.umask = function () {
+        process.umask = function() {
           return 0
         }
       },
       {}
     ],
     "../../node_modules/axios/lib/defaults.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var process = require("process")
         ;("use strict")
 
@@ -10611,7 +10611,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/axios/lib/core/dispatchRequest.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -10699,7 +10699,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/axios/lib/core/mergeConfig.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("../utils")
@@ -10790,7 +10790,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "../utils": "../../node_modules/axios/lib/utils.js" }
     ],
     "../../node_modules/axios/lib/core/Axios.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./../utils")
@@ -10865,7 +10865,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // Provide aliases for supported request methods
         utils.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
           /*eslint func-names:0*/
-          Axios.prototype[method] = function (url, config) {
+          Axios.prototype[method] = function(url, config) {
             return this.request(
               utils.merge(config || {}, {
                 method: method,
@@ -10877,7 +10877,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
           /*eslint func-names:0*/
-          Axios.prototype[method] = function (url, data, config) {
+          Axios.prototype[method] = function(url, data, config) {
             return this.request(
               utils.merge(config || {}, {
                 method: method,
@@ -10899,7 +10899,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/axios/lib/cancel/Cancel.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         /**
@@ -10923,7 +10923,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/cancel/CancelToken.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var Cancel = require("./Cancel")
@@ -10985,7 +10985,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { "./Cancel": "../../node_modules/axios/lib/cancel/Cancel.js" }
     ],
     "../../node_modules/axios/lib/helpers/spread.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         /**
@@ -11017,7 +11017,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "../../node_modules/axios/lib/axios.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         var utils = require("./utils")
@@ -11085,13 +11085,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../node_modules/axios/index.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         module.exports = require("./lib/axios")
       },
       { "./lib/axios": "../../node_modules/axios/lib/axios.js" }
     ],
     "alerts.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         Object.defineProperty(exports, "__esModule", {
@@ -11119,7 +11119,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       {}
     ],
     "login.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         Object.defineProperty(exports, "__esModule", {
@@ -11151,10 +11151,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         }
 
         function _asyncToGenerator(fn) {
-          return function () {
+          return function() {
             var self = this,
               args = arguments
-            return new Promise(function (resolve, reject) {
+            return new Promise(function(resolve, reject) {
               var gen = fn.apply(self, args)
               function _next(value) {
                 asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value)
@@ -11167,7 +11167,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           }
         }
 
-        var login = /*#__PURE__*/ (function () {
+        var login = /*#__PURE__*/ (function() {
           var _ref = _asyncToGenerator(
             /*#__PURE__*/ regeneratorRuntime.mark(function _callee(email, password) {
               var res
@@ -11192,7 +11192,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
                         if (res.data.status === "success") {
                           ;(0, _alerts.showAlert)("success", "Logged in successfully!")
-                          window.setTimeout(function () {
+                          window.setTimeout(function() {
                             location.assign("/")
                           }, 1500)
                         }
@@ -11225,7 +11225,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
         exports.login = login
 
-        var logout = /*#__PURE__*/ (function () {
+        var logout = /*#__PURE__*/ (function() {
           var _ref2 = _asyncToGenerator(
             /*#__PURE__*/ regeneratorRuntime.mark(function _callee2() {
               var res
@@ -11276,7 +11276,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       { axios: "../../node_modules/axios/index.js", "./alerts": "alerts.js" }
     ],
     "index.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         "use strict"
 
         require("core-js/modules/es6.array.copy-within")
@@ -11557,10 +11557,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         }
 
         function _asyncToGenerator(fn) {
-          return function () {
+          return function() {
             var self = this,
               args = arguments
-            return new Promise(function (resolve, reject) {
+            return new Promise(function(resolve, reject) {
               var gen = fn.apply(self, args)
               function _next(value) {
                 asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value)
@@ -11589,7 +11589,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         }
 
         if (loginForm)
-          loginForm.addEventListener("submit", function (e) {
+          loginForm.addEventListener("submit", function(e) {
             e.preventDefault()
             var email = document.getElementById("email").value
             var password = document.getElementById("password").value
@@ -11597,7 +11597,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           })
         if (logOutBtn) logOutBtn.addEventListener("click", _login.logout)
         if (userDataForm)
-          userDataForm.addEventListener("submit", function (e) {
+          userDataForm.addEventListener("submit", function(e) {
             e.preventDefault()
             var form = new FormData()
             form.append("name", document.getElementById("name").value)
@@ -11608,7 +11608,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         if (userPasswordForm)
           userPasswordForm.addEventListener(
             "submit",
-            /*#__PURE__*/ (function () {
+            /*#__PURE__*/ (function() {
               var _ref = _asyncToGenerator(
                 /*#__PURE__*/ regeneratorRuntime.mark(function _callee(e) {
                   var passwordCurrent, password, passwordConfirm
@@ -11647,13 +11647,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                 })
               )
 
-              return function (_x) {
+              return function(_x) {
                 return _ref.apply(this, arguments)
               }
             })()
           )
         if (bookBtn)
-          bookBtn.addEventListener("click", function (e) {
+          bookBtn.addEventListener("click", function(e) {
             e.target.textContent = "Processing..."
             var tourId = e.target.dataset.tourId
             bookTour(tourId).then()
@@ -11881,7 +11881,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       }
     ],
     "../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js": [
-      function (require, module, exports) {
+      function(require, module, exports) {
         var global = arguments[3]
         var OVERLAY_ID = "__parcel__error__overlay__"
         var OldModule = module.bundle.Module
@@ -11892,10 +11892,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             data: module.bundle.hotData,
             _acceptCallbacks: [],
             _disposeCallbacks: [],
-            accept: function (fn) {
-              this._acceptCallbacks.push(fn || function () {})
+            accept: function(fn) {
+              this._acceptCallbacks.push(fn || function() {})
             },
-            dispose: function (fn) {
+            dispose: function(fn) {
               this._disposeCallbacks.push(fn)
             }
           }
@@ -11911,14 +11911,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           var protocol = location.protocol === "https:" ? "wss" : "ws"
           var ws = new WebSocket(protocol + "://" + hostname + ":" + "13800" + "/")
 
-          ws.onmessage = function (event) {
+          ws.onmessage = function(event) {
             checkedAssets = {}
             assetsToAccept = []
             var data = JSON.parse(event.data)
 
             if (data.type === "update") {
               var handled = false
-              data.assets.forEach(function (asset) {
+              data.assets.forEach(function(asset) {
                 if (!asset.isNew) {
                   var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id)
 
@@ -11930,16 +11930,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
               handled =
                 handled ||
-                data.assets.every(function (asset) {
+                data.assets.every(function(asset) {
                   return asset.type === "css" && asset.generated.js
                 })
 
               if (handled) {
                 console.clear()
-                data.assets.forEach(function (asset) {
+                data.assets.forEach(function(asset) {
                   hmrApply(global.parcelRequire, asset)
                 })
-                assetsToAccept.forEach(function (v) {
+                assetsToAccept.forEach(function(v) {
                   hmrAcceptRun(v[0], v[1])
                 })
               } else if (location.reload) {
@@ -11951,7 +11951,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             if (data.type === "reload") {
               ws.close()
 
-              ws.onclose = function () {
+              ws.onclose = function() {
                 location.reload()
               }
             }
@@ -12066,7 +12066,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
             return true
           }
 
-          return getParents(global.parcelRequire, id).some(function (id) {
+          return getParents(global.parcelRequire, id).some(function(id) {
             return hmrAcceptCheck(global.parcelRequire, id)
           })
         }
@@ -12080,7 +12080,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           }
 
           if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
-            cached.hot._disposeCallbacks.forEach(function (cb) {
+            cached.hot._disposeCallbacks.forEach(function(cb) {
               cb(bundle.hotData)
             })
           }
@@ -12090,7 +12090,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           cached = bundle.cache[id]
 
           if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-            cached.hot._acceptCallbacks.forEach(function (cb) {
+            cached.hot._acceptCallbacks.forEach(function(cb) {
               cb()
             })
 
