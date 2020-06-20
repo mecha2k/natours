@@ -1,9 +1,8 @@
-/* eslint-disable */
 import axios from "axios"
 import { showAlert } from "./alerts"
 const stripe = Stripe("pk_test_BUkd0ZXAj6m0q0jMyRgBxNns00PPtgvjjr")
 
-export const bookTour = async (tourId) => {
+export const bookTour = async function (tourId) {
   try {
     // 1) Get checkout session from API
     const session = await axios(`/api/v1/bookings/checkout-session/${tourId}`)

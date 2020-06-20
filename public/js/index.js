@@ -1,31 +1,32 @@
-/* eslint-disable */
 import "@babel/polyfill"
+// import "core-js"
+// import "regenerator-runtime"
+
 import { displayMap } from "./mapbox"
 import { login, logout } from "./login"
-import { updateSettings } from "./updateSettings"
-import { bookTour } from "./stripe"
-import { showAlert } from "./alerts"
+// import { updateSettings } from "./updateSettings"
+// import { bookTour } from "./stripe"
+// import { showAlert } from "./alerts"
 
-// DOM ELEMENTS
 const mapBox = document.getElementById("map")
-const loginForm = document.querySelector(".form--login")
+const loginForm = document.querySelector(".form")
 const logOutBtn = document.querySelector(".nav__el--logout")
 const userDataForm = document.querySelector(".form-user-data")
 const userPasswordForm = document.querySelector(".form-user-password")
 const bookBtn = document.getElementById("book-tour")
 
-// DELEGATION
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations)
+  console.log(locations)
   displayMap(locations)
 }
 
 if (loginForm)
-  loginForm.addEventListener("submit", (e) => {
+  loginForm.addEventListener("submit", function (e) {
     e.preventDefault()
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
-    login(email, password)
+    login(email, password).then()
   })
 
 if (logOutBtn) logOutBtn.addEventListener("click", logout)
@@ -38,7 +39,7 @@ if (userDataForm)
     form.append("email", document.getElementById("email").value)
     form.append("photo", document.getElementById("photo").files[0])
 
-    updateSettings(form, "data")
+    updateSettings(form, "data").then()
   })
 
 if (userPasswordForm)
@@ -61,7 +62,7 @@ if (bookBtn)
   bookBtn.addEventListener("click", (e) => {
     e.target.textContent = "Processing..."
     const { tourId } = e.target.dataset
-    bookTour(tourId)
+    bookTour(tourId).then()
   })
 
 const alertMessage = document.querySelector("body").dataset.alert
