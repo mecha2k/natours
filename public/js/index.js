@@ -1,16 +1,16 @@
-import "@babel/polyfill"
-// import "core-js"
-// import "regenerator-runtime"
-
+import "core-js/stable"
+import "regenerator-runtime/runtime"
 import { displayMap } from "./mapbox"
 import { login, logout } from "./login"
-// import { updateSettings } from "./updateSettings"
-// import { bookTour } from "./stripe"
-// import { showAlert } from "./alerts"
+import { updateData } from "./updateData"
+import { bookTour } from "./stripe"
+import { showAlert } from "./alerts"
+
+console.log("Hello from parcel-bundler!")
 
 const mapBox = document.getElementById("map")
 const loginForm = document.querySelector(".form")
-const logOutBtn = document.querySelector(".nav__el--logout")
+const logOutBtn = document.querySelector(".nav-logout")
 const userDataForm = document.querySelector(".form-user-data")
 const userPasswordForm = document.querySelector(".form-user-password")
 const bookBtn = document.getElementById("book-tour")
@@ -25,7 +25,9 @@ if (loginForm)
     e.preventDefault()
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
-    login(email, password).then()
+    login(email, password)
+      .then(console.log({ email, password }))
+      .catch((err) => console.log(err))
   })
 
 if (logOutBtn) logOutBtn.addEventListener("click", logout)
@@ -38,7 +40,7 @@ if (userDataForm)
     form.append("email", document.getElementById("email").value)
     form.append("photo", document.getElementById("photo").files[0])
 
-    updateSettings(form, "data").then()
+    updateData(form, "data").then()
   })
 
 if (userPasswordForm)
@@ -49,7 +51,7 @@ if (userPasswordForm)
     const passwordCurrent = document.getElementById("password-current").value
     const password = document.getElementById("password").value
     const passwordConfirm = document.getElementById("password-confirm").value
-    await updateSettings({ passwordCurrent, password, passwordConfirm }, "password")
+    await updateData({ passwordCurrent, password, passwordConfirm }, "password")
 
     document.querySelector(".btn--save-password").textContent = "Save password"
     document.getElementById("password-current").value = ""
