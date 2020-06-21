@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" />
+    <script src="https://kit.fontawesome.com/7c7644cef1.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
+    <title>Natours |</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="menu-toggle"><i class="fas fa-bars"></i><i class="fas fa-times"></i></div>
+          <a class="nav-brand" href="/"><img src="/img/logo-white.png" alt="logo" /></a>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <form class="nav-link">
+                <button class="nav-search-btn">
+                  <svg><use href="/img/icons.svg#icon-search"></use></svg></button
+                ><label
+                  ><input class="nav-search-input" type="text" placeholder="Search tours"
+                /></label>
+              </form>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/login">login</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">signup</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="section" id="section">
+      <div class="user-view">
+        <nav class="user-view-menu">
+          <ul class="side-nav">
+            <li class="side-nav-active">
+              <a href="#"
+                ><svg>
+                  <use href="../img/icons.svg#icon-settings"></use>
+                  Settings
+                </svg></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><svg>
+                  <use href="../img/icons.svg#icon-briefcase"></use>
+                  My bookings
+                </svg></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><svg>
+                  <use href="../img/icons.svg#icon-star"></use>
+                  My reviews
+                </svg></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><svg>
+                  <use href="../img/icons.svg#icon-credit-card"></use>
+                  Billing
+                </svg></a
+              >
+            </li>
+          </ul>
+          <div class="admin-nav">
+            <h5 class="admin-nav-heading">Admin</h5>
+            <ul class="side-nav">
+              <li>
+                <a href="#"
+                  ><svg>
+                    <use href="../img/icons.svg#icon-map"></use>
+                    Manage tours
+                  </svg></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><svg>
+                    <use href="../img/icons.svg#icon-users"></use>
+                    Manage users
+                  </svg></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><svg>
+                    <use href="../img/icons.svg#icon-star"></use>
+                    Manage reviews
+                  </svg></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><svg><use href="../img/icons.svg#icon-briefcase"></use></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="user-view-content">
+          <div class="user-view-form-container">
+            <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
+            <form class="form form-user-data">
+              <div class="form-group">
+                <label class="form-label" for="name">Name</label
+                ><input
+                  class="form-input"
+                  id="name"
+                  type="text"
+                  value="mecha2k"
+                  required="required"
+                />
+              </div>
+              <div class="form-group ma-bt-md">
+                <label class="form-label" for="email">Email address</label
+                ><input
+                  class="form-input"
+                  id="email"
+                  type="email"
+                  value="admin@cstory.com"
+                  required="required"
+                />
+              </div>
+              <div class="form-group form-photo-upload">
+                <img class="form-user-photo" src="../img/users/user-12.jpg" alt="User photo" /><a
+                  class="btn-text"
+                  href=""
+                  >Choose new photo</a
+                >
+              </div>
+              <div class="form-group right">
+                <button class="btn btn--small btn--green">Save settings</button>
+              </div>
+            </form>
+          </div>
+          <div class="line">&nbsp;</div>
+          <div class="user-view-form-container">
+            <h2 class="heading-secondary ma-bt-md">Password change</h2>
+            <form class="form form-user-settings">
+              <div class="form-group">
+                <label class="form-label" for="password-current">Current password</label
+                ><input
+                  class="form-input"
+                  id="password-current"
+                  type="password"
+                  placeholder="••••••••"
+                  required="required"
+                  minlength="5"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="password">New password</label
+                ><input
+                  class="form-input"
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  required="required"
+                  minlength="5"
+                />
+              </div>
+              <div class="form-group ma-bt-lg">
+                <label class="form-label" for="password-confirm">Confirm password</label
+                ><input
+                  class="form-input"
+                  id="password-confirm"
+                  type="password"
+                  placeholder="••••••••"
+                  required="required"
+                  minlength="5"
+                />
+              </div>
+              <div class="form-group right">
+                <button class="btn btn--small btn--green">Save password</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <div class="back-to-top">
+          <a href="#section"><i class="fas fa-chevron-up"></i></a>
+        </div>
+        <div class="footer-content">
+          <div class="footer-content-about animate-top">
+            <h4>About natours</h4>
+            <div class="asterisk"><i class="fas fa-asterisk"></i></div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, laborum autem quo
+              corrupti quam enim, delectus repellat sit quos qui ullam ex voluptates asperiores
+              numquam eius iste quisquam distinctio. Ipsum!
+            </p>
+          </div>
+          <div class="footer-content-devider animate-bottom">
+            <div class="social-media">
+              <h4>Follow along</h4>
+              <ul class="social-icons">
+                <li>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-facebook-square"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-pinterest"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="newsletter-container">
+              <h4>Newsletter</h4>
+              <form class="newsletter-form" action="">
+                <label
+                  ><input class="newsletter-input" type="text" placeholder="Email Address" /></label
+                ><button class="newsletter-btn" type="submit">
+                  <i class="fas fa-envelope"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--script(src=`https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js`)--><!--script(src="/js/mapbox.js")--><!--script(src="/js/login.js")-->
+    <script src="/js/bundle.js"></script>
+  </body>
+</html>
