@@ -1,68 +1,57 @@
 extends base
 
+mixin navItem(link, text, icon, active)
+  li(class=`${active ? 'side-nav-active' : ''}`)
+    a(href=`${link}`)
+      svg
+        use(href=`img/icons.svg#icon-${icon}`)
+        | #{text}
+
 block contents
   section#section.section
     .user-view
       nav.user-view-menu
         ul.side-nav
-          li.side-nav-active
-            a(href="#")
-              svg
-                use(href="../img/icons.svg#icon-settings")
-                | Settings
-          li
-            a(href="#")
-              svg
-                use(href="../img/icons.svg#icon-briefcase")
-                | My bookings
-          li
-            a(href="#")
-              svg
-                use(href="../img/icons.svg#icon-star")
-                | My reviews
-          li
-            a(href="#")
-              svg
-                use(href="../img/icons.svg#icon-credit-card")
-                | Billing
-        .admin-nav
-          h5.admin-nav-heading Admin
-          ul.side-nav
-            li
-              a(href="#")
-                svg
-                  use(href="../img/icons.svg#icon-map")
-                  | Manage tours
-            li
-              a(href="#")
-                svg
-                  use(href="../img/icons.svg#icon-users")
-                  | Manage users
-            li
-              a(href="#")
-                svg
-                  use(href="../img/icons.svg#icon-star")
-                  | Manage reviews
-            li
-              a(href="#")
-                svg
-                  use(href="../img/icons.svg#icon-briefcase")
+          +navItem('#', 'Settings', 'settings', true)
+          +navItem('/my-tours', 'My bookings', 'briefcase')
+          +navItem('#', 'My reviews', 'star')
+          +navItem('#', 'Billing', 'credit-card')
+
+        - if (user.role === 'admin')
+          .admin-nav
+            h5.admin-nav-heading Admin
+            ul.side-nav
+              +navItem('#', 'Manage tours', 'map')
+              +navItem('#', 'Manage users', 'users')
+              +navItem('#', 'Manage reviews', 'star')
+              +navItem('#', 'Manage bookings', 'briefcase')
+
       .user-view-content
         .user-view-form-container
           h2.heading-secondary.ma-bt-md Your account settings
+
+          //- WITHOUT API
+          //- form.form.form-user-data(action='/submit-user-data' method='POST' enctype='multipart/form-data')
+
+          //- WITH API
+
           form.form.form-user-data
             .form-group
               label.form-label(for="name") Name
-              input#name.form-input(type="text", value="mecha2k", required="required")
+              input#name.form-input(type="text", value=`${user.name}`, required, name="name")
             .form-group.ma-bt-md
               label.form-label(for="email") Email address
-              input#email.form-input(type="email", value="admin@cstory.com", required="required")
+              input#email.form-input(type="email", value=`${user.email}`, required, name="email")
             .form-group.form-photo-upload
-              img.form-user-photo(src="../img/users/user-12.jpg", alt="User photo")
-              a.btn-text(href="") Choose new photo
+              img.form-user-photo(src=`/img/users/${user.photo}`, alt="User photo")
+              input#photo.form-upload(type="file", accept="image/*", name="photo")
+              label(for="photo") Choose new photo
+
             .form-group.right
               button.btn.btn--small.btn--green Save settings
+
         .line &nbsp;
+
         .user-view-form-container
           h2.heading-secondary.ma-bt-md Password change
           form.form.form-user-settings
@@ -71,7 +60,7 @@ block contents
               input#password-current.form-input(
                 type="password",
                 placeholder="••••••••",
-                required="required",
+                required,
                 minlength="5"
               )
             .form-group
@@ -79,7 +68,7 @@ block contents
               input#password.form-input(
                 type="password",
                 placeholder="••••••••",
-                required="required",
+                required,
                 minlength="5"
               )
             .form-group.ma-bt-lg
@@ -87,7 +76,7 @@ block contents
               input#password-confirm.form-input(
                 type="password",
                 placeholder="••••••••",
-                required="required",
+                required,
                 minlength="5"
               )
             .form-group.right

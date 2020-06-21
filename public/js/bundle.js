@@ -13931,131 +13931,6 @@ var logout = /*#__PURE__*/function () {
 }();
 
 exports.logout = logout;
-},{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"updateData.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateData = void 0;
-
-var _axios = _interopRequireDefault(require("axios"));
-
-var _alerts = require("./alerts");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var updateData = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, type) {
-    var url, res;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            url = type === "password" ? "/api/users/updateMyPassword" : "/api/users/updateMe";
-            _context.next = 4;
-            return (0, _axios.default)({
-              method: "PATCH",
-              url: url,
-              data: data
-            });
-
-          case 4:
-            res = _context.sent;
-
-            if (res.data.status === "success") {
-              (0, _alerts.showAlert)("success", "".concat(type.toUpperCase(), " updated successfully!"));
-            }
-
-            _context.next = 11;
-            break;
-
-          case 8:
-            _context.prev = 8;
-            _context.t0 = _context["catch"](0);
-            (0, _alerts.showAlert)("error", _context.t0.response.data.message);
-
-          case 11:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[0, 8]]);
-  }));
-
-  return function updateData(_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-exports.updateData = updateData;
-},{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"stripe.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.bookTour = void 0;
-
-var _axios = _interopRequireDefault(require("axios"));
-
-var _alerts = require("./alerts");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var stripe = Stripe("pk_test_BUkd0ZXAj6m0q0jMyRgBxNns00PPtgvjjr");
-
-var bookTour = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(tourId) {
-    var session;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return (0, _axios.default)("/api/v1/bookings/checkout-session/".concat(tourId));
-
-          case 3:
-            session = _context.sent;
-            _context.next = 6;
-            return stripe.redirectToCheckout({
-              sessionId: session.data.session.id
-            });
-
-          case 6:
-            _context.next = 12;
-            break;
-
-          case 8:
-            _context.prev = 8;
-            _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
-            (0, _alerts.showAlert)("error", _context.t0);
-
-          case 12:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[0, 8]]);
-  }));
-
-  return function bookTour(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-exports.bookTour = bookTour;
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -14067,16 +13942,10 @@ var _mapbox = require("./mapbox");
 
 var _login = require("./login");
 
-var _updateData = require("./updateData");
-
-var _stripe = require("./stripe");
-
 var _alerts = require("./alerts");
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+// import { updateData } from "./updateData"
+// import { bookTour } from "./stripe"
 console.log("Hello from parcel-bundler!");
 var mapBox = document.getElementById("map");
 var loginForm = document.querySelector(".form");
@@ -14101,60 +13970,43 @@ if (loginForm) loginForm.addEventListener("submit", function (e) {
     return console.log(err);
   });
 });
-if (logOutBtn) logOutBtn.addEventListener("click", _login.logout);
-if (userDataForm) userDataForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  var form = new FormData();
-  form.append("name", document.getElementById("name").value);
-  form.append("email", document.getElementById("email").value);
-  form.append("photo", document.getElementById("photo").files[0]);
-  (0, _updateData.updateData)(form, "data").then();
-});
-if (userPasswordForm) userPasswordForm.addEventListener("submit", /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    var passwordCurrent, password, passwordConfirm;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            e.preventDefault();
-            document.querySelector(".btn--save-password").textContent = "Updating...";
-            passwordCurrent = document.getElementById("password-current").value;
-            password = document.getElementById("password").value;
-            passwordConfirm = document.getElementById("password-confirm").value;
-            _context.next = 7;
-            return (0, _updateData.updateData)({
-              passwordCurrent: passwordCurrent,
-              password: password,
-              passwordConfirm: passwordConfirm
-            }, "password");
+if (logOutBtn) logOutBtn.addEventListener("click", _login.logout); // if (userDataForm)
+//   userDataForm.addEventListener("submit", (e) => {
+//     e.preventDefault()
+//     const form = new FormData()
+//     form.append("name", document.getElementById("name").value)
+//     form.append("email", document.getElementById("email").value)
+//     form.append("photo", document.getElementById("photo").files[0])
+//
+//     updateData(form, "data").then()
+//   })
+//
+// if (userPasswordForm)
+//   userPasswordForm.addEventListener("submit", async (e) => {
+//     e.preventDefault()
+//     document.querySelector(".btn--save-password").textContent = "Updating..."
+//
+//     const passwordCurrent = document.getElementById("password-current").value
+//     const password = document.getElementById("password").value
+//     const passwordConfirm = document.getElementById("password-confirm").value
+//     await updateData({ passwordCurrent, password, passwordConfirm }, "password")
+//
+//     document.querySelector(".btn--save-password").textContent = "Save password"
+//     document.getElementById("password-current").value = ""
+//     document.getElementById("password").value = ""
+//     document.getElementById("password-confirm").value = ""
+//   })
+//
+// if (bookBtn)
+//   bookBtn.addEventListener("click", (e) => {
+//     e.target.textContent = "Processing..."
+//     const { tourId } = e.target.dataset
+//     bookTour(tourId).then()
+//   })
 
-          case 7:
-            document.querySelector(".btn--save-password").textContent = "Save password";
-            document.getElementById("password-current").value = "";
-            document.getElementById("password").value = "";
-            document.getElementById("password-confirm").value = "";
-
-          case 11:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function (_x) {
-    return _ref.apply(this, arguments);
-  };
-}());
-if (bookBtn) bookBtn.addEventListener("click", function (e) {
-  e.target.textContent = "Processing...";
-  var tourId = e.target.dataset.tourId;
-  (0, _stripe.bookTour)(tourId).then();
-});
 var alertMessage = document.querySelector("body").dataset.alert;
 if (alertMessage) (0, _alerts.showAlert)("success", alertMessage, 20);
-},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./mapbox":"mapbox.js","./login":"login.js","./updateData":"updateData.js","./stripe":"stripe.js","./alerts":"alerts.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"core-js/stable":"../../node_modules/core-js/stable/index.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./mapbox":"mapbox.js","./login":"login.js","./alerts":"alerts.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -14182,7 +14034,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "9981" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "6609" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
