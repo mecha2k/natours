@@ -1,0 +1,94 @@
+extends base
+
+block contents
+  section#section.section
+    .user-view
+      nav.user-view-menu
+        ul.side-nav
+          li.side-nav-active
+            a(href="#")
+              svg
+                use(href="../img/icons.svg#icon-settings")
+                | Settings
+          li
+            a(href="#")
+              svg
+                use(href="../img/icons.svg#icon-briefcase")
+                | My bookings
+          li
+            a(href="#")
+              svg
+                use(href="../img/icons.svg#icon-star")
+                | My reviews
+          li
+            a(href="#")
+              svg
+                use(href="../img/icons.svg#icon-credit-card")
+                | Billing
+        .admin-nav
+          h5.admin-nav-heading Admin
+          ul.side-nav
+            li
+              a(href="#")
+                svg
+                  use(href="../img/icons.svg#icon-map")
+                  | Manage tours
+            li
+              a(href="#")
+                svg
+                  use(href="../img/icons.svg#icon-users")
+                  | Manage users
+            li
+              a(href="#")
+                svg
+                  use(href="../img/icons.svg#icon-star")
+                  | Manage reviews
+            li
+              a(href="#")
+                svg
+                  use(href="../img/icons.svg#icon-briefcase")
+      .user-view-content
+        .user-view-form-container
+          h2.heading-secondary.ma-bt-md Your account settings
+          form.form.form-user-data
+            .form-group
+              label.form-label(for="name") Name
+              input#name.form-input(type="text", value="mecha2k", required="required")
+            .form-group.ma-bt-md
+              label.form-label(for="email") Email address
+              input#email.form-input(type="email", value="admin@cstory.com", required="required")
+            .form-group.form-photo-upload
+              img.form-user-photo(src="../img/users/user-12.jpg", alt="User photo")
+              a.btn-text(href="") Choose new photo
+            .form-group.right
+              button.btn.btn--small.btn--green Save settings
+        .line &nbsp;
+        .user-view-form-container
+          h2.heading-secondary.ma-bt-md Password change
+          form.form.form-user-settings
+            .form-group
+              label.form-label(for="password-current") Current password
+              input#password-current.form-input(
+                type="password",
+                placeholder="••••••••",
+                required="required",
+                minlength="5"
+              )
+            .form-group
+              label.form-label(for="password") New password
+              input#password.form-input(
+                type="password",
+                placeholder="••••••••",
+                required="required",
+                minlength="5"
+              )
+            .form-group.ma-bt-lg
+              label.form-label(for="password-confirm") Confirm password
+              input#password-confirm.form-input(
+                type="password",
+                placeholder="••••••••",
+                required="required",
+                minlength="5"
+              )
+            .form-group.right
+              button.btn.btn--small.btn--green Save password
