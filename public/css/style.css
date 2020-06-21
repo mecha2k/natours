@@ -481,6 +481,64 @@ p {
   border-radius: 10px;
 }
 
+.side-nav {
+  list-style: none;
+}
+.side-nav li {
+  margin: 1rem 0;
+  border-left: 0 solid #fff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.side-nav-active,
+.side-nav li:hover {
+  border-left: 4px solid #fff !important;
+}
+.side-nav-active a {
+  -webkit-transform: translateX(-3px);
+  transform: translateX(-3px);
+}
+.side-nav a:link,
+.side-nav a:visited {
+  padding: 1rem 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-decoration: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.side-nav a:hover,
+.side-nav a:active {
+  -webkit-transform: translateX(3px);
+  transform: translateX(3px);
+}
+.side-nav svg {
+  height: 1.9rem;
+  width: 1.9rem;
+  fill: #f7f7f7;
+  margin-right: 2rem;
+}
+
+.admin-nav {
+  margin-top: 5.5rem;
+}
+.admin-nav-heading {
+  margin: 0 5rem 1.5rem 4rem;
+  padding-bottom: 3px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #f2f2f2;
+  border-bottom: 1px solid currentColor;
+}
+
 @media screen and (min-width: 900px) {
   section {
     padding: 7.9rem;
@@ -1049,29 +1107,28 @@ footer {
 
 .user-view {
   background-color: #fff;
-  max-width: 120rem;
+  max-width: 220rem;
+  min-width: 80rem;
   margin: 0 auto;
   min-height: 100vh;
   border-radius: 3px;
   overflow: hidden;
-  -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);
+  /*-webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);*/
   box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  /*display: -webkit-box;*/
+  /*display: -ms-flexbox;*/
   display: flex;
 }
 .user-view-menu {
-  -webkit-box-flex: 32rem;
-  -ms-flex: 32rem 0 0px;
   flex: 32rem 0 0;
-  background-image: -webkit-gradient(linear, left top, right bottom, from(#7dd56f), to(#28b487));
+  /*background-image: -webkit-gradient(linear, left top, right bottom, from(#7dd56f), to(#28b487));*/
   background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
   padding: 4rem 0;
 }
 .user-view-content {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+  -webkit-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
   padding: 7rem 0;
 }
 .user-view-form-container {

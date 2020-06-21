@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" />
+    <script src="https://kit.fontawesome.com/7c7644cef1.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+
+    <title>Natours | Exciting tours for adventurous people</title>
+  </head>
+  <body>
+    <section class="section" id="section">
+      <div class="user-view">
+        <nav class="user-view-menu">
+          <ul class="side-nav">
+            <li class="side-nav-active">
+              <a href="#">
+                <svg><use href="../img/icons.svg#icon-settings"></use></svg>
+                Settings
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg><use href="../img/icons.svg#icon-briefcase"></use></svg>
+                My bookings
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg><use href="../img/icons.svg#icon-star"></use></svg>
+                My reviews
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg><use href="../img/icons.svg#icon-credit-card"></use></svg>
+                Billing
+              </a>
+            </li>
+          </ul>
+          <div class="admin-nav">
+            <h5 class="admin-nav-heading">Admin</h5>
+            <ul class="side-nav">
+              <li>
+                <a href="#">
+                  <svg><use href="../img/icons.svg#icon-map"></use></svg>
+                  Manage tours
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <svg><use href="../img/icons.svg#icon-users"></use></svg>
+                  Manage users
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <svg><use href="../img/icons.svg#icon-star"></use></svg>
+                  Manage reviews
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <svg><use href="../img/icons.svg#icon-briefcase"></use></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="user-view-content">
+          <div class="user-view-form-container">
+            <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
+            <form class="form form-user-data">
+              <div class="form-group">
+                <label class="form-label" for="name">Name</label>
+                <input
+                  class="form-input"
+                  id="name"
+                  type="text"
+                  value="mecha2k"
+                  required="required"
+                />
+              </div>
+              <div class="form-group ma-bt-md">
+                <label class="form-label" for="email">Email address</label>
+                <input
+                  class="form-input"
+                  id="email"
+                  type="email"
+                  value="admin@cstory.com"
+                  required="required"
+                />
+              </div>
+              <div class="form-group form-photo-upload">
+                <img class="form-user-photo" src="../img/users/user-12.jpg" alt="User photo" />
+                <a class="btn-text" href="">Choose new photo</a>
+              </div>
+              <div class="form-group right">
+                <button class="btn btn--small btn--green">Save settings</button>
+              </div>
+            </form>
+          </div>
+          <div class="line">&nbsp;</div>
+          <div class="user-view-form-container">
+            <h2 class="heading-secondary ma-bt-md">Password change</h2>
+            <form class="form form-user-settings">
+              <div class="form-group">
+                <label class="form-label" for="password-current">Current password</label>
+                <input
+                  class="form-input"
+                  id="password-current"
+                  type="password"
+                  placeholder="••••••••"
+                  required="required"
+                  minlength="8"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="password">New password</label>
+                <input
+                  class="form-input"
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  required="required"
+                  minlength="8"
+                />
+              </div>
+              <div class="form-group ma-bt-lg">
+                <label class="form-label" for="password-confirm">Confirm password</label>
+                <input
+                  class="form-input"
+                  id="password-confirm"
+                  type="password"
+                  placeholder="••••••••"
+                  required="required"
+                  minlength="8"
+                />
+              </div>
+              <div class="form-group right">
+                <button class="btn btn--small btn--green">Save password</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
