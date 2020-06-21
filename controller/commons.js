@@ -1,8 +1,8 @@
 const appError = require("../utils/apperror")
 const apiFeatures = require("../utils/apiFeatures")
 
-exports.deleteOne = function(model) {
-  return async function(req, res, next) {
+exports.deleteOne = function (model) {
+  return async function (req, res, next) {
     console.log(req.params)
 
     try {
@@ -16,8 +16,8 @@ exports.deleteOne = function(model) {
   }
 }
 
-exports.updateOne = function(model) {
-  return async function(req, res, next) {
+exports.updateOne = function (model) {
+  return async function (req, res, next) {
     try {
       const doc = await model.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -32,8 +32,8 @@ exports.updateOne = function(model) {
   }
 }
 
-exports.createOne = function(model) {
-  return async function(req, res, next) {
+exports.createOne = function (model) {
+  return async function (req, res, next) {
     try {
       const doc = await model.create(req.body)
 
@@ -44,8 +44,8 @@ exports.createOne = function(model) {
   }
 }
 
-exports.getOne = function(model, popOpts) {
-  return async function(req, res, next) {
+exports.getOne = function (model, popOpts) {
+  return async function (req, res, next) {
     try {
       let query = model.findById(req.params.id)
       if (popOpts) query = query.populate(popOpts)
@@ -60,8 +60,8 @@ exports.getOne = function(model, popOpts) {
   }
 }
 
-exports.getAll = function(model) {
-  return async function(req, res, next) {
+exports.getAll = function (model) {
+  return async function (req, res, next) {
     try {
       let filter = {}
       if (req.params.id) filter = { tour: req.params.id }

@@ -35,7 +35,7 @@ const schema = new mongoose.Schema(
       default: 4.5,
       min: [1, "Rating must be above 1.0"],
       max: [5, "Rating must be below 5.0"],
-      set: function(val) {
+      set: function (val) {
         return Math.round(val * 10) / 10
       }
     },
@@ -50,7 +50,7 @@ const schema = new mongoose.Schema(
     priceDiscount: {
       type: Number,
       validate: {
-        validator: function(val) {
+        validator: function (val) {
           return val < this["price"]
         },
         message: "Discount price ({VALUE}) should be below regular price"
@@ -113,7 +113,7 @@ schema.index({ price: 1, ratingsAverage: -1 })
 schema.index({ slug: 1 })
 schema.index({ startLocation: "2dsphere" })
 
-schema.virtual("durationWeeks").get(function() {
+schema.virtual("durationWeeks").get(function () {
   return this.duration / 7
 })
 
@@ -123,30 +123,30 @@ schema.virtual("reviews", {
   localField: "_id"
 })
 
-schema.pre("save", function(next) {
+schema.pre("save", function (next) {
   this.slug = slugify(this.name, { lower: true })
   next()
 })
 
-schema.pre(/^find/, function(next) {
+schema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } })
 
   this.start = Date.now()
   next()
 })
 
-schema.pre(/^find/, function(next) {
+schema.pre(/^find/, function (next) {
   this.populate({ path: "guides", select: "-__v -passwordChangedAt" })
 
   next()
 })
 
-schema.post(/^find/, function(docs, next) {
+schema.post(/^find/, function (docs, next) {
   console.log(`Query took ${Date.now() - this.start} milliseconds!`)
   next()
 })
 
-schema.pre("aggregate", function(next) {
+schema.pre("aggregate", function (next) {
   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } })
   console.log(this.pipeline())
   next()

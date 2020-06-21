@@ -1,7 +1,7 @@
 import axios from "axios"
 import { showAlert } from "./alerts"
 
-export const updateSettings = async function(data, type) {
+export const updateSettings = async function (data, type) {
   try {
     const url = type === "password" ? "/api/users/updateMyPassword" : "/api/users/updateMe"
 
