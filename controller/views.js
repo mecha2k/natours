@@ -37,7 +37,7 @@ exports.getLoginForm = function (req, res) {
   })
 }
 
-exports.getAccount = (req, res) => {
+exports.getAccount = function (req, res) {
   res.status(200).render("account", {
     title: "Your account"
   })
@@ -53,7 +53,7 @@ exports.getMyTours = async function (req, res, next) {
 }
 
 exports.updateUserData = async function (req, res, next) {
-  const updatedUser = await User.findByIdAndUpdate(
+  const update = await User.findByIdAndUpdate(
     req.user.id,
     {
       name: req.body.name,
@@ -65,5 +65,5 @@ exports.updateUserData = async function (req, res, next) {
     }
   )
 
-  res.status(200).render("account", { title: "Your account", user: updatedUser })
+  res.status(200).render("account", { title: "Your account", user: update })
 }

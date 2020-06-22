@@ -483,6 +483,8 @@ p {
 
 .side-nav {
   list-style: none;
+  font-size: 2rem;
+  font-weight: 800;
 }
 .side-nav li {
   margin: 1rem 0;
@@ -507,8 +509,8 @@ p {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #fff;
-  font-size: 1.5rem;
+  color: white;
+  /*font-size: 1.5rem;*/
   text-transform: uppercase;
   font-weight: 400;
   text-decoration: none;
@@ -521,8 +523,8 @@ p {
   transform: translateX(3px);
 }
 .side-nav svg {
-  height: 1.9rem;
-  width: 1.9rem;
+  height: 2rem;
+  width: 2rem;
   fill: #f7f7f7;
   margin-right: 2rem;
 }

@@ -5,7 +5,7 @@ mixin navItem(link, text, icon, active)
     a(href=`${link}`)
       svg
         use(href=`img/icons.svg#icon-${icon}`)
-        | #{text}
+      | #{text}
 
 block contents
   section#section.section
@@ -48,13 +48,13 @@ block contents
               label(for="photo") Choose new photo
 
             .form-group.right
-              button.btn.btn--small.btn--green Save settings
+              button.btn.btn-small.btn-green Save settings
 
         .line &nbsp;
 
         .user-view-form-container
           h2.heading-secondary.ma-bt-md Password change
-          form.form.form-user-settings
+          form.form.form-user-password
             .form-group
               label.form-label(for="password-current") Current password
               input#password-current.form-input(
@@ -80,4 +80,4 @@ block contents
                 minlength="5"
               )
             .form-group.right
-              button.btn.btn--small.btn--green Save password
+              button.btn.btn-small.btn-green.btn-save-password Save password

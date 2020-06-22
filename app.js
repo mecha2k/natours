@@ -9,6 +9,8 @@ const mongoSanitize = require("express-mongo-sanitize")
 const xss = require("xss-clean")
 const hpp = require("hpp")
 
+const appError = require("./utils/apperror")
+const errorHandler = require("./controller/errors")
 const viewRouter = require("./routes/views")
 const tourRouter = require("./routes/tours")
 const userRouter = require("./routes/users")
@@ -50,12 +52,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use(function (req, res, next) {
-  console.log("Hello from the middleware...")
-  next()
-})
-
-app.use(function (req, res, next) {
   req.requestTime = new Date().toISOString()
+  console.log("Hello from the middleware...")
   console.log(req.cookies)
   next()
 })
@@ -76,5 +74,11 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render("error")
 })
+
+app.all("*", (req, res, next) => {
+  next(new appError(`Can't find ${req.originalUrl} on this server!`, 404))
+})
+
+app.use(errorHandler)
 
 module.exports = app

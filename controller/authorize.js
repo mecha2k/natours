@@ -87,6 +87,7 @@ exports.protect = async function (req, res, next) {
     }
 
     req.user = currentUser
+    res.locals.user = currentUser
   } catch (error) {
     res.status(404).json({ status: "fail", message: error })
   }
