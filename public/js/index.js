@@ -45,7 +45,7 @@ if (userDataForm)
     form.append("photo", document.getElementById("photo").files[0])
     console.log(form)
 
-    updateuser(form, "data").then(console.log(form))
+    updateuser(form, "data").then()
   })
 
 if (userPasswordForm)
