@@ -35,14 +35,17 @@ if (logOutBtn) logOutBtn.addEventListener("click", logout)
 if (userDataForm)
   userDataForm.addEventListener("submit", function (e) {
     e.preventDefault()
-    // const form = new FormData()
-    // form.append("name", document.getElementById("name").value)
-    // form.append("email", document.getElementById("email").value)
-    // form.append("photo", document.getElementById("photo").files[0])
-    const name = document.getElementById("name").value
-    const email = document.getElementById("email").value
 
-    updateuser({ name, email }, "data").then(console.log({ name, email }))
+    // const name = document.getElementById("name").value
+    // const email = document.getElementById("email").value
+
+    const form = new FormData()
+    form.append("name", document.getElementById("name").value)
+    form.append("email", document.getElementById("email").value)
+    form.append("photo", document.getElementById("photo").files[0])
+    console.log(form)
+
+    updateuser(form, "data").then(console.log(form))
   })
 
 if (userPasswordForm)
