@@ -11,7 +11,7 @@ const appError = require("../utils/apperror")
 //   },
 //   filename: function (req, file, cb) {
 //     const ext = file.mimetype.split("/")[1]
-//     cb(null, `user-${req.body.name}-${Date.now()}.${ext}`)
+//     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`)
 //   }
 // })
 
@@ -28,7 +28,7 @@ exports.resizeUserPhoto = async function (req, res, next) {
   try {
     if (!req.file) return next()
 
-    req.file.filename = `user-${req.body.name}-${Date.now()}.jpg`
+    req.file.filename = `user-${req.user.id}-${Date.now()}.jpg`
 
     await sharp(req.file.buffer)
       .resize(500, 500)
