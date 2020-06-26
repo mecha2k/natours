@@ -1,4 +1,4 @@
-#Git command and setup
+#Git command
 
 - First time git setup
 
@@ -13,9 +13,25 @@ git config --list
 
 ```
 git init
-git add *.c
-git add LICENSE
-git commit -m 'Initial project version'
 
 git clone https://github.com/libgit2/libgit2
+git status
+```
+
+- Committing
+
+```
+git add --all
+git status
+git commit -m "message here"
+
+git push origin master
+git remote show origin
+```
+
+- Getting help
+
+```
+git add -h
+git help <verb>
 ```
