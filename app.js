@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser")
 const createError = require("http-errors")
 const expressLimit = require("express-rate-limit")
 const mongoSanitize = require("express-mongo-sanitize")
+const compression = require("compression")
 const xss = require("xss-clean")
 const hpp = require("hpp")
 
@@ -48,6 +49,7 @@ app.use(
     ]
   })
 )
+app.use(compression())
 
 app.use(express.urlencoded({ extended: true, limit: "10kb" }))
 app.use(cookieParser())
