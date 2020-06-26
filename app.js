@@ -48,7 +48,8 @@ app.use(
     ]
   })
 )
-app.use(express.urlencoded({ extended: false }))
+
+app.use(express.urlencoded({ extended: true, limit: "10kb" }))
 app.use(cookieParser())
 
 app.use(function (req, res, next) {
